@@ -6,12 +6,13 @@ public class Conveyor {
     final int length;
     final int[] destinations;
     Present[] presents;
-    ChristmasMachine machine;
+    final ChristmasMachine machine;
 
-    public Conveyor(int id, int length, int[] destinations) {
+    public Conveyor(int id, int length, int[] destinations, ChristmasMachine machine) {
         ID = id;
         this.length = length;
         this.destinations = destinations;
+        this.machine = machine;
         this.presents = new Present[this.length];
         //this.machine = ChristmasMachine.getInstance();
     }

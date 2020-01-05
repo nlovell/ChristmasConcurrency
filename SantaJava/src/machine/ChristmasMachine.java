@@ -16,9 +16,9 @@ public class ChristmasMachine {
 
     public void establishMachine(){
         //initialise hoppers
-        hoppers[0] = new Hopper(1, 2,3, 4);
-        hoppers[1] = new Hopper(9, 8,7, 6);
-        hoppers[2] = new Hopper(2, 8,7, 6);
+        hoppers[0] = new Hopper(1, 2,3, 4, this);
+        hoppers[1] = new Hopper(9, 8,7, 6, this);
+        hoppers[2] = new Hopper(2, 8,7, 6, this);
 
         hoppers[0].run();
         hoppers[1].run();

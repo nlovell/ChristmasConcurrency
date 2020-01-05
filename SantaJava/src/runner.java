@@ -10,8 +10,8 @@ public class runner {
         FileParser fp =  new FileParser();
         String[] output = fp.parseFile("C:/test/example.txt", true, true);
 
-        ChristmasMachine xmasMach = new ChristmasMachine(new String[]{"120"});
-        xmasMach.establishMachine();
+       // ChristmasMachine xmasMach = new ChristmasMachine(new String[]{"120"});
+       // xmasMach.establishMachine();
 
 
         /*

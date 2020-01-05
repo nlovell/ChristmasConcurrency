@@ -3,6 +3,7 @@ package parser;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,6 +17,20 @@ import java.util.regex.Pattern;
 public class FileParser {
 
     private boolean printEnabled;
+    private String[] finalOutput = new String[6];
+    // 0 = time
+    // 1 = conveyor
+    // 2 = hopper
+    // 3 = present
+    // 4 = sack
+    // 5 = turntable
+
+    public ArrayList<String[]> conveyors = new ArrayList();
+    private ArrayList<String[]> hoppers;
+    private ArrayList<String[]> presents;
+    private ArrayList<String[]> sacks;
+    private ArrayList<String[]> turntables;
+
 
     /**
      * Instantiates a new File parser.
@@ -49,6 +64,10 @@ public class FileParser {
         for (String lineToParse : fileToParse) {
             if (lineToParse != null)
                 regexFilter(lineToParse);
+        }
+
+        for(String[] convs : conveyors) {
+            togglePrint(Arrays.toString(convs));
         }
 
         return new String[0];
@@ -103,7 +122,8 @@ public class FileParser {
         if (theData.matches(Constants.turntable)) {
             parseTurntable(theData);
         } else if (theData.matches(Constants.conveyor)) {
-            parseConveyor(theData);
+            String[]  conv = parseConveyor(theData);
+            conveyors.add(conv);
         } else if (theData.matches(Constants.sack)) {
             parseSack(theData);
         } else if (theData.matches(Constants.hopper)) {
@@ -121,17 +141,25 @@ public class FileParser {
      *
      * @param conveyor the string defining a conveyor
      */
-    private void parseConveyor(final String conveyor) {
+    private String[] parseConveyor(final String conveyor) {
+        String[]  conveyorDetails = new String[3];
+
         Matcher idMat = Pattern.compile(Constants.conveyor).matcher(conveyor);
         idMat.find();
         togglePrint("Conveyor " + idMat.group(1) + " found in parsed data.");
+        conveyorDetails[0] = idMat.group(1);
+
         Pattern pattern = Pattern.compile(Constants.conveyor);
         Matcher matcher = pattern.matcher(conveyor);
 
         while (matcher.find()) {
             togglePrint("      length: " + matcher.group(2));
+            conveyorDetails[1] = matcher.group(2);
             togglePrint("destinations: " + Arrays.toString(stringArrayGenerator(matcher.group(3), " ")));
+            conveyorDetails[2] =  Arrays.toString(stringArrayGenerator(matcher.group(3), " "));
         }
+        togglePrint(Arrays.toString(conveyorDetails));
+        return conveyorDetails;
     }
 
     /**
@@ -155,7 +183,7 @@ public class FileParser {
      *
      * @param sack the string defining a sack
      */
-    private void parseSack(final String sack) {
+    private String[] parseSack(final String sack) {
         Matcher idMat = Pattern.compile(Constants.sack).matcher(sack);
         idMat.find();
         togglePrint("Sack " + idMat.group(1) + " found in parsed data.");
@@ -168,6 +196,7 @@ public class FileParser {
             togglePrint("    capacity: " + matcher.group(2));
             togglePrint("        ages: " + Arrays.toString(ages));
         }
+        return new String[0];
     }
 
     /**
@@ -175,7 +204,7 @@ public class FileParser {
      *
      * @param turntable the string defining a turntable
      */
-    private void parseTurntable(final String turntable) {
+    private String[]  parseTurntable(final String turntable) {
         Matcher idMat = Pattern.compile(Constants.turntable).matcher(turntable);
         idMat.find();
         togglePrint("Turntable " + idMat.group(1) + " found in parsed data.");
@@ -192,6 +221,7 @@ public class FileParser {
             if (!matcher.group(2).equals("null"))
                 togglePrint("   output id: " + matcher.group(3));
         }
+        return new String[0];
     }
 
     /**
@@ -199,7 +229,7 @@ public class FileParser {
      *
      * @param present the string defining a turntable
      */
-    private void parsePresent(final String present) {
+    private String[]  parsePresent(final String present) {
         Matcher idMat = Pattern.compile(Constants.present).matcher(present);
         idMat.find();
         togglePrint("Present " + idMat.group(1) + " found in parsed data.");
@@ -216,6 +246,7 @@ public class FileParser {
             //if (!matcher.group(2).equals("null"))
             //togglePrint("   output id: " + matcher.group(3));
         }
+        return new String[0];
     }
 
     /**

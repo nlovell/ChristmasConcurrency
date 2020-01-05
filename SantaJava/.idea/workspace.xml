@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/machine/MachinePart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/Conveyor.java" afterDir="false" />
@@ -19,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JavaFXApplication" />
       </list>
     </option>
   </component>
@@ -26,7 +27,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1V9wQFN2ksvcUKMRUh2UccEfej1" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -92,22 +95,22 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom" timestamp="1578243731133">
+    <state width="2517" height="192" key="GridCell.Tab.0.bottom" timestamp="1578246925691">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578243731133" />
-    <state width="2517" height="401" key="GridCell.Tab.0.center" timestamp="1578243731133">
+    <state width="2517" height="192" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578246925691" />
+    <state width="2517" height="192" key="GridCell.Tab.0.center" timestamp="1578246925690">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578243731133" />
-    <state width="2517" height="401" key="GridCell.Tab.0.left" timestamp="1578243731133">
+    <state width="2517" height="192" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578246925690" />
+    <state width="2517" height="192" key="GridCell.Tab.0.left" timestamp="1578246925690">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578243731133" />
-    <state width="2517" height="401" key="GridCell.Tab.0.right" timestamp="1578243731133">
+    <state width="2517" height="192" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578246925690" />
+    <state width="2517" height="192" key="GridCell.Tab.0.right" timestamp="1578246925691">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="401" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578243731133" />
+    <state width="2517" height="192" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578246925691" />
     <state width="2517" height="492" key="GridCell.Tab.1.bottom" timestamp="1578231129388">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -128,5 +131,9 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="981" y="525" key="com.intellij.ide.util.TipDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578230617569" />
+    <state x="1022" y="320" key="refactoring.ChangeSignatureDialog" timestamp="1578245513733">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1022" y="320" key="refactoring.ChangeSignatureDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578245513733" />
   </component>
 </project>

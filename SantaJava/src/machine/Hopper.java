@@ -9,21 +9,23 @@ public class Hopper implements Runnable  {
     private final int connectedBelt;
     private final int capacity;
     private final int speed;
+    final ChristmasMachine machine;
     /**
      * Instantiates a new Hopper.
-     *
      * @param hopperID      the hopper id
      * @param connectedBelt the connected belt
      * @param capacity      the capacity of the hopper
      * @param speed         the output speed of the hopper
+     * @param machine
      */
-    Hopper(int hopperID, int connectedBelt, int capacity, int speed) {
+    Hopper(int hopperID, int connectedBelt, int capacity, int speed, ChristmasMachine machine) {
         this.hopperID = hopperID;
         this.connectedBelt = connectedBelt;
         this.capacity = capacity;
         this.speed = speed;
 
         //System.out.println(ChristmasMachine.getInstance().testString);
+        this.machine = machine;
     }
 
     @Override
