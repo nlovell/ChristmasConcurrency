@@ -3,7 +3,7 @@ package machine;
 /**
  * The type Hopper.
  */
-public class Hopper implements Runnable {
+public class Hopper implements Runnable  {
 
     private final int hopperID;
     private final int connectedBelt;
@@ -23,14 +23,11 @@ public class Hopper implements Runnable {
         this.capacity = capacity;
         this.speed = speed;
 
-        System.out.println(ChristmasMachine.getInstance().testString);
+        //System.out.println(ChristmasMachine.getInstance().testString);
     }
 
     @Override
     public void run() {
-        for(int i = 0;  i<(ChristmasMachine.getInstance().hoppers.length); i++) {
-            System.out.println("I am Hopper " + getHopperID() + " and I have found Hopper " +(ChristmasMachine.getInstance().hoppers[i].getHopperID()));
-        }
     }
 
 

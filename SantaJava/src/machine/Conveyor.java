@@ -13,7 +13,7 @@ public class Conveyor {
         this.length = length;
         this.destinations = destinations;
         this.presents = new Present[this.length];
-        this.machine = ChristmasMachine.getInstance();
+        //this.machine = ChristmasMachine.getInstance();
     }
 
     boolean insertPresent(Present giftToInsert){

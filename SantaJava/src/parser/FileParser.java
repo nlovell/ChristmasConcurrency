@@ -17,20 +17,6 @@ public class FileParser {
 
     private boolean printEnabled;
 
-    private static FileParser single_instance = null;
-
-    /**
-     * Instantiates a new File parser.
-     *
-     * @return the file parser
-     */
-    public static FileParser getInstance() {
-        if (single_instance == null)
-            single_instance = new FileParser();
-
-        return single_instance;
-    }
-
     /**
      * Instantiates a new File parser.
      *
@@ -38,7 +24,7 @@ public class FileParser {
      * @param outputSource   boolean to enable output of the source file line-for-line to the console
      * @param enablePrinting boolean to enable log-style printing
      */
-    public boolean parseFile(String file, final boolean outputSource, final boolean enablePrinting) {
+    public String[] parseFile(String file, final boolean outputSource, final boolean enablePrinting) {
         this.printEnabled = enablePrinting;
 
         outputTitle();
@@ -65,7 +51,7 @@ public class FileParser {
                 regexFilter(lineToParse);
         }
 
-        return true;
+        return new String[0];
     }
 
     /**

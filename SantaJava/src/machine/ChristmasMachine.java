@@ -7,20 +7,14 @@ public class ChristmasMachine {
     int session = 0;
     public String testString = "this is a test";
     public Hopper[] hoppers = new Hopper[3];
-    private static ChristmasMachine machine = null;
 
-    public static ChristmasMachine getInstance()
-    {
-        if (machine == null)
-            machine = new ChristmasMachine();
 
-        return machine;
+    public ChristmasMachine(String[] variables) {
+        this.sessionLength = new Integer(variables[0]);
+        System.out.println("Length: " + this.sessionLength);
     }
 
-    private ChristmasMachine() {
-        this.sessionLength = sessionLength;
-        System.out.println("Length: " + this.sessionLength);
-
+    public void establishMachine(){
         //initialise hoppers
         hoppers[0] = new Hopper(1, 2,3, 4);
         hoppers[1] = new Hopper(9, 8,7, 6);
@@ -55,8 +49,6 @@ public class ChristmasMachine {
         long c = b - a;
 
         System.out.println(b + " - " + a + " = " + c);
-
-
     }
 
     public void setSessionLength(int session) {

@@ -7,10 +7,12 @@ import java.io.InputStreamReader;
 public class runner {
     public static void main(String args[]){
         String fileToParse;
-        FileParser fp =  FileParser.getInstance();
-        fp.parseFile("C:/test/example.txt", true, true);
+        FileParser fp =  new FileParser();
+        String[] output = fp.parseFile("C:/test/example.txt", true, true);
 
-        ChristmasMachine.getInstance().setSessionLength(120);
+        ChristmasMachine xmasMach = new ChristmasMachine(new String[]{"120"});
+        xmasMach.establishMachine();
+
 
         /*
         do {
