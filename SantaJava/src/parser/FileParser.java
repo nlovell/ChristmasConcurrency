@@ -25,7 +25,7 @@ public class FileParser {
     // 4 = sack
     // 5 = turntable
 
-    public ArrayList<String[]> conveyors = new ArrayList();
+    private ArrayList<String[]> conveyors = new ArrayList();
     private ArrayList<String[]> hoppers;
     private ArrayList<String[]> presents;
     private ArrayList<String[]> sacks;
@@ -39,7 +39,7 @@ public class FileParser {
      * @param outputSource   boolean to enable output of the source file line-for-line to the console
      * @param enablePrinting boolean to enable log-style printing
      */
-    public String[] parseFile(String file, final boolean outputSource, final boolean enablePrinting) {
+    public ArrayList<ArrayList<String[]>> parseFile(String file, final boolean outputSource, final boolean enablePrinting) {
         this.printEnabled = enablePrinting;
 
         outputTitle();
@@ -70,7 +70,9 @@ public class FileParser {
             togglePrint(Arrays.toString(convs));
         }
 
-        return new String[0];
+        ArrayList<ArrayList<String[]>> output = new ArrayList();
+        output.add(conveyors);
+        return null;
     }
 
     /**
