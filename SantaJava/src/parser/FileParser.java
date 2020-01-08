@@ -17,27 +17,20 @@ import java.util.regex.Pattern;
 public class FileParser {
 
     private boolean printEnabled;
-    private String[] finalOutput = new String[6];
-    // 0 = time
-    // 1 = conveyor
-    // 2 = hopper
-    // 3 = present
-    // 4 = sack
-    // 5 = turntable
 
     private ArrayList<String[]> conveyors = new ArrayList();
-    private ArrayList<String[]> hoppers;
-    private ArrayList<String[]> presents;
-    private ArrayList<String[]> sacks;
-    private ArrayList<String[]> turntables;
+    private ArrayList<String[]> hoppers = new ArrayList();
+    private ArrayList<String[]> presents = new ArrayList();
+    private ArrayList<String[]> sacks = new ArrayList();
+    private ArrayList<String[]> turntables = new ArrayList();
 
 
     /**
      * Instantiates a new File parser.
-     *
-     * @param file           the file
+     *  @param file           the file
      * @param outputSource   boolean to enable output of the source file line-for-line to the console
      * @param enablePrinting boolean to enable log-style printing
+     * @return
      */
     public ArrayList<ArrayList<String[]>> parseFile(String file, final boolean outputSource, final boolean enablePrinting) {
         this.printEnabled = enablePrinting;
@@ -66,13 +59,20 @@ public class FileParser {
                 regexFilter(lineToParse);
         }
 
-        for(String[] convs : conveyors) {
-            togglePrint(Arrays.toString(convs));
+        ArrayList<ArrayList<String[]>> machine = new ArrayList();
+        machine.add(conveyors);
+        machine.add(hoppers);
+        machine.add(presents);
+        machine.add(sacks);
+        machine.add(turntables);
+
+        for(ArrayList<String[]> elem : machine) {
+            for(String[] part : elem) {
+                togglePrint(Arrays.toString(part));
+            }
         }
 
-        ArrayList<ArrayList<String[]>> output = new ArrayList();
-        output.add(conveyors);
-        return null;
+        return machine;
     }
 
     /**

@@ -1,28 +1,37 @@
 package machine;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChristmasMachine {
     int sessionLength;
     int session = 0;
     public String testString = "this is a test";
-    public Hopper[] hoppers = new Hopper[3];
 
 
-    public ChristmasMachine(String[] variables) {
-        this.sessionLength = new Integer(variables[0]);
-        System.out.println("Length: " + this.sessionLength);
+
+    public ChristmasMachine(int sessionLength,
+                            String[][] conveyors,
+                            int[][] hoppers,
+                            String[][] presents,
+                            String[][] sacks,
+                            String[][] turntables) {
+
+        makeConveyors(conveyors);
+        makeHoppers(hoppers);
+        makeSacks(sacks);
+        makePresents(presents);
+        makeTurntables(turntables);
     }
 
-    public void establishMachine(){
-        //initialise hoppers
-        hoppers[0] = new Hopper(1, 2,3, 4, this);
-        hoppers[1] = new Hopper(9, 8,7, 6, this);
-        hoppers[2] = new Hopper(2, 8,7, 6, this);
+    public void makeConveyors(String[][] conveyors){}
+    public void makeHoppers( int[][] hoppers){}
+    void makePresents(String[][] presents){}
+    void makeSacks(String[][] sacks){}
+    void makeTurntables(String[][] turntables){}
 
-        hoppers[0].run();
-        hoppers[1].run();
-        hoppers[2].run();
+    public void establishMachine(){
 
 
         try {
