@@ -120,10 +120,9 @@ public class FileParser {
     private void regexFilter(String theData) {
         if (!theData.matches(Constants.otherReg))
             togglePrint("----------------------------");
-
         if (theData.matches(Constants.turntable)) {
             parseTurntable(theData);
-        } else if (theData.matches(Constants.conveyor)) {
+        } else if (Constants.conveyor.matcher(theData).matches()) {
             String[]  conv = parseConveyor(theData);
             conveyors.add(conv);
         } else if (theData.matches(Constants.sack)) {
@@ -146,19 +145,19 @@ public class FileParser {
     private String[] parseConveyor(final String conveyor) {
         String[]  conveyorDetails = new String[3];
 
-        Matcher idMat = Pattern.compile(Constants.conveyor).matcher(conveyor);
+        Matcher idMat = Constants.conveyor.matcher(conveyor);
         idMat.find();
         togglePrint("Conveyor " + idMat.group(1) + " found in parsed data.");
         conveyorDetails[0] = idMat.group(1);
 
-        Pattern pattern = Pattern.compile(Constants.conveyor);
+        Pattern pattern = Constants.conveyor;
         Matcher matcher = pattern.matcher(conveyor);
 
         while (matcher.find()) {
             togglePrint("      length: " + matcher.group(2));
             conveyorDetails[1] = matcher.group(2);
             togglePrint("destinations: " + Arrays.toString(stringArrayGenerator(matcher.group(3), " ")));
-            conveyorDetails[2] =  Arrays.toString(stringArrayGenerator(matcher.group(3), " "));
+            conveyorDetails[2] =  matcher.group(3);
         }
         togglePrint(Arrays.toString(conveyorDetails));
         return conveyorDetails;

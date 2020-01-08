@@ -1,14 +1,47 @@
 package machine.components.threaded;
 
+import data.TurntableConnection;
+import machine.MachinePart;
+import machine.components.passive.Present;
 import machine.interfaces.ActiveConsumer;
 import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
-public class Turntable implements ActiveSupplier, ActiveConsumer, Runnable {
+public class Turntable extends MachinePart implements ActiveSupplier, ActiveConsumer, Runnable {
+
+
+    Present current;
+    final TurntableConnection connections[];
+
+
+    public Turntable(final String id, final TurntableConnection[] connections) {
+        super(id);
+        this.connections = connections;
+    }
 
     @Override
-    public void run() {}
+    public void run() {
+        for(TurntableConnection connection : connections){
+            if(connection.getConveyor() != null) {
+                //do conveyory things
+            } else if (connection.getSack() != null) {
+                //do sacky things
+            }
+        }
+    }
+
+    @Override
+    public void consume(final PassiveSupplier supplier) {
+        current = supplier.supply();
+    }
+
+    @Override
+    public void supply(final PassiveConsumer consumer) {
+        //TODO must be atomic!
+        consumer.consume(current);
+        current = null;
+    }
 
     //TODO When a turntable detects that a gift is waiting at one of its input ports (e.g. by polling all connected
     //      input conveyor belts in turn), the table will turn to receive the gift. Having determined the gift’s

@@ -1,62 +1,80 @@
 package machine.components.passive;
 
-import machine.ChristmasMachine;
+import machine.MachinePart;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
-public class Conveyor implements PassiveSupplier, PassiveConsumer {
+public class Conveyor extends MachinePart implements PassiveSupplier, PassiveConsumer {
 
-    final int ID;
-    final int length;
-    final int[] destinations;
+    final Sack[] destinations;
     Present[] presents;
-    final ChristmasMachine machine;
 
-    public Conveyor(int id, int length, int[] destinations, ChristmasMachine machine) {
-        ID = id;
+    int head = 0;
+    int tail = 0;
+    final int length;
+
+    public Conveyor(String id, int length, Sack[] destinations) {
+        super(id);
         this.length = length;
         this.destinations = destinations;
-        this.machine = machine;
         this.presents = new Present[this.length];
         //this.machine = ChristmasMachine.getInstance();
     }
 
-    boolean insertPresent(Present giftToInsert){
-        //TODO: this is a critical region.
-        if(isSpace()){
-            for(int i = 0; i<length-1; i++){
-                if(presents[i]==null){
-                    presents[i] = giftToInsert;
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    Present removePresent(){
-        Present temp = null;
-        //TODO: this is a critical region.
-        if(presents[0] != null){
-            //move present 0 to the temp buffer
-            temp = presents[0];
-            presents[0] = null;
-
-            for(int i = 1; i<length-1; i++){
-                presents[i-1] = presents[i];
-            }
-            return temp;
-        }
-
-        return null;
-    }
-
     boolean isSpace() {
-        //TODO: this is a critical region.
-        for (Present present : presents)
-            if(present == null)
-                return true;
+       if(tail == head - 1 || (tail == 0 && head == length))
+           return false;
+       return true;
+    }
+
+    boolean isEmpty(){
+        return head==tail;
+    }
+
+    void incrementTail(){
+        tail++;
+        if(tail >= length){
+            tail = 0;
+        }
+    }
+
+    void incrementHead(){
+        head++;
+        if(head >= length){
+            head = 0;
+        }
+    }
+
+
+    /**
+     * When the belt receives a present
+     * @return boolean
+     */
+    @Override
+    public boolean consume(final Present gift) {
+        //TODO thread safeify this - mutex this fucker
+        if(isSpace()) {
+            presents[tail] = gift;
+            incrementTail();
+            return true;
+        }
         return false;
+    }
+
+    /**
+     * When the belt supplies a present
+     * @return the present
+     */
+    @Override
+    public Present supply() {
+        //TODO thread safeify this - mutex this fucker
+        Present gift;
+        if(!isEmpty()){
+            gift = presents[head];
+            incrementHead();
+            return gift;
+        }
+        return null;
     }
 
 //o In the scenario, the belts are acting as passive buffers (shared memory space) between the

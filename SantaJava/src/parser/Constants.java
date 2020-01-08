@@ -1,8 +1,10 @@
 package parser;
 
+import java.util.regex.Pattern;
+
 public class Constants {
     /** Regex for finding Conveyor strings in the input file **/
-    public static final String conveyor="^([0-9]+) (?: ?length ([1-9]+)|:? ?destinations ([0-9 ]+))+$";
+    public static final Pattern conveyor=Pattern.compile("^([0-9]+) (?: ?length ([1-9]+)|:? ?destinations ([0-9 ]+))+$");
 
     /** Regex for finding Hopper strings in the input file **/
     public static final String hopper="^([0-9]+) (?: ?belt ([1-9])+| ?capacity ([0-9]+)| (?:speed ([0-9]+))){3}$";

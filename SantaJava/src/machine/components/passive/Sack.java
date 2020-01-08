@@ -1,43 +1,44 @@
 package machine.components.passive;
 
 import data.AgeRange;
+import machine.MachinePart;
 import machine.interfaces.PassiveConsumer;
-import machine.interfaces.PassiveSupplier;
 
 import java.util.Arrays;
 
-public class Sack implements PassiveConsumer {
+public class Sack extends MachinePart implements PassiveConsumer {
 
-    final Present presents[];
-    final int sack_id;
+    final Present[] presents;
     final int capacity;
+    int fullness = 0;
     final AgeRange ages;
 
 
-    public Sack(int capacity, int sack_id, int capacity1, int agemin, int agemax) {
+    public Sack(int capacity, int sack_id, int ageMin, int ageMax) {
+        super(sack_id);
         this.presents = new Present[capacity];
-        this.sack_id = sack_id;
-        this.capacity = capacity1;
+        this.capacity = capacity;
 
-        this.ages = new AgeRange(agemin, agemax);
+        this.ages = new AgeRange(ageMin, ageMax);
     }
 
     void replaceSack() {
         Arrays.fill(presents, null);
+        fullness = 0;
     }
 
     boolean isSpace() {
-        for (Present present : presents) {
-            if (present == null) {
-                return true;
-            }
-        }
-
-        return false;
+        return fullness < capacity;
     }
 
     @Override
-    public void consume(PassiveSupplier source) {
-        //TODO: consume stuff
+    public boolean consume(final Present gift) {
+        if(isSpace()){
+            presents[fullness] = gift;
+            fullness++;
+            return true;
+        }
+
+        return false;
     }
 }

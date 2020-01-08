@@ -2,6 +2,7 @@ package machine.components.threaded;
 
 import machine.MachinePart;
 import machine.interfaces.ActiveSupplier;
+import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
 /**
@@ -9,7 +10,6 @@ import machine.interfaces.PassiveSupplier;
  */
 public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
-    private final int hopperID;
     private final int connectedBelt;
     private final int capacity;
     private final int speed;
@@ -21,7 +21,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
      * @param speed         the output speed of the hopper
      */
     Hopper(int hopperID, int connectedBelt, int capacity, int speed) {
-        this.hopperID = hopperID;
+        super(hopperID);
         this.connectedBelt = connectedBelt;
         this.capacity = capacity;
         this.speed = speed;
@@ -58,14 +58,6 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
         return connectedBelt;
     }
 
-    /**
-     * Gets hopper id.
-     *
-     * @return the hopper id
-     */
-    public int getHopperID() {
-        return hopperID;
-    }
 
     /**
      * Gets speed.
@@ -74,6 +66,11 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
      */
     public int getSpeed() {
         return speed;
+    }
+
+    @Override
+    public void supply(final PassiveConsumer consumer) {
+
     }
     //</editor-fold>
 }
