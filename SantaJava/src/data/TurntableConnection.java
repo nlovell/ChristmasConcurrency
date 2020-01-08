@@ -2,14 +2,17 @@ package data;
 
 import machine.components.passive.Conveyor;
 import machine.components.passive.Sack;
+import machine.interfaces.PassiveConsumer;
+import machine.interfaces.PassiveSupplier;
 
 public class TurntableConnection {
 
     /** True for input **/
     final boolean isInput;
     final Direction dir;
-    final Sack sack;
-    final Conveyor conveyor;
+    final PassiveConsumer consumer;
+    final PassiveSupplier supplier;
+
 
     enum Direction {
         N,
@@ -21,24 +24,37 @@ public class TurntableConnection {
     public TurntableConnection(Direction dir, boolean isInput, Conveyor belt){
         this.isInput = isInput;
         this.dir = dir;
-        this.conveyor = belt;
-
-        this.sack = null;
+        if(isInput) {
+            this.supplier = belt;
+            this.consumer = null;
+        } else {
+            this.supplier = null;
+            this.consumer = belt;
+        }
     }
 
     public TurntableConnection(Direction dir, Sack sack){
         this.dir = dir;
-        this.sack = sack;
+        this.consumer = sack;
 
         this.isInput = false;
-        this.conveyor= null;
+        this.supplier = null;
     }
 
-    public Sack getSack() {
-        return sack;
+    public PassiveConsumer getConsumer() {
+        return consumer;
     }
 
-    public Conveyor getConveyor() {
-        return conveyor;
+    public PassiveSupplier getSupplier() {
+        return supplier;
+    }
+
+    public int search(final AgeRange age) {
+      if(!isInput){
+          if(consumer != null){
+            return consumer.search(age);
+          }
+      }
+      return Integer.MAX_VALUE;
     }
 }

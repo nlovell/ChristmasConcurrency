@@ -41,4 +41,13 @@ public class Sack extends MachinePart implements PassiveConsumer {
 
         return false;
     }
+
+    @Override
+    public int search(final AgeRange age) {
+        if(age == this.ages){
+            return 0;
+        } else {
+            return Integer.MAX_VALUE;
+        }
+    }
 }

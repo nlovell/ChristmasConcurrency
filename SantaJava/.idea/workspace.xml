@@ -2,18 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/data/TurntableConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/MachinePart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/MachinePart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/AgeRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/AgeRange.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/TurntableConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/TurntableConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Present.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Present.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Sack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Sack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Hopper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/threaded/Hopper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Turntable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/threaded/Turntable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/interfaces/PassiveConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/interfaces/PassiveConsumer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/FileParser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,10 +102,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser" timestamp="1578522738060">
+    <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser" timestamp="1578526131469">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578522738060" />
+    <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578526131469" />
     <state x="1010" y="482" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1578515232670">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -118,6 +114,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1076" y="586" width="408" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578515233832" />
+    <state x="968" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1578526311818">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="968" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578526311818" />
     <state x="934" y="295" key="CommitChangelistDialog2" timestamp="1578517216717">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

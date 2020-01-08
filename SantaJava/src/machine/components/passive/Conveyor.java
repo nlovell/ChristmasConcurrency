@@ -1,5 +1,6 @@
 package machine.components.passive;
 
+import data.AgeRange;
 import machine.MachinePart;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
@@ -59,6 +60,16 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int search(final AgeRange age) {
+        for(Sack sack : destinations){
+            if(sack.search(age) == 0){
+                return destinations.length;
+            }
+        }
+        return Integer.MAX_VALUE;
     }
 
     /**

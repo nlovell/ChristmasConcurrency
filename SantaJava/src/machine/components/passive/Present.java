@@ -1,12 +1,14 @@
 package machine.components.passive;
 
+import data.AgeRange;
+
 /**
  * The type Present.
  */
 public class Present {
 
     final private String typeOfToy;
-    final private int[] ageRange;
+    final private AgeRange ageRange;
 
     /**
      * Instantiates a new Present.
@@ -17,7 +19,7 @@ public class Present {
      */
     public Present(String typeOfToy, int ageMin, int ageMax) {
         this.typeOfToy = typeOfToy;
-        this.ageRange = new int[] {ageMin, ageMax};
+        this.ageRange = new AgeRange(ageMin, ageMax);
     }
 
     /**
@@ -25,7 +27,7 @@ public class Present {
      *
      * @return the int [ ]
      */
-    public int[] getAgeRange(){
+    public AgeRange getAgeRange(){
         return ageRange;
     }
 

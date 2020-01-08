@@ -22,11 +22,21 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
 
     @Override
     public void run() {
-        for(TurntableConnection connection : connections){
-            if(connection.getConveyor() != null) {
-                //do conveyory things
-            } else if (connection.getSack() != null) {
-                //do sacky things
+        int minPath = Integer.MAX_VALUE;
+        TurntableConnection minCon = null;
+        if(current!=null) {
+            for (TurntableConnection connection : connections) {
+                int currentPath = connection.search(current.getAgeRange());
+                if(currentPath < minPath){
+                    minPath = currentPath;
+                    minCon = connection;
+                }
+            }
+            if(minPath < Integer.MAX_VALUE){
+                supply(minCon.getSupplier());
+            } else {
+                throw new IllegalArgumentException("Age range not found in network for gift " + current.getAgeRange());
+                //TODO throw exception
             }
         }
     }

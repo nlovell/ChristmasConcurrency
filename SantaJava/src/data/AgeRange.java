@@ -28,4 +28,10 @@ public class AgeRange {
     public int hashCode() {
         return Objects.hash(age_min, age_max);
     }
+
+    @Override
+    public String toString() {
+        return "AgeRange [" + age_min +
+                "-" + age_max + "]";
+    }
 }
