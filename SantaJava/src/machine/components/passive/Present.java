@@ -1,4 +1,4 @@
-package machine;
+package machine.components.passive;
 
 /**
  * The type Present.
