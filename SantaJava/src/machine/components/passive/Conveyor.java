@@ -1,18 +1,18 @@
 package machine.components.passive;
 
-import data.AgeRange;
-import machine.MachinePart;
+import machine.data.AgeRange;
+import machine.components.MachinePart;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
 public class Conveyor extends MachinePart implements PassiveSupplier, PassiveConsumer {
 
-    final Sack[] destinations;
-    Present[] presents;
+    private final Sack[] destinations;
+    private Present[] presents;
 
-    int head = 0;
-    int tail = 0;
-    final int length;
+    private int head = 0;
+    private int tail = 0;
+    private final int length;
 
     public Conveyor(String id, int length, Sack[] destinations) {
         super(id);
@@ -22,28 +22,53 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         //this.machine = ChristmasMachine.getInstance();
     }
 
-    boolean isSpace() {
-       if(tail == head - 1 || (tail == 0 && head == length))
-           return false;
-       return true;
+    private boolean isSpace() {
+        return tail != head - 1 && (tail != 0 || head != length);
     }
 
-    boolean isEmpty(){
+    private boolean isEmpty(){
         return head==tail;
     }
 
-    void incrementTail(){
+    private void incrementTail(){
         tail++;
         if(tail >= length){
             tail = 0;
         }
     }
 
-    void incrementHead(){
+    private void incrementHead(){
         head++;
         if(head >= length){
             head = 0;
         }
+    }
+
+    public int giftsInConveyor(){
+        return (tail + (length - head)) % length;
+
+        // fancy maths handles tail-before-head positions in the queue, eg:
+        //
+        // head H = 3;
+        // tail T = 1;
+        // length = (6);
+        //
+        // these values can be depicted as follows:
+        //               T   H
+        //     array: [o| | |o|o|o]
+        // positions:  0 1 2 3 4 5 (6)
+        //
+        // using these values in the function, it will return int 4 as expected
+    }
+
+    @Override
+    public int search(final AgeRange age) {
+        for(Sack sack : destinations){
+            if(sack.search(age) == 0){
+                return destinations.length;
+            }
+        }
+        return Integer.MAX_VALUE;
     }
 
 
@@ -62,15 +87,6 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         return false;
     }
 
-    @Override
-    public int search(final AgeRange age) {
-        for(Sack sack : destinations){
-            if(sack.search(age) == 0){
-                return destinations.length;
-            }
-        }
-        return Integer.MAX_VALUE;
-    }
 
     /**
      * When the belt supplies a present
@@ -78,20 +94,22 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
      */
     @Override
     public Present supply() {
+        Present result = null;
         //TODO thread safeify this - mutex this fucker
-        Present gift;
-        if(!isEmpty()){
+        if (!isEmpty()) {
+            Present gift;
             gift = presents[head];
+            presents[head] = null;
             incrementHead();
-            return gift;
+            result = gift;
         }
-        return null;
+        return result;
     }
 
 //o In the scenario, the belts are acting as passive buffers (shared memory space) between the
 //various hoppers, turntables and sacks. In other words, you have something like several
 //Producer/Consumer scenarios chained together.
-//TODO  A belt will act a little like a queue data structure. The belt class should be implemented as a fixed size
+//TODO  A belt will act a little like a queue machine.data structure. The belt class should be implemented as a fixed size
 //      array to store the gift objects as they pass onto and off it (capacity according to the configuration of the
 //      machine). DO NOT use a Java collection instead of an array.
 //o One simple way to implement the belt is as a circular buffer, enforcing a strict ordering to the

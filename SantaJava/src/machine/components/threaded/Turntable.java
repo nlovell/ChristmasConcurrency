@@ -1,18 +1,24 @@
 package machine.components.threaded;
 
-import data.TurntableConnection;
-import machine.MachinePart;
+import machine.data.Direction;
+import machine.data.TurntableConnection;
+import machine.components.MachinePart;
 import machine.components.passive.Present;
 import machine.interfaces.ActiveConsumer;
 import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
+import static machine.data.Constants.MOVE_TIME;
+import static machine.data.Constants.ROTATE_TIME;
+import static machine.data.Direction.*;
+
 public class Turntable extends MachinePart implements ActiveSupplier, ActiveConsumer, Runnable {
 
 
-    Present current;
-    final TurntableConnection connections[];
+    private Present current;
+    private final TurntableConnection[] connections;
+    private boolean running = true;
 
 
     public Turntable(final String id, final TurntableConnection[] connections) {
@@ -22,35 +28,90 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
 
     @Override
     public void run() {
-        int minPath = Integer.MAX_VALUE;
-        TurntableConnection minCon = null;
-        if(current!=null) {
+        do {
+            int minPath = Integer.MAX_VALUE;
+            TurntableConnection minCon = null;
+
             for (TurntableConnection connection : connections) {
-                int currentPath = connection.search(current.getAgeRange());
-                if(currentPath < minPath){
-                    minPath = currentPath;
-                    minCon = connection;
+                //If already has a present
+                if (current != null) {
+                    int currentPath = connection.search(current.getAgeRange());
+                    if (currentPath < minPath) {
+                        minPath = currentPath;
+                        minCon = connection;
+                    }
+
+                    if (minPath < Integer.MAX_VALUE) {
+                        supply(minCon.getConsumer(), connection.getDir());
+                    } else {
+                        throw new IllegalArgumentException("Age range not found in network for gift " + current.getAgeRange());
+                        //TODO throw exception
+                    }
+                } else {
+                    //TODO stuff
+                    //If looking for a present
+
                 }
             }
-            if(minPath < Integer.MAX_VALUE){
-                supply(minCon.getSupplier());
-            } else {
-                throw new IllegalArgumentException("Age range not found in network for gift " + current.getAgeRange());
-                //TODO throw exception
+
+        } while (running);
+    }
+
+    @Override
+    public void consume(final PassiveSupplier supplier, final Direction inputDir) {
+        moveGiftDelay();
+        current = supplier.supply();
+        current.setLastDirectionMoved(inputDir);
+    }
+
+    @Override
+    public void supply(final PassiveConsumer consumer, final Direction outputDir) {
+        //TODO must be atomic!
+
+        Direction moved = current.getLastDirectionMoved();
+        //if the gift is coming from North or South
+        if (outputDir == N || outputDir == S) {
+            //and ISN'T going North or South
+            if (moved != N && moved != S) {
+                //Rotate the turntable
+                rotateDelay();
             }
+        } else {
+            if (moved != E && moved != W) {
+                rotateDelay();
+            }
+        }
+
+        consumer.consume(current);
+        current = null;
+    }
+
+    public void rotateDelay() {
+        try {
+            Thread.sleep(ROTATE_TIME);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    @Override
-    public void consume(final PassiveSupplier supplier) {
-        current = supplier.supply();
+    public void moveGiftDelay() {
+        try {
+            Thread.sleep(MOVE_TIME);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public void supply(final PassiveConsumer consumer) {
-        //TODO must be atomic!
-        consumer.consume(current);
-        current = null;
+    public void setStop() {
+        this.running = false;
+    }
+
+    public boolean hasPresent(){
+        if(current != null){
+            return true;
+        }
+
+        return false;
     }
 
     //TODO When a turntable detects that a gift is waiting at one of its input ports (e.g. by polling all connected

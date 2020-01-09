@@ -1,7 +1,7 @@
 package machine.components.passive;
 
-import data.AgeRange;
-import machine.MachinePart;
+import machine.data.AgeRange;
+import machine.components.MachinePart;
 import machine.interfaces.PassiveConsumer;
 
 import java.util.Arrays;

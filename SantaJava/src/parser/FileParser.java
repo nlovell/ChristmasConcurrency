@@ -18,21 +18,24 @@ public class FileParser {
 
     private boolean printEnabled;
 
-    private ArrayList<String[]> conveyors = new ArrayList();
-    private ArrayList<String[]> hoppers = new ArrayList();
-    private ArrayList<String[]> presents = new ArrayList();
-    private ArrayList<String[]> sacks = new ArrayList();
-    private ArrayList<String[]> turntables = new ArrayList();
+    private ArrayList<String[]> conveyors = new ArrayList<>();
+    private ArrayList<String[]> hoppers = new ArrayList<>();
+    private ArrayList<String[]> presents = new ArrayList<>();
+    private ArrayList<String[]> sacks = new ArrayList<>();
+    private ArrayList<String[]> turntables = new ArrayList<>();
 
 
     /**
      * Instantiates a new File parser.
-     *  @param file           the file
+     *
+     * @param file           the file
      * @param outputSource   boolean to enable output of the source file line-for-line to the console
      * @param enablePrinting boolean to enable log-style printing
-     * @return
+     * @return an ArrayList of ArrayLists containing an Array of Strings defining the entire machine.
      */
-    public ArrayList<ArrayList<String[]>> parseFile(String file, final boolean outputSource, final boolean enablePrinting) {
+    public ArrayList<ArrayList<String[]>> parseFile(String file,
+                                                    final boolean outputSource,
+                                                    final boolean enablePrinting) {
         this.printEnabled = enablePrinting;
 
         outputTitle();
@@ -59,15 +62,17 @@ public class FileParser {
                 regexFilter(lineToParse);
         }
 
-        ArrayList<ArrayList<String[]>> machine = new ArrayList();
+        ArrayList<ArrayList<String[]>> machine = new ArrayList<>();
         machine.add(conveyors);
         machine.add(hoppers);
-        machine.add(presents);
         machine.add(sacks);
         machine.add(turntables);
 
-        for(ArrayList<String[]> elem : machine) {
-            for(String[] part : elem) {
+
+        machine.add(presents);
+
+        for (ArrayList<String[]> elem : machine) {
+            for (String[] part : elem) {
                 togglePrint(Arrays.toString(part));
             }
         }
@@ -80,14 +85,14 @@ public class FileParser {
      *
      * @param path the filepath for the file
      * @return an array of strings representing the file
-     * @throws IOException
+     * @throws IOException for an unsuccessful attempt at reading a file
      */
     private String[] openFile(String path) throws IOException {
         int numberOfLines = countLines(path);
         String[] textData = new String[numberOfLines];
 
         try (FileReader fileReader = new FileReader(path);
-             BufferedReader textReader = new BufferedReader(fileReader);) {
+             BufferedReader textReader = new BufferedReader(fileReader)) {
             //Reads lines into the array
             for (int i = 0; i < numberOfLines; i++) {
                 textData[i] = textReader.readLine();
@@ -115,25 +120,28 @@ public class FileParser {
     /**
      * Filters for each line
      *
-     * @param theData
+     * @param theData the data to filter
      */
     private void regexFilter(String theData) {
-        if (!theData.matches(Constants.otherReg))
+        if (!Regexp.otherReg.matcher(theData).matches())
             togglePrint("----------------------------");
-        if (theData.matches(Constants.turntable)) {
-            parseTurntable(theData);
-        } else if (Constants.conveyor.matcher(theData).matches()) {
-            String[]  conv = parseConveyor(theData);
+        if (Regexp.turntable.matcher(theData).matches()) {
+            String[] turntable = parseTurntable(theData);
+            turntables.add(turntable);
+        } else if (Regexp.conveyor.matcher(theData).matches()) {
+            String[] conv = parseConveyor(theData);
             conveyors.add(conv);
-        } else if (theData.matches(Constants.sack)) {
-            parseSack(theData);
-        } else if (theData.matches(Constants.hopper)) {
-            parseHopper(theData);
-        } else if (theData.matches(Constants.present)) {
+        } else if (Regexp.sack.matcher(theData).matches()) {
+            String[] sack = parseSack(theData);
+            sacks.add(sack);
+        } else if (Regexp.hopper.matcher(theData).matches()) {
+            String[] hopper = parseHopper(theData);
+            hoppers.add(hopper);
+        } else if (Regexp.present.matcher(theData).matches()) {
             parsePresent(theData);
         } else {
-            if (!theData.matches(Constants.otherReg))
-                togglePrint("This data format is unrecognised.");
+            if (!Regexp.otherReg.matcher(theData).matches())
+            togglePrint("This data format is unrecognised.");
         }
     }
 
@@ -143,21 +151,21 @@ public class FileParser {
      * @param conveyor the string defining a conveyor
      */
     private String[] parseConveyor(final String conveyor) {
-        String[]  conveyorDetails = new String[3];
+        String[] conveyorDetails = new String[3];
 
-        Matcher idMat = Constants.conveyor.matcher(conveyor);
+        Matcher idMat = Regexp.conveyor.matcher(conveyor);
         idMat.find();
-        togglePrint("Conveyor " + idMat.group(1) + " found in parsed data.");
+        togglePrint("Conveyor " + idMat.group(1) + " found in parsed machine.data.");
         conveyorDetails[0] = idMat.group(1);
 
-        Pattern pattern = Constants.conveyor;
+        Pattern pattern = Regexp.conveyor;
         Matcher matcher = pattern.matcher(conveyor);
 
         while (matcher.find()) {
             togglePrint("      length: " + matcher.group(2));
             conveyorDetails[1] = matcher.group(2);
             togglePrint("destinations: " + Arrays.toString(stringArrayGenerator(matcher.group(3), " ")));
-            conveyorDetails[2] =  matcher.group(3);
+            conveyorDetails[2] = matcher.group(3);
         }
         togglePrint(Arrays.toString(conveyorDetails));
         return conveyorDetails;
@@ -168,14 +176,21 @@ public class FileParser {
      *
      * @param hopper the string defining a hopper
      */
-    void parseHopper(final String hopper) {
-        Matcher matcher = Pattern.compile(Constants.hopper).matcher(hopper);
+    private String[] parseHopper(final String hopper) {
+        String[] hopperDetails = new String[4];
+        Matcher matcher = Regexp.hopper.matcher(hopper);
         while (matcher.find()) {
-            togglePrint("Hopper " + matcher.group(1) + " found in parsed data.");
+            togglePrint("Hopper " + matcher.group(1) + " found in parsed machine.data.");
+            hopperDetails[0] = matcher.group(1);
             togglePrint("connected to: " + matcher.group(2));
+            hopperDetails[1] = matcher.group(2);
             togglePrint("    capacity: " + matcher.group(3));
+            hopperDetails[2] = matcher.group(3);
             togglePrint("       speed: " + matcher.group(4));
+            hopperDetails[3] = matcher.group(4);
         }
+        togglePrint(Arrays.toString(hopperDetails));
+        return hopperDetails;
     }
 
 
@@ -185,19 +200,21 @@ public class FileParser {
      * @param sack the string defining a sack
      */
     private String[] parseSack(final String sack) {
-        Matcher idMat = Pattern.compile(Constants.sack).matcher(sack);
-        idMat.find();
-        togglePrint("Sack " + idMat.group(1) + " found in parsed data.");
-        Pattern pattern = Pattern.compile(Constants.sack);
-        Matcher matcher = pattern.matcher(sack);
+        String[] sackDetails = new String[3];
+        Matcher matcher = Regexp.sack.matcher(sack);
 
         while (matcher.find()) {
-            String[] ages = stringArrayGenerator(matcher.group(3), "-");
+            outputFound("Sack", matcher.group(1));
+            sackDetails[0] = matcher.group(1);
 
             togglePrint("    capacity: " + matcher.group(2));
+            sackDetails[1] = matcher.group(2);
+
+            String[] ages = stringArrayGenerator(matcher.group(3), "-");
             togglePrint("        ages: " + Arrays.toString(ages));
+            sackDetails[2] = matcher.group(3);
         }
-        return new String[0];
+        return sackDetails;
     }
 
     /**
@@ -205,13 +222,13 @@ public class FileParser {
      *
      * @param turntable the string defining a turntable
      */
-    private String[]  parseTurntable(final String turntable) {
-        Matcher idMat = Pattern.compile(Constants.turntable).matcher(turntable);
-        idMat.find();
-        togglePrint("Turntable " + idMat.group(1) + " found in parsed data.");
+    private String[] parseTurntable(final String turntable) {
 
-        Pattern pattern = Pattern.compile(Constants.turntableProp);
-        Matcher matcher = pattern.matcher(turntable);
+        Matcher idMat = Regexp.turntable.matcher(turntable);
+        idMat.find();
+        outputFound("Turntable", idMat.group(1));
+
+        Matcher matcher = Regexp.turntableProp.matcher(turntable);
 
         while (matcher.find()) {
             togglePrint("-------------------");
@@ -230,13 +247,12 @@ public class FileParser {
      *
      * @param present the string defining a turntable
      */
-    private String[]  parsePresent(final String present) {
-        Matcher idMat = Pattern.compile(Constants.present).matcher(present);
+    private String[] parsePresent(final String present) {
+        Matcher idMat = Regexp.present.matcher(present);
         idMat.find();
-        togglePrint("Present " + idMat.group(1) + " found in parsed data.");
+        outputFound("Present", idMat.group(1));
 
-        Pattern pattern = Pattern.compile(Constants.presentProp);
-        Matcher matcher = pattern.matcher(present);
+        Matcher matcher = Regexp.presentProp.matcher(present);
 
         while (matcher.find()) {
             togglePrint("-------------------");
@@ -277,7 +293,6 @@ public class FileParser {
      * @param printableLine the line to print
      */
     private void togglePrint(final String printableLine) {
-        //TODO: Update with an ENUM instead of a boolean to enable log4j style logging levels
         boolean shouldPrint = false;
         if (this.printEnabled) {
             shouldPrint = true;
@@ -285,5 +300,9 @@ public class FileParser {
 
         if (shouldPrint)
             System.out.println(printableLine);
+    }
+
+    private void outputFound(String type, String id) {
+        togglePrint(type + " " + id + " found in parsed data.");
     }
 }

@@ -13,37 +13,35 @@ import java.util.Arrays;
  */
 public class runner {
     public static void main(String args[]){
+
         String fileToParse;
         FileParser fp =  new FileParser();
         ArrayList<ArrayList<String[]>> output = fp.parseFile("C:/test/example.txt", true, true);
 
-        ArrayList<String[]> conveyors = output.get(0);
-        ArrayList<String[]>  hoppers;
         ArrayList<String[]> presents;
-        ArrayList<String[]> sacks ;
         ArrayList<String[]> turntables;
 
-        String[][] conveyor = new String[conveyors.size()][3];
-        for(int i = 0; i  < conveyors.size(); i++){
-             conveyor[i] = conveyors.get(i);
-        }
+        String[][] conveyors = parseArrayList(output.get(0), 3);
+        String[][] hoppers = parseArrayList(output.get(1), 4);
+        String[][] sacks = parseArrayList(output.get(2), 3);
 
-        System.out.println(Arrays.toString(conveyor[0]));
+        System.out.println("----------------------------");
 
+        System.out.println(Arrays.toString(conveyors[0]));
+        System.out.println(Arrays.toString(hoppers[0]));
+        System.out.println(Arrays.toString(sacks[0]));
 
-       // ChristmasMachine xmasMach = new ChristmasMachine(new String[]{"120"});
-       // xmasMach.establishMachine();
-
-
-        /*
-        do {
-            fileToParse = consoleReader("File to parse");
-            System.out.println(fileToParse);
-            System.out.println("Is input valid?: " + fileToParse.matches(Constants.filePathValidator));
-        } while(!fileToParse.matches(Constants.filePathValidator));
-
-        FileParser fp = new FileParser(fileToParse, true, true); */
     }
+
+    public static String[][] parseArrayList(ArrayList<String[]> data, int size){
+        String[][] parsedData = new String[data.size()][size];
+        for(int i = 0; i  < data.size(); i++){
+            parsedData[i] = data.get(i);
+        }
+        return parsedData;
+    }
+
+
 
     static String consoleReader(String reason) {
         //Read console
@@ -57,4 +55,17 @@ public class runner {
 
         }
     }
+
+    // ChristmasMachine xmasMach = new ChristmasMachine(new String[]{"120"});
+    // xmasMach.establishMachine();
+
+
+        /*
+        do {
+            fileToParse = consoleReader("File to parse");
+            conout(fileToParse);
+            conout("Is input valid?: " + fileToParse.matches(Constants.filePathValidator));
+        } while(!fileToParse.matches(Constants.filePathValidator));
+
+        FileParser fp = new FileParser(fileToParse, true, true); */
 }

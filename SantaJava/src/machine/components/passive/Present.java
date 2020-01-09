@@ -1,6 +1,7 @@
 package machine.components.passive;
 
-import data.AgeRange;
+import machine.data.AgeRange;
+import machine.data.*;
 
 /**
  * The type Present.
@@ -9,6 +10,7 @@ public class Present {
 
     final private String typeOfToy;
     final private AgeRange ageRange;
+    private Direction lastDirectionMoved;
 
     /**
      * Instantiates a new Present.
@@ -38,6 +40,14 @@ public class Present {
      */
     public String getTypeOfToy() {
         return typeOfToy;
+    }
+
+    public Direction getLastDirectionMoved() {
+        return lastDirectionMoved;
+    }
+
+    public void setLastDirectionMoved(Direction lastDirectionMoved) {
+        this.lastDirectionMoved = lastDirectionMoved;
     }
 
     //TODO  Present objects are created at the start of the simulation and loaded into the hopper to simulate the
