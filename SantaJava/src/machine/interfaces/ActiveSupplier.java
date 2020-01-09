@@ -1,5 +1,4 @@
 package machine.interfaces;
-
 import machine.data.Direction;
 
 public interface ActiveSupplier {

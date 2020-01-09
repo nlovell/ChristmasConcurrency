@@ -29,33 +29,47 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     @Override
     public void run() {
         do {
-            int minPath = Integer.MAX_VALUE;
-            TurntableConnection minCon = null;
-
-            for (TurntableConnection connection : connections) {
-                //If already has a present
-                if (current != null) {
-                    int currentPath = connection.search(current.getAgeRange());
-                    if (currentPath < minPath) {
-                        minPath = currentPath;
-                        minCon = connection;
-                    }
-
-                    if (minPath < Integer.MAX_VALUE) {
-                        supply(minCon.getConsumer(), connection.getDir());
-                    } else {
-                        throw new IllegalArgumentException("Age range not found in network for gift " + current.getAgeRange());
-                        //TODO throw exception
-                    }
-                } else {
-                    //TODO stuff
-                    //If looking for a present
-
-                }
+            if (current != null) {
+                supplyPresent();
+            } else {
+                consumePresent();
             }
 
         } while (running);
     }
+
+    void supplyPresent() {
+        int minPath = Integer.MAX_VALUE;
+        TurntableConnection minCon = null;
+
+        for (TurntableConnection connection : connections) {
+            int currentPath = connection.search(current.getAgeRange());
+            if (currentPath < minPath) {
+                minPath = currentPath;
+                minCon = connection;
+            }
+
+            if (minPath < Integer.MAX_VALUE) {
+                supply(minCon.getConsumer(), connection.getDir());
+            } else {
+                throw new IllegalArgumentException("Age range not found in network for gift " + current.getAgeRange());
+            }
+        }
+    }
+
+
+    void consumePresent() {
+        for (TurntableConnection connection : connections) {
+            PassiveSupplier supp = connection.getSupplier();
+            if (supp != null) {
+                this.current = supp.supply();
+                if (this.current != null) {
+                    break;
+                }
+            }
+        }
+    }
+    
 
     @Override
     public void consume(final PassiveSupplier supplier, final Direction inputDir) {
@@ -106,8 +120,8 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         this.running = false;
     }
 
-    public boolean hasPresent(){
-        if(current != null){
+    public boolean hasPresent() {
+        if (current != null) {
             return true;
         }
 

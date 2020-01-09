@@ -9,6 +9,7 @@ import machine.interfaces.PassiveSupplier;
 
 public class TurntableConnection {
 
+
     /** True for input **/
     private final boolean isInput;
     private final Direction dir;
@@ -56,4 +57,9 @@ public class TurntableConnection {
     public Direction getDir() {
         return dir;
     }
+
+    public boolean isInput() {
+        return isInput;
+    }
+
 }

@@ -52,11 +52,14 @@ public class ChristmasMachine {
         hoppers = makeHoppers(hopperData, conveyors, presents);
 
         turntables = makeTurntables(turntableData, conveyors, sacks);
+
+        System.out.println("------------- ~fin~ -------------");
+
     }
 
     public void startStuff() {
         for (Hopper hopper : hoppers) {
-            hopper.run();
+            new Thread(hopper).start();
         }
         for (Turntable turntable : turntables) {
             turntable.run();

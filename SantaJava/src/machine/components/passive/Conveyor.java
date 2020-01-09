@@ -117,22 +117,26 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     @Override
     public Present supply() {
         Present result = null;
-        //TODO thread safeify this - mutex this fucker
-        if (!isEmpty()) {
-            Present gift;
-            gift = presents[head];
-            presents[head] = null;
-            incrementHead();
-            result = gift;
+
+        synchronized (presents) {
+            if (!isEmpty()) {
+                Present gift;
+                gift = presents[head];
+                presents[head] = null;
+                System.out.println("Conveyor " + super.getId() + " supplied a gift!");
+
+                incrementHead();
+                result = gift;
+            }
+            return result;
         }
-        return result;
     }
 
     @Override
     public String toString() {
         return "Conveyor{" + super.toString() +
                 "destinations=" + Arrays.toString(destinations) +
-                ", presents=" + Arrays.toString(presents) +
+                ", presents=" + giftsInConveyor() +
                 ", head=" + head +
                 ", tail=" + tail +
                 ", length=" + length +

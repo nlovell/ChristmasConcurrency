@@ -4,12 +4,11 @@
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/MachinePart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/MachinePart.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Present.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Present.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Sack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Sack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Hopper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/threaded/Hopper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Turntable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/threaded/Turntable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/data/TurntableConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/data/TurntableConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/interfaces/ActiveSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/interfaces/ActiveSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/FileParser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,10 +105,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="860" y="556" key="#com.intellij.debugger.ui.breakpoints.EditClassFiltersDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578599363056" />
-    <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser" timestamp="1578601163075">
+    <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser" timestamp="1578605283078">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578601163075" />
+    <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578605283078" />
     <state x="1010" y="482" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1578515232670">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -134,22 +133,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="934" y="295" key="CommitChangelistDialog2/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578598524936" />
-    <state width="2517" height="600" key="GridCell.Tab.0.bottom" timestamp="1578603668599">
+    <state width="2517" height="600" key="GridCell.Tab.0.bottom" timestamp="1578605716741">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="600" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578603668599" />
-    <state width="2517" height="600" key="GridCell.Tab.0.center" timestamp="1578603668599">
+    <state width="2517" height="600" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578605716741" />
+    <state width="2517" height="600" key="GridCell.Tab.0.center" timestamp="1578605716741">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="600" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578603668599" />
-    <state width="2517" height="600" key="GridCell.Tab.0.left" timestamp="1578603668599">
+    <state width="2517" height="600" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578605716741" />
+    <state width="2517" height="600" key="GridCell.Tab.0.left" timestamp="1578605716741">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="600" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578603668599" />
-    <state width="2517" height="600" key="GridCell.Tab.0.right" timestamp="1578603668599">
+    <state width="2517" height="600" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578605716741" />
+    <state width="2517" height="600" key="GridCell.Tab.0.right" timestamp="1578605716741">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="600" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578603668599" />
+    <state width="2517" height="600" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578605716741" />
     <state width="2517" height="383" key="GridCell.Tab.1.bottom" timestamp="1578603439990">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -197,18 +196,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/machine/components/passive/Conveyor.java</url>
-          <line>108</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/machine/components/passive/Conveyor.java</url>
-          <line>99</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint enabled="true" type="java-exception">
           <properties>

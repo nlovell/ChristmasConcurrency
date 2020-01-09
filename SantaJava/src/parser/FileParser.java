@@ -223,10 +223,12 @@ public class FileParser {
      * @param turntable the string defining a turntable
      */
     private String[] parseTurntable(final String turntable) {
+        String[] turntableDetails = new String[5];
 
         Matcher idMat = Regexp.turntable.matcher(turntable);
         idMat.find();
         outputFound("Turntable", idMat.group(1));
+        turntableDetails[0] = idMat.group(1);
 
         Matcher matcher = Regexp.turntableProp.matcher(turntable);
 
