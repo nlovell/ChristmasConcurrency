@@ -7,6 +7,7 @@ import machine.components.passive.Sack;
 import machine.components.threaded.Hopper;
 import machine.components.threaded.Turntable;
 import machine.data.Constants;
+import machine.data.Direction;
 import machine.data.TurntableConnection;
 
 import java.lang.reflect.Array;
@@ -235,18 +236,32 @@ public class ChristmasMachine {
      * Make turntables turntable [ ].
      *
      * @param turntables the turntables
-     * @param conveyors  the conveyors
+     * @param belts  the conveyors
      * @param sacks      the sacks
      * @return the turntable [ ]
      */
-    private Turntable[] makeTurntables(String[][] turntables, Conveyor[] conveyors, Sack[] sacks) {
-        Turntable[] arr = new Turntable[hoppers.length];
+    private Turntable[] makeTurntables(String[][] turntables, Conveyor[] belts, Sack[] sacks) {
+        Turntable[] arr = new Turntable[turntables.length];
 
         int i = 0;
 
         for (String[] turntable : turntables) {
+            TurntableConnection[] conns = new TurntableConnection[4];
+            //NESW
+            for (int j = 1; j <= 4; j++) {
+                if (turntable[j] != null) {
+                    Direction dir = Direction.values()[j - 1];
+                    String getVal = turntable[j].split(" ")[1];
 
-            TurntableConnection[] conns = new TurntableConnection[1];
+                    if (turntable[j].split(" ")[0].equals("os")) {
+                        conns[j - 1] = new TurntableConnection(dir, getPart(getVal, sacks));
+                    } else {
+                        boolean input = !turntable[j].split("b")[0].equals("o");
+                        conns[j - 1] = new TurntableConnection(dir, input, getPart(getVal, belts));
+                    }
+                }
+            }
+
             arr[i] = new Turntable(turntable[0], conns);
 
             System.out.println(arr[i].toString() + '\n');

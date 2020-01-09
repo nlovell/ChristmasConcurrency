@@ -9,6 +9,8 @@ import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
+import java.util.Arrays;
+
 import static machine.data.Constants.MOVE_TIME;
 import static machine.data.Constants.ROTATE_TIME;
 import static machine.data.Direction.*;
@@ -69,7 +71,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
             }
         }
     }
-    
+
 
     @Override
     public void consume(final PassiveSupplier supplier, final Direction inputDir) {
@@ -126,6 +128,15 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         }
 
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Turntable{" +
+                "current=" + current +
+                ", connections=" + Arrays.toString(connections) +
+                ", running=" + running +
+                '}';
     }
 
     //TODO When a turntable detects that a gift is waiting at one of its input ports (e.g. by polling all connected

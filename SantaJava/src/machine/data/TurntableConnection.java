@@ -37,7 +37,9 @@ public class TurntableConnection {
         this.supplier = null;
     }
 
-    public PassiveConsumer getConsumer() {
+
+
+        public PassiveConsumer getConsumer() {
         return consumer;
     }
 
@@ -62,4 +64,11 @@ public class TurntableConnection {
         return isInput;
     }
 
+    @Override
+    public String toString() {
+        return "{" +
+                "isInput=" + isInput +
+                ", dir=" + dir +
+                '}';
+    }
 }

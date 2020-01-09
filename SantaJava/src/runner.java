@@ -1,4 +1,5 @@
 import machine.ChristmasMachine;
+import machine.data.Direction;
 import parser.FileParser;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,13 +19,14 @@ public class runner {
         FileParser fp =  new FileParser();
         ArrayList<ArrayList<String[]>> output = fp.parseFile("C:/test/example.txt", true, true);
 
-       String[][] presents = new String[1][1];
-        String[][] turntables = new String[1][1];
+        String[][] presents = new String[1][1];
 
         int timer = 60;
         String[][] conveyors = parseArrayList(output.get(0), 3);
         String[][] hoppers = parseArrayList(output.get(1), 4);
         String[][] sacks = parseArrayList(output.get(2), 3);
+        String[][] turntables = parseArrayList(output.get(3), 5);
+
 
         System.out.println("----------------------------");
 
@@ -36,7 +38,7 @@ public class runner {
 
         ChristmasMachine machine = new ChristmasMachine(timer, conveyors, hoppers, presents, sacks, turntables);
 
-        machine.startStuff();
+        //machine.startStuff();
     }
 
     public static String[][] parseArrayList(ArrayList<String[]> data, int size){

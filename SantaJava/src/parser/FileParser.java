@@ -224,6 +224,7 @@ public class FileParser {
      */
     private String[] parseTurntable(final String turntable) {
         String[] turntableDetails = new String[5];
+        //N E S W
 
         Matcher idMat = Regexp.turntable.matcher(turntable);
         idMat.find();
@@ -238,10 +239,29 @@ public class FileParser {
             togglePrint(" orientation: " + matcher.group(1));
             togglePrint("        type: " + matcher.group(2));
 
-            if (!matcher.group(2).equals("null"))
+            if (!matcher.group(2).equals("null")) {
                 togglePrint("   output id: " + matcher.group(3));
+                int out;
+                switch(matcher.group(1)){
+                    case "N":
+                        out = 1;
+                        break;
+                    case "E":
+                        out = 2;
+                        break;
+                    case "S":
+                        out = 3;
+                        break;
+                    case "W":
+                        out = 4;
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + matcher.group(1));
+                }
+                turntableDetails[out] = matcher.group(2) + " " + matcher.group(3);
+            }
         }
-        return new String[0];
+        return turntableDetails;
     }
 
     /**
