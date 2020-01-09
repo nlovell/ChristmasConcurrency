@@ -36,7 +36,7 @@ public class ChristmasMachine {
      */
     public ChristmasMachine(final int sessionLength,
                             final String[][] conveyorData,
-                            final int[][] hopperData,
+                            final String[][] hopperData,
                             final String[][] presentData,
                             final String[][] sackData,
                             final String[][] turntableData) {
@@ -172,7 +172,7 @@ public class ChristmasMachine {
      * @param presents  the presents
      * @return the hopper [ ]
      */
-    private Hopper[] makeHoppers(int[][] hoppers, Conveyor[] conveyors, Present[] presents) {
+    private Hopper[] makeHoppers(String[][] hoppers, Conveyor[] conveyors, Present[] presents) {
         return new Hopper[0];
     }
 

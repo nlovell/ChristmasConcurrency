@@ -18,9 +18,10 @@ public class runner {
         FileParser fp =  new FileParser();
         ArrayList<ArrayList<String[]>> output = fp.parseFile("C:/test/example.txt", true, true);
 
-        ArrayList<String[]> presents;
-        ArrayList<String[]> turntables;
+       String[][] presents = new String[1][1];
+        String[][] turntables = new String[1][1];
 
+        int timer = 60;
         String[][] conveyors = parseArrayList(output.get(0), 3);
         String[][] hoppers = parseArrayList(output.get(1), 4);
         String[][] sacks = parseArrayList(output.get(2), 3);
@@ -31,6 +32,9 @@ public class runner {
         System.out.println(Arrays.toString(hoppers[0]));
         System.out.println(Arrays.toString(sacks[0]));
 
+
+
+        ChristmasMachine machine = new ChristmasMachine(timer, conveyors, hoppers, presents, sacks, turntables);
     }
 
     public static String[][] parseArrayList(ArrayList<String[]> data, int size){
