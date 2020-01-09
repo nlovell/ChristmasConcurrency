@@ -5,10 +5,12 @@ import machine.components.MachinePart;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
+import java.util.Arrays;
+
 public class Conveyor extends MachinePart implements PassiveSupplier, PassiveConsumer {
 
     private final Sack[] destinations;
-    private Present[] presents;
+    private final Present[] presents;
 
     private int head = 0;
     private int tail = 0;
@@ -23,11 +25,16 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     }
 
     private boolean isSpace() {
-        return tail != head - 1 && (tail != 0 || head != length);
+        return giftsInConveyor() != length;
+        //return tail != head - 1 && (tail != 0 || head != length);
     }
 
     private boolean isEmpty(){
-        return head==tail;
+        return head == tail && presents[head] == null;
+    }
+
+    private boolean isFull(){
+        return head == tail && !isEmpty();
     }
 
     private void incrementTail(){
@@ -45,6 +52,11 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     }
 
     public int giftsInConveyor(){
+        // head and tail can be the same value when both full or empty.
+        // this if deals with it.
+        if(isFull())
+            return length;
+
         return (tail + (length - head)) % length;
 
         // fancy maths handles tail-before-head positions in the queue, eg:
@@ -71,6 +83,10 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         return Integer.MAX_VALUE;
     }
 
+    // T
+    // H
+    //[o|o|o]
+
 
     /**
      * When the belt receives a present
@@ -79,11 +95,17 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     @Override
     public boolean consume(final Present gift) {
         //TODO thread safeify this - mutex this fucker
-        if(isSpace()) {
-            presents[tail] = gift;
-            incrementTail();
-            return true;
+
+        synchronized (presents) {
+            if (isSpace()) {
+                System.out.println(this.toString());
+                System.out.println("Conveyor " + super.getId() + " received a gift!");
+                presents[tail] = gift;
+                incrementTail();
+                return true;
+            }
         }
+
         return false;
     }
 
@@ -104,6 +126,17 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
             result = gift;
         }
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Conveyor{" + super.toString() +
+                "destinations=" + Arrays.toString(destinations) +
+                ", presents=" + Arrays.toString(presents) +
+                ", head=" + head +
+                ", tail=" + tail +
+                ", length=" + length +
+                '}';
     }
 
 //o In the scenario, the belts are acting as passive buffers (shared memory space) between the

@@ -7,6 +7,14 @@ import machine.data.*;
  * The type Present.
  */
 public class Present {
+    @Override
+    public String toString() {
+        return "Present{" +
+                "typeOfToy='" + typeOfToy + '\'' +
+                ", ageRange=" + ageRange +
+                ", lastDirectionMoved=" + lastDirectionMoved +
+                '}';
+    }
 
     final private String typeOfToy;
     final private AgeRange ageRange;

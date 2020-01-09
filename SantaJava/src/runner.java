@@ -35,6 +35,8 @@ public class runner {
 
 
         ChristmasMachine machine = new ChristmasMachine(timer, conveyors, hoppers, presents, sacks, turntables);
+
+        machine.startStuff();
     }
 
     public static String[][] parseArrayList(ArrayList<String[]> data, int size){

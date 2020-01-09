@@ -2,6 +2,7 @@ package machine.components.threaded;
 
 import machine.components.MachinePart;
 import machine.components.passive.Conveyor;
+import machine.components.passive.Present;
 import machine.data.Direction;
 import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
@@ -16,6 +17,16 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
     private final int speed;
     private boolean running = true;
 
+    @Override
+    public String toString() {
+        return "Hopper{" +
+                "connectedBelt=" + connectedBelt +
+                ", capacity=" + capacity +
+                ", speed=" + speed +
+                ", running=" + running +
+                '}';
+    }
+
     /**
      * Instantiates a new Hopper.
      *
@@ -24,7 +35,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
      * @param capacity      the capacity of the hopper
      * @param speed         the output speed of the hopper
      */
-    Hopper(int hopperID, Conveyor connectedBelt, int capacity, int speed) {
+    public Hopper(int hopperID, Conveyor connectedBelt, int capacity, int speed) {
         super(hopperID);
         this.connectedBelt = connectedBelt;
         this.capacity = capacity;
@@ -33,9 +44,15 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
     @Override
     public void run() {
-        do{
+        try {
+            do {
+                Thread.sleep(1000 / speed);
+                connectedBelt.consume(new Present("LEGO", 1, 99));
 
-        } while (running);
+            } while (running);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -46,6 +63,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
 
     //<editor-fold desc="Getter methods">
+
     /**
      * Gets capacity.
      *

@@ -3,7 +3,14 @@ package machine.components;
 /**
  * The type Machine part.
  */
-public class MachinePart {
+public abstract class MachinePart {
+    @Override
+    public String toString() {
+        return "MachinePart{" +
+                "ID='" + ID + '\'' +
+                '}';
+    }
+
     /**
      * The Id.
      */

@@ -7,6 +7,9 @@ import machine.components.passive.Sack;
 import machine.components.threaded.Hopper;
 import machine.components.threaded.Turntable;
 import machine.data.Constants;
+import machine.data.TurntableConnection;
+
+import java.lang.reflect.Array;
 
 import static machine.data.Constants.MIN_TIME;
 import static machine.data.Constants.cout;
@@ -44,16 +47,18 @@ public class ChristmasMachine {
 
         Sack[] sacks = makeSacks(sackData);
         Present[] presents = makePresents(presentData, sacks);
+
         conveyors = makeConveyors(conveyorData, sacks);
         hoppers = makeHoppers(hopperData, conveyors, presents);
+
         turntables = makeTurntables(turntableData, conveyors, sacks);
     }
 
-    private void startStuff(){
-        for(Hopper hopper : hoppers) {
+    public void startStuff() {
+        for (Hopper hopper : hoppers) {
             hopper.run();
         }
-        for(Turntable turntable : turntables){
+        for (Turntable turntable : turntables) {
             turntable.run();
         }
 
@@ -61,11 +66,7 @@ public class ChristmasMachine {
         long a = System.currentTimeMillis();
 
         //A simple timer loop of variable length
-        /**
-         * The Session.
-         */
-        int session = 0;
-        for (session = 0; session < sessionLength; session++) {
+        for (int session = 0; session < sessionLength; session++) {
             Constants.cout(String.valueOf(session));
             try {
                 Thread.sleep(1000);
@@ -74,12 +75,12 @@ public class ChristmasMachine {
             }
         }
 
-        for(Hopper hopper : hoppers) {
+        for (Hopper hopper : hoppers) {
             hopper.setStop();
         }
 
         int remaining = giftsInSystem();
-        while(remaining > 0){
+        while (remaining > 0) {
             try {
                 Thread.sleep(MIN_TIME);
                 Constants.cout(remaining + "unsorted gifts are present in the system.");
@@ -89,7 +90,7 @@ public class ChristmasMachine {
 
         }
 
-        for(Turntable turntable : turntables){
+        for (Turntable turntable : turntables) {
             turntable.setStop();
         }
 
@@ -101,12 +102,12 @@ public class ChristmasMachine {
     private int giftsInSystem() {
         int remaining = 0;
 
-        for(Conveyor conveyor : conveyors){
+        for (Conveyor conveyor : conveyors) {
             remaining = remaining + conveyor.giftsInConveyor();
         }
 
-        for(Turntable turntable : turntables){
-            if(turntable.hasPresent()){
+        for (Turntable turntable : turntables) {
+            if (turntable.hasPresent()) {
                 remaining++;
             }
         }
@@ -121,8 +122,18 @@ public class ChristmasMachine {
      * @return the sack [ ]
      */
     private Sack[] makeSacks(final String[][] sacks) {
+        Sack[] arr = new Sack[sacks.length];
+        int i = 0;
 
-        return null;
+        for (String[] sack : sacks) {
+            //cap id minmax
+            int ageMin = Integer.parseInt(sack[2].split("-")[0]);
+            int ageMax = Integer.parseInt(sack[2].split("-")[1]);
+
+            arr[i] = new Sack(Integer.parseInt(sack[0]), Integer.parseInt(sack[1]), ageMin, ageMax);
+            i++;
+        }
+        return arr;
     }
 
     /**
@@ -138,17 +149,22 @@ public class ChristmasMachine {
         int i = 0;
 
         for (String[] conv : conveyors) {
-            Sack[] convSacks = getParts(conv[3].split(" "), mySacks);
+            Sack[] convSacks = getParts(conv[2].split(" "), mySacks, Sack.class);
             arr[i] = new Conveyor(conv[0], Integer.parseInt(conv[1]), convSacks);
+            System.out.println(arr[i].toString() + '\n');
+
             i++;
+
         }
 
         return arr;
     }
 
-    private <P extends MachinePart> P[] getParts(final String[] ids, final P[] parts) {
+    private <P extends MachinePart> P[] getParts(final String[] ids, final P[] parts, Class<P> clazz) {
 
-        MachinePart[] output = new MachinePart[ids.length];
+        @SuppressWarnings("unchecked") final P[] output = (P[]) Array.newInstance(clazz, ids.length);
+
+        //MachinePart[] output = new MachinePart[ids.length];
         int i = 0;
 
         for (P part : parts) {
@@ -161,7 +177,18 @@ public class ChristmasMachine {
             }
         }
 
-        return (P[]) output;
+        return output;
+    }
+
+    private <P extends MachinePart> P getPart(final String id, final P[] parts) {
+
+        for (P part : parts) {
+            if (part.getId().equals(id)) {
+                return part;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -173,7 +200,20 @@ public class ChristmasMachine {
      * @return the hopper [ ]
      */
     private Hopper[] makeHoppers(String[][] hoppers, Conveyor[] conveyors, Present[] presents) {
-        return new Hopper[0];
+        Hopper[] arr = new Hopper[hoppers.length];
+
+        int i = 0;
+
+        for (String[] hopper : hoppers) {
+
+            arr[i] = new Hopper(Integer.parseInt(hopper[0]), getPart(hopper[1], conveyors),
+                    Integer.parseInt(hopper[2]), Integer.parseInt(hopper[3]));
+
+            System.out.println(arr[i].toString() + '\n');
+            i++;
+        }
+
+        return arr;
     }
 
     /**
@@ -184,6 +224,7 @@ public class ChristmasMachine {
      * @return the present [ ]
      */
     private Present[] makePresents(String[][] presents, Sack[] sacks) {
+        //TODO make gifts
         return null;
     }
 
@@ -196,41 +237,21 @@ public class ChristmasMachine {
      * @return the turntable [ ]
      */
     private Turntable[] makeTurntables(String[][] turntables, Conveyor[] conveyors, Sack[] sacks) {
-        return null;
-    }
+        Turntable[] arr = new Turntable[hoppers.length];
 
+        int i = 0;
 
-/*
-    public void establishMachine() {
+        for (String[] turntable : turntables) {
 
+            TurntableConnection[] conns = new TurntableConnection[1];
+            arr[i] = new Turntable(turntable[0], conns);
 
-        try {
-            System.in.read();
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(arr[i].toString() + '\n');
+            i++;
         }
 
-        conout("Session begins!");
-        long a = System.currentTimeMillis();
-
-        //A simple timer loop of variable length
-        for (session = 0; session < sessionLength; session++) {
-            conout(session);
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        conout("Session over!");
-        long b = System.currentTimeMillis();
-        long c = b - a;
-
-        conout(b + " - " + a + " = " + c);
+        return arr;
     }
-
-
- */
 
 //TODO  The simulation should run for one “session” – the length of the session representing the time set on the
 //      machine by the elf. At the end of the session, the hoppers should immediately cease adding Presents to the
