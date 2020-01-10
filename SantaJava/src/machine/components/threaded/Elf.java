@@ -2,8 +2,6 @@ package machine.components.threaded;
 
 import machine.components.passive.Sack;
 
-import static machine.data.Constants.cout;
-
 /**
  * Elves run as threads, and are assigned to empty the sacks when they're full.
  */

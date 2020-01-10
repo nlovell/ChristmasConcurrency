@@ -1,7 +1,6 @@
 package machine.components.passive;
 
 import machine.data.AgeRange;
-import machine.data.*;
 
 /**
  * The type Present.

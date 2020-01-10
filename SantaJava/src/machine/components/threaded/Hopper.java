@@ -1,6 +1,5 @@
 package machine.components.threaded;
 
-import machine.ChristmasMachine;
 import machine.components.MachinePart;
 import machine.components.passive.Conveyor;
 import machine.components.passive.Present;

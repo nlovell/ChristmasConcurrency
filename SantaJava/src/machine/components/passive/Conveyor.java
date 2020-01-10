@@ -7,8 +7,6 @@ import machine.interfaces.PassiveSupplier;
 
 import java.util.Arrays;
 
-import static machine.data.Constants.cout;
-
 /**
  * The type Conveyor.
  */

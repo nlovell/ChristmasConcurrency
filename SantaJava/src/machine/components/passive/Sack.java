@@ -6,8 +6,6 @@ import machine.interfaces.PassiveConsumer;
 
 import java.util.Arrays;
 
-import static machine.data.Constants.cout;
-
 /**
  * The type Sack.
  */

@@ -45,15 +45,6 @@ public class TurntableConnection {
         return supplier;
     }
 
-    public int search(final AgeRange age) {
-      if(!isInput){
-          if(consumer != null){
-            return consumer.search(age);
-          }
-      }
-      return Integer.MAX_VALUE;
-    }
-
     public Direction getDir() {
         return dir;
     }

@@ -23,7 +23,6 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     private volatile boolean running = true;
     private Direction lastDirectionMoved;
 
-
     public Turntable(final String id, final TurntableConnection[] connections) {
         super(id);
         this.connections = connections;
@@ -34,7 +33,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         boolean print = true;
         do {
             if (current != null) {
-               // if (!print) cout("Turntable " + this.getId() + " is attempting to move a present.\n" + this.toString());
+                // if (!print) cout("Turntable " + this.getId() + " is attempting to move a present.\n" + this.toString());
                 print = true;
                 supplyPresent();
             } else {
@@ -148,9 +147,21 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
 
     @Override
     public String toString() {
+
+        //This section stops the need to import the Java Utils Arrays.
+        StringBuilder conns = new StringBuilder("[");
+        for (TurntableConnection connection : connections) {
+            if (connection != null)
+                conns.append(connection.toString()).append(", ");
+            else
+                conns.append("{connection  null}, ");
+        }
+        conns.delete(conns.length()-2, conns.length());
+        conns.append("]");
+
         return "Turntable{" +
                 "current=" + current +
-                ", connections=" + Arrays.toString(connections) +
+                ", connections=" + conns +
                 ", running=" + running +
                 '}';
     }
