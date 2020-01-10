@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/Elf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/Elf.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -131,22 +130,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="934" y="295" key="CommitChangelistDialog2/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578690309604" />
-    <state width="2517" height="461" key="GridCell.Tab.0.bottom" timestamp="1578692998573">
+    <state width="2517" height="461" key="GridCell.Tab.0.bottom" timestamp="1578693498388">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="461" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578692998573" />
-    <state width="2517" height="461" key="GridCell.Tab.0.center" timestamp="1578692998573">
+    <state width="2517" height="461" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578693498388" />
+    <state width="2517" height="461" key="GridCell.Tab.0.center" timestamp="1578693498388">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="461" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578692998573" />
-    <state width="2517" height="461" key="GridCell.Tab.0.left" timestamp="1578692998573">
+    <state width="2517" height="461" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578693498388" />
+    <state width="2517" height="461" key="GridCell.Tab.0.left" timestamp="1578693498388">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="461" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578692998573" />
-    <state width="2517" height="461" key="GridCell.Tab.0.right" timestamp="1578692998573">
+    <state width="2517" height="461" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578693498388" />
+    <state width="2517" height="461" key="GridCell.Tab.0.right" timestamp="1578693498388">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="461" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578692998573" />
+    <state width="2517" height="461" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578693498388" />
     <state width="2517" height="383" key="GridCell.Tab.1.bottom" timestamp="1578692581080">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -194,13 +193,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/machine/Elf.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="18" />
-        </line-breakpoint>
-      </breakpoints>
       <default-breakpoints>
         <breakpoint enabled="true" type="java-exception">
           <properties>

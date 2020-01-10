@@ -25,12 +25,7 @@ public class Elf implements Runnable{
         this.replaceTime = replaceTime * this.elfSack.getCapacity();
 
         Random r = new Random();
-        if(r.nextInt(1000) == 42){
-            elfID = "TK421"; //Why aren't you at your post?
-        } else {
-            elfID = (char) (65 + r.nextInt(25)) + String.valueOf((char) (65 + r.nextInt(25)))
-                    + String.format("%03d", r.nextInt(999));
-        }
+        elfID = (char) (65 + r.nextInt(25)) + String.format("%03d", r.nextInt(999));
     }
 
     @Override
