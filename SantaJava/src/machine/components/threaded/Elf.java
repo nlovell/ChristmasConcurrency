@@ -12,6 +12,12 @@ public class Elf implements Runnable{
     private volatile boolean running = true;
 
 
+    /**
+     * Instantiates a new Elf.
+     *
+     * @param elfSack     the elf sack
+     * @param replaceTime the replace time
+     */
     public Elf(final Sack elfSack, final int replaceTime){
         this.elfSack = elfSack;
         this.replaceTime = replaceTime * this.elfSack.getCapacity();
@@ -34,6 +40,9 @@ public class Elf implements Runnable{
         } while(running);
     }
 
+    /**
+     * Set stop.
+     */
     public void setStop(){
         running = false;
     }

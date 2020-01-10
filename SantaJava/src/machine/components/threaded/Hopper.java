@@ -84,10 +84,18 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
     }
 
+    /**
+     * Sets stop.
+     */
     public void setStop() {
         this.running = false;
     }
 
+    /**
+     * Sets sacks.
+     *
+     * @param sacks the sacks
+     */
     public void setSacks(Sack[] sacks) {
         this.sacks = sacks;
     }

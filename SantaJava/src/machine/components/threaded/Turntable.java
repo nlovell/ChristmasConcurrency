@@ -15,6 +15,9 @@ import java.util.Arrays;
 import static machine.data.Constants.*;
 import static machine.data.Direction.*;
 
+/**
+ * The type Turntable.
+ */
 public class Turntable extends MachinePart implements ActiveSupplier, ActiveConsumer, Runnable {
 
 
@@ -23,6 +26,12 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     private volatile boolean running = true;
     private Direction lastDirectionMoved;
 
+    /**
+     * Instantiates a new Turntable.
+     *
+     * @param id          the id
+     * @param connections the connections
+     */
     public Turntable(final String id, final TurntableConnection[] connections) {
         super(id);
         this.connections = connections;
@@ -69,6 +78,9 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     }
 
 
+    /**
+     * Consume present.
+     */
     void consumePresent() {
         for (TurntableConnection connection : connections) {
             if (connection != null && connection.getConsumer() == null) {
@@ -116,6 +128,9 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
             current = null;
     }
 
+    /**
+     * Rotate delay.
+     */
     public void rotateDelay() {
         try {
             Thread.sleep(ROTATE_TIME);
@@ -124,6 +139,9 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         }
     }
 
+    /**
+     * Move gift delay.
+     */
     public void moveGiftDelay() {
         try {
             Thread.sleep(MOVE_TIME);
@@ -132,11 +150,19 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         }
     }
 
+    /**
+     * Sets stop.
+     */
     public void setStop() {
         this.running = false;
     }
 
 
+    /**
+     * Has present boolean.
+     *
+     * @return the boolean
+     */
     public boolean hasPresent() {
         if (current != null) {
             return true;
