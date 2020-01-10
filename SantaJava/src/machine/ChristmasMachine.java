@@ -158,9 +158,17 @@ public class ChristmasMachine {
             new Thread(turntable).start();
         }
 
+        StringBuilder elfString = new StringBuilder("Meet the Elves running this machine - there's ");
+
         for (Elf elf : elves) {
+            if(elf != elves[elves.length-1])
+                elfString.append(elf.getElfID() + ", ");
+            else
+                elfString.append("and " + elf.getElfID() + "!");
+
             new Thread(elf).start();
         }
+        cout(String.valueOf(elfString));
     }
 
     private void startMachine2(){
