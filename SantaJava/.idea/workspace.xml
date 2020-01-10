@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Elf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/Elf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/Elf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/Elf.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

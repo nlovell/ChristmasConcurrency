@@ -10,7 +10,7 @@ public class Elf implements Runnable{
     private final Sack elfSack;
     private final int replaceTime;
     private volatile boolean running = true;
-
+    private String name;
 
     /**
      * Instantiates a new Elf.
@@ -45,5 +45,13 @@ public class Elf implements Runnable{
      */
     public void setStop(){
         running = false;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(final String name) {
+        this.name = name;
     }
 }
