@@ -124,7 +124,7 @@ public class ChristmasMachine {
 
         endMachine();
 
-        Constants.cout("Session over!");
+        Constants.cout("\n\nSession over!");
         long endTime = System.currentTimeMillis();
 
         cout("System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
@@ -148,6 +148,7 @@ public class ChristmasMachine {
     }
 
     private void startMachine() {
+
         for (Hopper hopper : hoppers) {
             hopper.setSacks(sacks);
             new Thread(hopper).start();
@@ -159,6 +160,21 @@ public class ChristmasMachine {
         for (Elf elf : elves) {
             new Thread(elf).start();
         }
+    }
+
+    private void startMachine2(){
+        Thread[] firstThreads = new Thread[hoppers.length];
+        Thread[] secondThreads = new Thread[turntables.length + elves.length];
+
+        for(MachinePart part : hoppers)
+        {
+
+        }
+
+        for (Runnable secondary : turntables){
+
+        }
+
     }
 
     private void endMachine() {

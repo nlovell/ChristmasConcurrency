@@ -17,7 +17,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
     private final Conveyor connectedBelt;
     private final int capacity;
     private final int speed;
-    private boolean running = true;
+    private volatile boolean running = true;
     private Sack[] sacks;
 
     /**

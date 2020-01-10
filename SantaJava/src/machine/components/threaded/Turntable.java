@@ -20,7 +20,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
 
     private final TurntableConnection[] connections;
     private Present current;
-    private boolean running = true;
+    private volatile boolean running = true;
     private Direction lastDirectionMoved;
 
 
@@ -136,6 +136,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     public void setStop() {
         this.running = false;
     }
+
 
     public boolean hasPresent() {
         if (current != null) {

@@ -11,7 +11,7 @@ public class Elf implements Runnable{
 
     private final Sack elfSack;
     private final int replaceTime;
-    private boolean running = true;
+    private volatile boolean running = true;
 
 
     public Elf(final Sack elfSack, final int replaceTime){
