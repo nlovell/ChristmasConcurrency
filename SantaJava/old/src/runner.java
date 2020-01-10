@@ -1,41 +1,44 @@
 import machine.ChristmasMachine;
+import machine.data.Direction;
 import parser.FileParser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * The Runner class and the Parser classes aren't part of the actual "machine", so while they have access to
  *  non-static arrays (eg arraylists) - these are not exposed to the classes related to the machine. They are parsed
  *  into static arrays before being passed there.
- *
- *  How to run:
- *      From the source directory, the following command can be used to run the Runner and log the output to a file
- *
- *      SantaJava\src> javac runner.java
- *      SantaJava\src> java runner > output.txt
- *
- *  The resulting output file will contain every line normally output to the console.
  */
 public class runner {
     public static void main(String args[]){
 
         String fileToParse;
         FileParser fp =  new FileParser();
-        ArrayList<ArrayList<String[]>> output = fp.parseFile("C:/test/example.txt", false, true);
+        ArrayList<ArrayList<String[]>> output = fp.parseFile("C:/test/example.txt", true, true);
 
         String[][] presents = new String[1][1];
 
-        int timer = 30;
+        int timer = 60;
         String[][] conveyors = parseArrayList(output.get(0), 3);
         String[][] hoppers = parseArrayList(output.get(1), 4);
         String[][] sacks = parseArrayList(output.get(2), 3);
         String[][] turntables = parseArrayList(output.get(3), 5);
 
+
+        System.out.println("----------------------------");
+
+        System.out.println(Arrays.toString(conveyors[0]));
+        System.out.println(Arrays.toString(hoppers[0]));
+        System.out.println(Arrays.toString(sacks[0]));
+
+
+
         ChristmasMachine machine = new ChristmasMachine(timer, conveyors, hoppers, presents, sacks, turntables);
 
-        machine.runMachine();
+        //machine.startStuff();
     }
 
     public static String[][] parseArrayList(ArrayList<String[]> data, int size){

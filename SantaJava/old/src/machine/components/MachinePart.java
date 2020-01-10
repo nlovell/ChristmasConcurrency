@@ -6,7 +6,9 @@ package machine.components;
 public abstract class MachinePart {
     @Override
     public String toString() {
-        return "ID=" + ID;
+        return "MachinePart{" +
+                "ID='" + ID + '\'' +
+                '}';
     }
 
     /**

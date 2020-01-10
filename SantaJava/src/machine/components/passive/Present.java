@@ -7,28 +7,19 @@ import machine.data.*;
  * The type Present.
  */
 public class Present {
-    @Override
-    public String toString() {
-        return "Present{" +
-                "typeOfToy='" + typeOfToy + '\'' +
-                ", ageRange=" + ageRange +
-                ", lastDirectionMoved=" + lastDirectionMoved +
-                '}';
-    }
 
-    final private String typeOfToy;
+    final private Sack[] suitableSacks;
     final private AgeRange ageRange;
-    private Direction lastDirectionMoved;
 
     /**
      * Instantiates a new Present.
      *
-     * @param typeOfToy the type of toy
+     * @param suitableSacks the type of toy
      * @param ageMin    the age min
      * @param ageMax    the age max
      */
-    public Present(String typeOfToy, int ageMin, int ageMax) {
-        this.typeOfToy = typeOfToy;
+    public Present(Sack[] suitableSacks, int ageMin, int ageMax) {
+        this.suitableSacks = suitableSacks;
         this.ageRange = new AgeRange(ageMin, ageMax);
     }
 
@@ -41,25 +32,24 @@ public class Present {
         return ageRange;
     }
 
-    /**
-     * Gets type of toy.
-     *
-     * @return the type of toy
-     */
-    public String getTypeOfToy() {
-        return typeOfToy;
+    public Sack[] getSuitableSacks() {
+        return suitableSacks;
     }
 
-    public Direction getLastDirectionMoved() {
-        return lastDirectionMoved;
+    public String[] getSuitableSackIDs(){
+        String[] sacks = new String[suitableSacks.length];
+        int i = 0;
+        for(Sack sack : suitableSacks){
+            sacks[i++] = sack.getId();
+        }
+
+        return sacks;
     }
 
-    public void setLastDirectionMoved(Direction lastDirectionMoved) {
-        this.lastDirectionMoved = lastDirectionMoved;
+    @Override
+    public String toString() {
+        return "Present{" +
+                "ageRange=" + ageRange +
+                '}';
     }
-
-    //TODO  Present objects are created at the start of the simulation and loaded into the hopper to simulate the
-    //      toys to be distributed
-    //TODO  As well as constructor and destructor methods, a Present must have a method to allow the Sorting
-    //      machine to read its destination
 }

@@ -7,11 +7,6 @@ import machine.interfaces.PassiveSupplier;
 
 import java.util.Arrays;
 
-import static machine.data.Constants.cout;
-
-/**
- * The type Conveyor.
- */
 public class Conveyor extends MachinePart implements PassiveSupplier, PassiveConsumer {
 
     private final Sack[] destinations;
@@ -21,13 +16,6 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     private int tail = 0;
     private final int length;
 
-    /**
-     * Instantiates a new Conveyor.
-     *
-     * @param id           the id
-     * @param length       the length
-     * @param destinations the destinations
-     */
     public Conveyor(String id, int length, Sack[] destinations) {
         super(id);
         this.length = length;
@@ -63,11 +51,6 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         }
     }
 
-    /**
-     * Gifts in conveyor int.
-     *
-     * @return the int
-     */
     public int giftsInConveyor(){
         // head and tail can be the same value when both full or empty.
         // this if deals with it.
@@ -111,10 +94,12 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
      */
     @Override
     public boolean consume(final Present gift) {
+        //TODO thread safeify this - mutex this fucker
+
         synchronized (presents) {
             if (isSpace()) {
-                //cout(this.toString());
-                //cout("Conveyor " + super.getId() + " received a gift!");
+                System.out.println(this.toString());
+                System.out.println("Conveyor " + super.getId() + " received a gift!");
                 presents[tail] = gift;
                 incrementTail();
                 return true;
@@ -122,11 +107,6 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         }
 
         return false;
-    }
-
-    @Override
-    public Sack[] getDestinations() {
-        return destinations;
     }
 
 
@@ -143,7 +123,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
                 Present gift;
                 gift = presents[head];
                 presents[head] = null;
-                //cout("Conveyor " + super.getId() + " supplied a gift!");
+                System.out.println("Conveyor " + super.getId() + " supplied a gift!");
 
                 incrementHead();
                 result = gift;
@@ -154,14 +134,32 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
 
     @Override
     public String toString() {
-        String[] sacks = new String[destinations.length];
-        int i = 0;
-        for(Sack destination : destinations) {
-            sacks[i++] = destination.getId();
-        }
         return "Conveyor{" + super.toString() +
-                ", destinations=" + Arrays.toString(sacks) +
+                "destinations=" + Arrays.toString(destinations) +
                 ", presents=" + giftsInConveyor() +
+                ", head=" + head +
+                ", tail=" + tail +
+                ", length=" + length +
                 '}';
     }
+
+//o In the scenario, the belts are acting as passive buffers (shared memory space) between the
+//various hoppers, turntables and sacks. In other words, you have something like several
+//Producer/Consumer scenarios chained together.
+//TODO  A belt will act a little like a queue machine.data structure. The belt class should be implemented as a fixed size
+//      array to store the gift objects as they pass onto and off it (capacity according to the configuration of the
+//      machine). DO NOT use a Java collection instead of an array.
+//o One simple way to implement the belt is as a circular buffer, enforcing a strict ordering to the
+//addition and removal of gifts.
+//o If you are really stuck with implementing the conveyor belt, you could build it with capacity for
+//only one gift, so that you didn't need to use an array at all – just a single variable. You would
+//lose lots of marks for doing this, but it might allow you to get the program working and gain
+//other marks elsewhere. It is better to have a simpler but working program than a confused
+//mess!
+//TODO  You will need to provide a method for a Hopper to check if there is space on the belt before attempting
+//      to add a Present (to the “input” belts), and another for the turntables to see whether a gift is available
+//      for them or not.
+//TODO  It is important that your program is thread-safe, and you need to take care to ensure that your
+//      conveyor belts can’t be corrupted (e.g. when two turntables try to access one at the same time)
+
 }

@@ -6,12 +6,19 @@ import machine.interfaces.PassiveConsumer;
 
 import java.util.Arrays;
 
-import static machine.data.Constants.cout;
-
 /**
  * The type Sack.
  */
 public class Sack extends MachinePart implements PassiveConsumer {
+
+    @Override
+    public String toString() {
+        return "Sack{" + super.toString() +
+                ", capacity=" + capacity +
+                ", fullness=" + fullness +
+                ", ages=" + ages +
+                "}\n";
+    }
 
     /**
      * The Presents.
@@ -20,7 +27,7 @@ public class Sack extends MachinePart implements PassiveConsumer {
     /**
      * The Capacity.
      */
-    private final int capacity;
+    final int capacity;
     /**
      * The Fullness.
      */
@@ -36,7 +43,7 @@ public class Sack extends MachinePart implements PassiveConsumer {
      *
      * @param capacity the capacity
      * @param sack_id  the sack id
-     * @param ageMin   the age min;
+     * @param ageMin   the age min
      * @param ageMax   the age max
      */
     public Sack(int sack_id, int capacity, int ageMin, int ageMax) {
@@ -50,12 +57,9 @@ public class Sack extends MachinePart implements PassiveConsumer {
     /**
      * Replace sack.
      */
-    public void replaceSack() {
-        synchronized(presents) {
-            Arrays.fill(presents, null);
-            fullness = 0;
-        }
-
+    void replaceSack() {
+        Arrays.fill(presents, null);
+        fullness = 0;
     }
 
     /**
@@ -63,26 +67,19 @@ public class Sack extends MachinePart implements PassiveConsumer {
      *
      * @return the boolean
      */
-    public boolean isSpace() {
+    boolean isSpace() {
         return fullness < capacity;
     }
 
     @Override
     public boolean consume(final Present gift) {
-        synchronized(presents) {
-            if (isSpace()) {
-                presents[fullness] = gift;
-                fullness++;
-                //cout("Sack " + this.getId() + " has " + (capacity-fullness) + " slots spare.");
-                return true;
-            }
+        if(isSpace()){
+            presents[fullness] = gift;
+            fullness++;
+            return true;
         }
-        return false;
-    }
 
-    @Override
-    public Sack[] getDestinations() {
-        return new Sack[]{this};
+        return false;
     }
 
     @Override
@@ -92,22 +89,5 @@ public class Sack extends MachinePart implements PassiveConsumer {
         } else {
             return Integer.MAX_VALUE;
         }
-    }
-
-    public int getCapacity() {
-        return capacity;
-    }
-
-    public int getFullness(){
-        return fullness;
-    }
-
-    @Override
-    public String toString() {
-        return "Sack{" + super.toString() +
-                ", capacity=" + capacity +
-                ", fullness=" + fullness +
-                ", ages=" + ages +
-                "}\n";
     }
 }

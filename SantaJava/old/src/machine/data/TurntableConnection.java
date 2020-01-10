@@ -37,7 +37,9 @@ public class TurntableConnection {
         this.supplier = null;
     }
 
-    public PassiveConsumer getConsumer() {
+
+
+        public PassiveConsumer getConsumer() {
         return consumer;
     }
 

@@ -1,10 +1,8 @@
 package machine.components.threaded;
 
-import machine.ChristmasMachine;
 import machine.components.MachinePart;
 import machine.components.passive.Conveyor;
 import machine.components.passive.Present;
-import machine.components.passive.Sack;
 import machine.data.Direction;
 import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
@@ -18,7 +16,16 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
     private final int capacity;
     private final int speed;
     private boolean running = true;
-    private Sack[] sacks;
+
+    @Override
+    public String toString() {
+        return "Hopper{" +
+                "connectedBelt=" + connectedBelt +
+                ", capacity=" + capacity +
+                ", speed=" + speed +
+                ", running=" + running +
+                '}';
+    }
 
     /**
      * Instantiates a new Hopper.
@@ -39,15 +46,21 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
     public void run() {
         try {
             do {
-                Thread.sleep(1000 * speed);
-                Present gift = new Present(sacks, 1, 99);
-                connectedBelt.consume(gift);
+                Thread.sleep(1000 / speed);
+                connectedBelt.consume(new Present("LEGO", 1, 99));
 
             } while (running);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
+
+
+    //TODO: Hoppers have a collection of presents.
+    //TODO: Hoppers are associated with a conveyor belt, and have a speed of working.
+    //TODO: According to its pre-set speed of working, at appropriate intervals until it is empty,
+    //      a hopper will attempt to place presents onto the conveyor belt – as long as there is space on the belt.
+
 
     //<editor-fold desc="Getter methods">
 
@@ -88,19 +101,5 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
     public void setStop() {
         this.running = false;
     }
-
-    public void setSacks(Sack[] sacks) {
-        this.sacks = sacks;
-    }
     //</editor-fold>
-
-    @Override
-    public String toString() {
-        return "Hopper{" +
-                "connectedBelt=" + connectedBelt.getId() +
-                ", capacity=" + capacity +
-                ", speed=" + speed +
-                ", running=" + running +
-                '}';
-    }
 }

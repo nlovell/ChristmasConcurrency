@@ -4,7 +4,6 @@ import machine.components.MachinePart;
 import machine.components.passive.Conveyor;
 import machine.components.passive.Present;
 import machine.components.passive.Sack;
-import machine.components.threaded.Elf;
 import machine.components.threaded.Hopper;
 import machine.components.threaded.Turntable;
 import machine.data.Constants;
@@ -13,6 +12,7 @@ import machine.data.TurntableConnection;
 
 import java.lang.reflect.Array;
 
+import static machine.data.Constants.MIN_TIME;
 import static machine.data.Constants.cout;
 
 /**
@@ -27,8 +27,6 @@ public class ChristmasMachine {
     private Hopper[] hoppers;
     private Turntable[] turntables;
     private Conveyor[] conveyors;
-    private Sack[] sacks;
-    private Elf[] elves;
 
     /**
      * Instantiates a new Christmas machine.
@@ -46,13 +44,9 @@ public class ChristmasMachine {
                             final String[][] presentData,
                             final String[][] sackData,
                             final String[][] turntableData) {
-
-        System.out.println("-----------New Christmas Machine established with the following elements-----------\n");
-
         this.sessionLength = sessionLength;
 
-        sacks = makeSacks(sackData);
-        elves = makeElves(sacks);
+        Sack[] sacks = makeSacks(sackData);
         Present[] presents = makePresents(presentData, sacks);
 
         conveyors = makeConveyors(conveyorData, sacks);
@@ -60,144 +54,53 @@ public class ChristmasMachine {
 
         turntables = makeTurntables(turntableData, conveyors, sacks);
 
-        System.out.println("-----------------------------------------------------------------------------------\n");
+        System.out.println("------------- ~fin~ -------------");
 
     }
 
-    /**
-     * Gets part.
-     *
-     * @param <P>   the type parameter
-     * @param id    the id
-     * @param parts the parts
-     * @return the part
-     */
-    private static <P extends MachinePart> P getPart(final String id, final P[] parts) {
-
-        for (P part : parts) {
-            if (part.getId().equals(id)) {
-                return part;
-            }
-        }
-
-        return null;
-    }
-
-    private static String timestamp() {
-        long seconds = System.currentTimeMillis() / 1000;
-        long s = seconds % 60;
-        long m = (seconds / 60) % 60;
-        long h = (seconds / (60 * 60)) % 24;
-        return String.format("%d:%02d:%02d", h, m, s);
-    }
-
-    /**
-     * Start stuff.
-     */
-    public void runMachine() {
-        startMachine();
-
-        Constants.cout("Session begins at " + timestamp());
-        long startTime = System.currentTimeMillis();
-
-        int timer = 0;
-        final int target = 1000;
-        int variance = 0;
-        int time = 0;
-        //A simple timer loop of variable length
-        do {
-            try {
-                Thread.sleep(target);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            timer++;
-            if (timer % 5 == 0) {
-                timedLogger(startTime);
-            }
-        } while (timer < sessionLength);
-
-        Constants.cout("Session over at " + timestamp() + '\n');
-        long hopperStopTime = System.currentTimeMillis();
-        Constants.cout("Halting hopper outputs, and waiting for system to tidy up. \n");
-
-
-        endMachine();
-
-        Constants.cout("Session over!");
-        long endTime = System.currentTimeMillis();
-
-        cout("System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
-        cout(String.format("Total time: %dms", endTime - startTime));
-    }
-
-    private void timedLogger(Long startTime) {
-        cout("\nOutput time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
-        int giftCount = 0;
-        for(Hopper hopper : hoppers){
-            giftCount = giftCount + hopper.getCapacity();
-        }
-
-        cout("              Hoppers cumulatively contain " + giftCount + " gifts.");
-        giftCount = 0;
-
-        for(Sack sack : sacks){
-            giftCount = giftCount + sack.getFullness();
-        }
-        cout("              " + giftCount + " presents have been deposited into sacks.");
-    }
-
-    private void startMachine() {
+    public void startStuff() {
         for (Hopper hopper : hoppers) {
-            hopper.setSacks(sacks);
             new Thread(hopper).start();
         }
         for (Turntable turntable : turntables) {
-            new Thread(turntable).start();
+            turntable.run();
         }
 
-        for (Elf elf : elves) {
-            new Thread(elf).start();
-        }
-    }
+        Constants.cout("Session begins!");
+        long a = System.currentTimeMillis();
 
-    private void endMachine() {
+        //A simple timer loop of variable length
+        for (int session = 0; session < sessionLength; session++) {
+            Constants.cout(String.valueOf(session));
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+
         for (Hopper hopper : hoppers) {
             hopper.setStop();
         }
 
         int remaining = giftsInSystem();
         while (remaining > 0) {
-
             try {
-                Thread.sleep(100);
+                Thread.sleep(MIN_TIME);
+                Constants.cout(remaining + "unsorted gifts are present in the system.");
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
-            int temp = giftsInSystem();
-            if (remaining > temp) {
-                remaining = temp;
-                System.out.print("\r              " + remaining + " unsorted gifts are present in the system.");
-            }
         }
 
         for (Turntable turntable : turntables) {
             turntable.setStop();
         }
 
-        for (Elf elf : elves) {
-            elf.setStop();
-        }
-    }
-
-    /**
-     * Time since string.
-     *
-     * @return the string
-     */
-    private long timeSince(long time) {
-        return System.currentTimeMillis() - time;
+        Constants.cout("Session over!");
+        long b = System.currentTimeMillis();
+        long c = b - a;
     }
 
     private int giftsInSystem() {
@@ -216,32 +119,11 @@ public class ChristmasMachine {
         return remaining;
     }
 
-
-    private <P extends MachinePart> P[] getParts(final String[] ids, final P[] parts, Class<P> clazz) {
-
-        @SuppressWarnings("unchecked") final P[] output = (P[]) Array.newInstance(clazz, ids.length);
-
-        //MachinePart[] output = new MachinePart[ids.length];
-        int i = 0;
-
-        for (P part : parts) {
-            for (String id : ids) {
-                if (part.getId().equals(id)) {
-                    output[i] = part;
-                    i++;
-                    break;
-                }
-            }
-        }
-
-        return output;
-    }
-
     /**
-     * Make an array of sacks.
+     * Make sacks sack [ ].
      *
-     * @param sacks the String[][] defining a collection of sacks
-     * @return the sack array[] to return
+     * @param sacks the sacks
+     * @return the sack [ ]
      */
     private Sack[] makeSacks(final String[][] sacks) {
         Sack[] arr = new Sack[sacks.length];
@@ -256,17 +138,6 @@ public class ChristmasMachine {
             i++;
         }
         return arr;
-    }
-
-    private Elf[] makeElves(final Sack[] sacks) {
-        Elf[] elves = new Elf[sacks.length];
-        int i = 0;
-
-        for (Sack sack : sacks) {
-            elves[i] = new Elf(sack, 10);
-            i++;
-        }
-        return elves;
     }
 
     /**
@@ -293,6 +164,37 @@ public class ChristmasMachine {
         return arr;
     }
 
+    private <P extends MachinePart> P[] getParts(final String[] ids, final P[] parts, Class<P> clazz) {
+
+        @SuppressWarnings("unchecked") final P[] output = (P[]) Array.newInstance(clazz, ids.length);
+
+        //MachinePart[] output = new MachinePart[ids.length];
+        int i = 0;
+
+        for (P part : parts) {
+            for (String id : ids) {
+                if (part.getId().equals(id)) {
+                    output[i] = part;
+                    i++;
+                    break;
+                }
+            }
+        }
+
+        return output;
+    }
+
+    private <P extends MachinePart> P getPart(final String id, final P[] parts) {
+
+        for (P part : parts) {
+            if (part.getId().equals(id)) {
+                return part;
+            }
+        }
+
+        return null;
+    }
+
     /**
      * Make hoppers hopper [ ].
      *
@@ -302,7 +204,6 @@ public class ChristmasMachine {
      * @return the hopper [ ]
      */
     private Hopper[] makeHoppers(String[][] hoppers, Conveyor[] conveyors, Present[] presents) {
-        //TODO: make hoppers use actual gifts
         Hopper[] arr = new Hopper[hoppers.length];
 
         int i = 0;
@@ -320,11 +221,11 @@ public class ChristmasMachine {
     }
 
     /**
-     * Make presents present [].
+     * Make presents present [ ].
      *
      * @param presents the presents
      * @param sacks    the sacks
-     * @return the present []
+     * @return the present [ ]
      */
     private Present[] makePresents(String[][] presents, Sack[] sacks) {
         //TODO make gifts
@@ -335,7 +236,7 @@ public class ChristmasMachine {
      * Make turntables turntable [ ].
      *
      * @param turntables the turntables
-     * @param belts      the conveyors
+     * @param belts  the conveyors
      * @param sacks      the sacks
      * @return the turntable [ ]
      */
@@ -369,4 +270,10 @@ public class ChristmasMachine {
 
         return arr;
     }
+
+//TODO  The simulation should run for one “session” – the length of the session representing the time set on the
+//      machine by the elf. At the end of the session, the hoppers should immediately cease adding Presents to the
+//      input hoppers. Ideally, any Presents currently in the machine should continue to be sorted into the
+//      appropriate sack if this is possible, before the machine finally shuts down.
+
 }
