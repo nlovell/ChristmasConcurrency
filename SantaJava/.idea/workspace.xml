@@ -45,7 +45,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.editor" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
@@ -170,10 +170,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="2517" height="383" key="GridCell.Tab.1.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578690575207" />
-    <state x="781" y="343" key="SettingsEditor" timestamp="1578599216858">
+    <state x="781" y="343" key="SettingsEditor" timestamp="1578690834831">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="781" y="343" key="SettingsEditor/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578599216858" />
+    <state x="781" y="343" key="SettingsEditor/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578690834831" />
     <state x="981" y="525" key="com.intellij.ide.util.TipDialog" timestamp="1578230617569">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

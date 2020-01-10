@@ -23,6 +23,11 @@ import static parser.Regexp.filePathValidator;
  * The resulting output file will contain every line normally output to the console.
  */
 public class runner {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
 
         String fileToParse = "";
@@ -53,6 +58,13 @@ public class runner {
         machine.runMachine();
     }
 
+    /**
+     * Parse array list string [ ] [ ].
+     *
+     * @param data the data
+     * @param size the size
+     * @return the string [ ] [ ]
+     */
     public static String[][] parseArrayList(ArrayList<String[]> data, int size) {
         String[][] parsedData = new String[data.size()][size];
         for (int i = 0; i < data.size(); i++) {
@@ -62,6 +74,11 @@ public class runner {
     }
 
 
+    /**
+     * Console reader string.
+     *
+     * @return the string
+     */
     static String consoleReader() {
         //Read console
         try {

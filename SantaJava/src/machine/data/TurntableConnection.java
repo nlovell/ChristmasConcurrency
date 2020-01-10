@@ -6,7 +6,9 @@ import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
 
-
+/**
+ * The type Turntable connection.
+ */
 public class TurntableConnection {
 
 
@@ -17,6 +19,13 @@ public class TurntableConnection {
     private final PassiveSupplier supplier;
 
 
+    /**
+     * Instantiates a new Turntable connection.
+     *
+     * @param dir     the dir
+     * @param isInput the is input
+     * @param belt    the belt
+     */
     public TurntableConnection(Direction dir, boolean isInput, Conveyor belt){
         this.isInput = isInput;
         this.dir = dir;
@@ -29,6 +38,12 @@ public class TurntableConnection {
         }
     }
 
+    /**
+     * Instantiates a new Turntable connection.
+     *
+     * @param dir  the dir
+     * @param sack the sack
+     */
     public TurntableConnection(Direction dir, Sack sack){
         this.dir = dir;
         this.consumer = sack;
@@ -37,18 +52,38 @@ public class TurntableConnection {
         this.supplier = null;
     }
 
+    /**
+     * Gets consumer.
+     *
+     * @return the consumer
+     */
     public PassiveConsumer getConsumer() {
         return consumer;
     }
 
+    /**
+     * Gets supplier.
+     *
+     * @return the supplier
+     */
     public PassiveSupplier getSupplier() {
         return supplier;
     }
 
+    /**
+     * Gets dir.
+     *
+     * @return the dir
+     */
     public Direction getDir() {
         return dir;
     }
 
+    /**
+     * Is input boolean.
+     *
+     * @return the boolean
+     */
     public boolean isInput() {
         return isInput;
     }

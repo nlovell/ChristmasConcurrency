@@ -32,8 +32,8 @@ public class Sack extends MachinePart implements PassiveConsumer {
     /**
      * Instantiates a new Sack.
      *
-     * @param capacity the capacity
      * @param sack_id  the sack id
+     * @param capacity the capacity
      * @param ageMin   the age min;
      * @param ageMax   the age max
      */
@@ -92,10 +92,20 @@ public class Sack extends MachinePart implements PassiveConsumer {
         }
     }
 
+    /**
+     * Gets capacity.
+     *
+     * @return the capacity
+     */
     public int getCapacity() {
         return capacity;
     }
 
+    /**
+     * Get fullness int.
+     *
+     * @return the int
+     */
     public int getFullness(){
         return fullness;
     }
