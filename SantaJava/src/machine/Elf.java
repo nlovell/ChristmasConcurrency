@@ -2,6 +2,8 @@ package machine;
 
 import machine.components.passive.Sack;
 
+import java.util.Random;
+
 /**
  * Elves run as threads, and are assigned to empty the sacks when they're full.
  */
@@ -10,7 +12,7 @@ public class Elf implements Runnable{
     private final Sack elfSack;
     private final int replaceTime;
     private volatile boolean running = true;
-    private String name;
+    private final String elfID;
 
     /**
      * Instantiates a new Elf.
@@ -21,6 +23,9 @@ public class Elf implements Runnable{
     public Elf(final Sack elfSack, final int replaceTime){
         this.elfSack = elfSack;
         this.replaceTime = replaceTime * this.elfSack.getCapacity();
+
+        Random r = new Random();
+        elfID =  (char) (65 + r.nextInt(25)) + String.valueOf(r.nextInt(50000));
     }
 
     @Override
@@ -47,11 +52,8 @@ public class Elf implements Runnable{
         running = false;
     }
 
-    public String getName() {
-        return name;
+    public String getElfID() {
+        return elfID;
     }
 
-    public void setName(final String name) {
-        this.name = name;
-    }
 }
