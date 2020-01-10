@@ -1,4 +1,4 @@
-package machine.components.threaded;
+package machine;
 
 import machine.components.passive.Sack;
 

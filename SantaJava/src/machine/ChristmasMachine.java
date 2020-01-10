@@ -4,7 +4,6 @@ import machine.components.MachinePart;
 import machine.components.passive.Conveyor;
 import machine.components.passive.Present;
 import machine.components.passive.Sack;
-import machine.components.threaded.Elf;
 import machine.components.threaded.Hopper;
 import machine.components.threaded.Turntable;
 import machine.data.Constants;
@@ -129,6 +128,8 @@ public class ChristmasMachine {
 
         cout("System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
         cout(String.format("Total time: %dms", endTime - startTime));
+
+        timedLogger(endTime);
     }
 
     private void timedLogger(Long startTime) {
