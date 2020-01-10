@@ -142,7 +142,7 @@ public class ChristmasMachine {
         giftCount = 0;
 
         for(Sack sack : sacks){
-            giftCount = giftCount + sack.getFullness();
+            giftCount = giftCount + sack.getLifetimeTotal();
         }
         cout("              " + giftCount + " presents have been deposited into sacks.");
     }

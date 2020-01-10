@@ -7,7 +7,8 @@ import machine.interfaces.PassiveConsumer;
 import java.util.Arrays;
 
 /**
- * The type Sack.
+ * The passive consumer Sack.
+ * This is the final destination/consumer for all gifts.
  */
 public class Sack extends MachinePart implements PassiveConsumer {
 
@@ -22,11 +23,16 @@ public class Sack extends MachinePart implements PassiveConsumer {
     /**
      * The Fullness.
      */
-    int fullness = 0;
+    private int fullness = 0;
     /**
      * The Ages.
      */
     final AgeRange ages;
+
+    /**
+     * The lifetime total of presents the sack in this slot has received.
+     */
+    private int lifetimeTotal = 0;
 
 
     /**
@@ -46,10 +52,10 @@ public class Sack extends MachinePart implements PassiveConsumer {
     }
 
     /**
-     * Replace sack.
+     * Replace the sack and updatge the lifetimetotal.
      */
     public void replaceSack() {
-        synchronized(presents) {
+        synchronized (presents) {
             Arrays.fill(presents, null);
             fullness = 0;
         }
@@ -57,7 +63,7 @@ public class Sack extends MachinePart implements PassiveConsumer {
     }
 
     /**
-     * Is space boolean.
+     * Returns true if there is space in the sack.
      *
      * @return the boolean
      */
@@ -67,10 +73,11 @@ public class Sack extends MachinePart implements PassiveConsumer {
 
     @Override
     public boolean consume(final Present gift) {
-        synchronized(presents) {
+        synchronized (presents) {
             if (isSpace()) {
                 presents[fullness] = gift;
                 fullness++;
+                lifetimeTotal++;
                 //cout("Sack " + this.getId() + " has " + (capacity-fullness) + " slots spare.");
                 return true;
             }
@@ -85,7 +92,7 @@ public class Sack extends MachinePart implements PassiveConsumer {
 
     @Override
     public int search(final AgeRange age) {
-        if(age == this.ages){
+        if (age == this.ages) {
             return 0;
         } else {
             return Integer.MAX_VALUE;
@@ -102,12 +109,12 @@ public class Sack extends MachinePart implements PassiveConsumer {
     }
 
     /**
-     * Get fullness int.
+     * Return the total number of presents the Sack has stored.
      *
      * @return the int
      */
-    public int getFullness(){
-        return fullness;
+    public int getLifetimeTotal() {
+        return lifetimeTotal;
     }
 
     @Override
