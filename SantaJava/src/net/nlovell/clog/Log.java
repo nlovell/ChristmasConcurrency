@@ -44,6 +44,10 @@ public class Log {
                 if (TOGGLE_CLOG_PARSE)
                     output = true;
                 break;
+            case CLOG_IPARSE:
+                if (TOGGLE_CLOG_IPARSE)
+                    output = true;
+                break;
         }
 
         if (output) {

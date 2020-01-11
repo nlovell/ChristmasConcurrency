@@ -17,7 +17,7 @@ public class Constants {
     final static public int MOVE_TIME = 500;
 
     /** Change how often the terminal outputs the results, in seconds. */
-    final static public int OUTPUT_TIME = 5;
+    final static public int OUTPUT_TIME = 10;
 
     /** The constant MIN_TIME. */
     final static public int MIN_TIME = Math.min(ROTATE_TIME, MOVE_TIME);

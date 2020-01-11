@@ -34,8 +34,8 @@ public class Main {
         String fileToParse = args.length > 0 ? args[0] : "";
 
         //Comment these lines out to override the default example.
-        //final String testfiledir =  "D:/repositories/Concurrency1/SantaJava/src/test_files/";
-        //fileToParse = testfiledir + "example_1.txt";
+        final String testfiledir =  "D:/repositories/Concurrency1/SantaJava/src/test_files/";
+        fileToParse = testfiledir + "example_1.txt";
         // Or fill in your own value(s) here to automatically skip manual filename entry at runtime
 
         while (!filePathValidator.matcher(fileToParse).find()) {

@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static net.nlovell.clog.LogConstants.CLOG_IPARSE;
 import static net.nlovell.clog.LogConstants.CLOG_PARSE;
 import static net.nlovell.clog.Log.clogger;
 
@@ -48,12 +49,11 @@ public class FileParser {
         }
 
         if (outputSource) {
-            clogger(CLOG_PARSE, "----------------------------");
-            clogger(CLOG_PARSE, "Source file:\r\n");
+            clogger(CLOG_IPARSE, "Source file:");
             for (String lineToParse : fileToParse) {
-                clogger(CLOG_PARSE, "    " + lineToParse);
+                clogger(CLOG_IPARSE, "    " + lineToParse);
             }
-            clogger(CLOG_PARSE, "\r\nEnd of source.");
+            clogger(CLOG_IPARSE, "End of source.");
         }
 
         for (String lineToParse : fileToParse) {

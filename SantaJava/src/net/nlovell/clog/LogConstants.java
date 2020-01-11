@@ -27,6 +27,9 @@ public class LogConstants {
     /** The constant to enable CLOG logging for PARSE lines. */
     final static boolean TOGGLE_CLOG_PARSE = false;
 
+    /** The constant to enable CLOG logging for INPUT PARSE lines. */
+    final static boolean TOGGLE_CLOG_IPARSE = true;
+
     /*--------------------------------------------------------
        The values to preface each string with:
      --------------------------------------------------------*/
@@ -48,4 +51,7 @@ public class LogConstants {
 
     /** The constant value to preface a PARSE line with the CLOG clog.logger. */
     final static public String CLOG_PARSE   = " PARSE: ";
+
+    /** The constant value to preface a PARSE line with the CLOG clog.logger. */
+    final static public String CLOG_IPARSE   = "IPARSE: ";
 }
