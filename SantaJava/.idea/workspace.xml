@@ -3,20 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clog/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clog/LogConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clog/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clog/Log.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/Elf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/Elf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Present.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Present.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Sack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Sack.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Hopper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/threaded/Hopper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Turntable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/threaded/Turntable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/data/AgeRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/data/AgeRange.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/data/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/data/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/parser/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/FileParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_files/example_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_files/example_1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,21 +53,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="default" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="runner" />
-      <module name="SantaJava" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value=".*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="runner" type="Application" factoryName="Application" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="runner" />
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="SantaJava" />
       <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/test_files/example_1.txt" />
       <extension name="coverage">
@@ -92,10 +67,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="default" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="SantaJava" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Application.runner" />
       <item itemvalue="Application.default" />
       <item itemvalue="Application.FileParser" />
+      <item itemvalue="Application.Main" />
     </list>
     <recent_temporary>
       <list>
@@ -137,10 +125,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="860" y="556" key="#com.intellij.debugger.ui.breakpoints.EditClassFiltersDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578599363056" />
-    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578762466240">
+    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578763252303">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762466240" />
+    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578763252303" />
     <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser" timestamp="1578754194218">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -177,6 +165,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="479" height="466" key="DebuggerActiveHint/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578747995766" />
+    <state x="1226" y="420" key="FileChooserDialogImpl" timestamp="1578763249250">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="1226" y="420" key="FileChooserDialogImpl/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578763249250" />
     <state width="2517" height="285" key="GridCell.Tab.0.bottom" timestamp="1578762486528">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>

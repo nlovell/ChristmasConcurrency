@@ -19,11 +19,11 @@ import static parser.Regexp.filePathValidator;
  * From the source directory, the following command can be used to run the Runner and log the output to a file
  * <p>
  * SantaJava\src> javac runner.java
- * SantaJava\src> java runner > output.txt
+ * SantaJava\src> java runner > output.log
  * <p>
  * The resulting output file will contain every line normally output to the console.
  */
-public class runner {
+public class Main {
     /**
      * The entry point of application.
      *

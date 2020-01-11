@@ -41,7 +41,9 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     }
 
     private boolean isEmpty() {
-        return head == tail && presents[head] == null;
+        synchronized (presents) {
+            return head == tail && presents[head] == null;
+        }
     }
 
     private boolean isFull() {
