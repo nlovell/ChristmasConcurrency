@@ -201,7 +201,9 @@ public class ChristmasMachine {
     //</editor-fold>
 
 
-
+    /**
+     * @return
+     */
     private static String timestamp() {
         long seconds = System.currentTimeMillis() / 1000;
         long s = seconds % 60;
@@ -236,22 +238,25 @@ public class ChristmasMachine {
             }
         } while (timer < sessionLength);
 
-        clog(CLOG_OUTPUT,  " Session over at " + timestamp() + '\n');
+        clog(CLOG_OUTPUT, " Session over at " + timestamp() + '\n');
         long hopperStopTime = System.currentTimeMillis();
-        clog(CLOG_OUTPUT,  " Halting hopper outputs, and waiting for system to tidy up. \n");
+        clog(CLOG_OUTPUT, " Halting hopper outputs, and waiting for system to tidy up. \n");
 
 
         endMachine();
 
-        clog(CLOG_OUTPUT,  " Session over!");
+        clog(CLOG_OUTPUT, " Session over!");
         long endTime = System.currentTimeMillis();
 
-        clog(CLOG_OUTPUT,  " System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
-        clog(CLOG_OUTPUT,  " " + (String.format("Total time: %dms", endTime - startTime)));
+        clog(CLOG_OUTPUT, " System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
+        clog(CLOG_OUTPUT, " " + (String.format("Total time: %dms", endTime - startTime)));
 
         timedLogger(endTime);
     }
 
+    /**
+     *
+     */
     private void startMachine() {
 
         for (Hopper hopper : hoppers) {
@@ -265,31 +270,36 @@ public class ChristmasMachine {
         StringBuilder elfString = new StringBuilder("Meet the Elves running this machine - there's ");
 
         for (Elf elf : elves) {
-            if(elf != elves[elves.length-1])
+            if (elf != elves[elves.length - 1])
                 elfString.append(elf.getElfID()).append(", ");
             else
                 elfString.append("and ").append(elf.getElfID()).append("!");
 
             new Thread(elf).start();
         }
-        clog(CLOG_OUTPUT,  " "+ String.valueOf(elfString));
+        clog(CLOG_OUTPUT, " " + String.valueOf(elfString));
     }
 
-    private void startMachine2(){
+    /**
+     *
+     */
+    private void startMachine2() {
         Thread[] firstThreads = new Thread[hoppers.length];
         Thread[] secondThreads = new Thread[turntables.length + elves.length];
 
-        for(MachinePart part : hoppers)
-        {
+        for (MachinePart part : hoppers) {
 
         }
 
-        for (Runnable secondary : turntables){
+        for (Runnable secondary : turntables) {
 
         }
 
     }
 
+    /**
+     *
+     */
     private void endMachine() {
         for (Hopper hopper : hoppers) {
             hopper.setStop();
@@ -307,7 +317,7 @@ public class ChristmasMachine {
             int temp = giftsInSystem();
             if (remaining > temp) {
                 remaining = temp;
-                clog(CLOG_OUTPUT,  remaining + " unsorted gifts are present in the system.");
+                clog(CLOG_OUTPUT, remaining + " unsorted gifts are present in the system.");
             }
         }
 
@@ -320,20 +330,23 @@ public class ChristmasMachine {
         }
     }
 
+    /**
+     * @param startTime
+     */
     private void timedLogger(Long startTime) {
-        clog(CLOG_OUTPUT,  " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
+        clog(CLOG_OUTPUT, " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
         int giftCount = 0;
-        for(Hopper hopper : hoppers){
+        for (Hopper hopper : hoppers) {
             giftCount = giftCount + hopper.getCapacity();
         }
 
-        clog(CLOG_OUTPUT,  "               Hoppers cumulatively contain " + giftCount + " gifts.");
+        clog(CLOG_OUTPUT, "               Hoppers cumulatively contain " + giftCount + " gifts.");
         giftCount = 0;
 
-        for(Sack sack : sacks){
+        for (Sack sack : sacks) {
             giftCount = giftCount + sack.getLifetimeTotal();
         }
-        clog(CLOG_OUTPUT,  "               " + giftCount + " presents have been deposited into sacks.\n");
+        clog(CLOG_OUTPUT, "               " + giftCount + " presents have been deposited into sacks.\n");
     }
 
     /**
@@ -346,8 +359,8 @@ public class ChristmasMachine {
     }
 
 
-
     //<editor-fold desc="Part getters">
+
     /**
      * Gets part.
      *
@@ -367,7 +380,13 @@ public class ChristmasMachine {
         return null;
     }
 
-
+    /**
+     * @param ids
+     * @param parts
+     * @param clazz
+     * @param <P>
+     * @return
+     */
     private <P extends MachinePart> P[] getParts(final String[] ids, final P[] parts, Class<P> clazz) {
 
         @SuppressWarnings("unchecked") final P[] output = (P[]) Array.newInstance(clazz, ids.length);
@@ -388,6 +407,9 @@ public class ChristmasMachine {
         return output;
     }
 
+    /**
+     * @return
+     */
     private int giftsInSystem() {
         int remaining = 0;
 
