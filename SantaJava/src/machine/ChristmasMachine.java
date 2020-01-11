@@ -12,10 +12,11 @@ import machine.data.TurntableConnection;
 
 import java.lang.reflect.Array;
 
-import static clog.constants.*;
-import static clog.log.clogger;
+import static clog.Constants.*;
+import static clog.Log.clogger;
 import static java.util.Arrays.copyOf;
 import static machine.data.Constants.OUTPUT_TIME;
+import static machine.data.Constants.SPEED_MULT;
 
 /**
  * The type Christmas machine.
@@ -268,7 +269,7 @@ public class ChristmasMachine {
         //A simple timer loop of variable length
         do {
             try {
-                Thread.sleep(target);
+                Thread.sleep(target/SPEED_MULT);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -337,7 +338,7 @@ public class ChristmasMachine {
         while (remaining > 0) {
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(100/SPEED_MULT);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

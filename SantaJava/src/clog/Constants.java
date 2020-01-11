@@ -1,6 +1,6 @@
 package clog;
 
-public class constants {
+public class Constants {
 
         /*--------------------------------------------------------
        CLOG - the simple [C]onstant [LOG]ger, with log levels.
@@ -13,7 +13,7 @@ public class constants {
     final static boolean TOGGLE_CLOG_OUTPUT = true;
 
     /** The constant to enable CLOG logging for DEBUG lines. */
-    final static boolean TOGGLE_CLOG_DEBUG = true;
+    final static boolean TOGGLE_CLOG_DEBUG = false;
 
     /** The constant to enable CLOG logging for finer DEBUG lines. */
     final static boolean TOGGLE_CLOG_FINE_DEBUG = false;
@@ -25,9 +25,9 @@ public class constants {
     final static boolean TOGGLE_CLOG_OBJECT = true;
 
     /** The constant to enable CLOG logging for PARSE lines. */
-    final static boolean TOGGLE_CLOG_PARSE = true;
+    final static boolean TOGGLE_CLOG_PARSE = false;
 
-      /*--------------------------------------------------------
+    /*--------------------------------------------------------
        The values to preface each string with:
      --------------------------------------------------------*/
 

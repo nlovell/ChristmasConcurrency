@@ -10,10 +10,9 @@ import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
-import static clog.constants.*;
-import static clog.log.clogger;
-import static machine.data.Constants.MOVE_TIME;
-import static machine.data.Constants.ROTATE_TIME;
+import static clog.Constants.*;
+import static clog.Log.clogger;
+import static machine.data.Constants.*;
 import static machine.data.Direction.*;
 
 /**
@@ -139,7 +138,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     public void rotateDelay() {
         try {
             clogger(CLOG_DEBUG, "Turntable " + this.getId() + " is rotating.");
-            Thread.sleep(ROTATE_TIME);
+            Thread.sleep(ROTATE_TIME/SPEED_MULT);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -150,7 +149,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
      */
     public void moveGiftDelay() {
         try {
-            Thread.sleep(MOVE_TIME);
+            Thread.sleep(MOVE_TIME/SPEED_MULT);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

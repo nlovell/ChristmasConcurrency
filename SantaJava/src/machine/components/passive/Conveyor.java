@@ -1,5 +1,6 @@
 package machine.components.passive;
 
+import clog.Log;
 import machine.data.AgeRange;
 import machine.components.MachinePart;
 import machine.interfaces.PassiveConsumer;
@@ -7,7 +8,7 @@ import machine.interfaces.PassiveSupplier;
 
 import java.util.Arrays;
 
-import static clog.constants.CLOG_DEBUG;
+import static clog.Constants.CLOG_DEBUG;
 
 /**
  * The type Conveyor.
@@ -107,8 +108,8 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     public boolean consume(final Present gift) {
         synchronized (presents) {
             if (isSpace()) {
-                clog.log.clogger(CLOG_DEBUG, this.toString());
-                clog.log.clogger(CLOG_DEBUG, "Conveyor " + super.getId() + " received a gift!");
+                Log.clogger(CLOG_DEBUG, this.toString());
+                Log.clogger(CLOG_DEBUG, "Conveyor " + super.getId() + " received a gift!");
                 presents[tail] = gift;
                 incrementTail();
                 return true;
@@ -138,7 +139,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
                 Present gift;
                 gift = presents[head];
                 presents[head] = null;
-                clog.log.clogger(CLOG_DEBUG, "Conveyor " + super.getId() + " supplied a gift!");
+                Log.clogger(CLOG_DEBUG, "Conveyor " + super.getId() + " supplied a gift!");
 
                 incrementHead();
                 result = gift;

@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static clog.constants.CLOG_PARSE;
-import static clog.log.clogger;
+import static clog.Constants.CLOG_PARSE;
+import static clog.Log.clogger;
 
 /**
  * A way to parse standard UCan't

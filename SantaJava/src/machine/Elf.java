@@ -4,8 +4,9 @@ import machine.components.passive.Sack;
 
 import java.util.Random;
 
-import static clog.constants.CLOG_DEBUG;
-import static clog.log.clogger;
+import static clog.Constants.CLOG_DEBUG;
+import static clog.Log.clogger;
+import static machine.data.Constants.SPEED_MULT;
 
 /**
  * Elves run as threads, and are assigned to empty the sacks when they're full.
@@ -36,7 +37,7 @@ public class Elf implements Runnable{
         do {
             if (!elfSack.isSpace()) {
                 try {
-                    Thread.sleep(replaceTime);
+                    Thread.sleep(replaceTime/SPEED_MULT);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

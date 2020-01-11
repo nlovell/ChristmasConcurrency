@@ -3,13 +3,13 @@ package machine.components.threaded;
 import machine.components.MachinePart;
 import machine.components.passive.Conveyor;
 import machine.components.passive.Present;
-import machine.components.passive.Sack;
 import machine.data.Direction;
 import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
 
-import static clog.constants.CLOG_DEBUG;
-import static clog.log.clogger;
+import static clog.Constants.CLOG_DEBUG;
+import static clog.Log.clogger;
+import static machine.data.Constants.SPEED_MULT;
 
 /**
  * The type Hopper.
@@ -49,7 +49,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
     public void run() {
         do {
             try {
-                Thread.sleep(1000 * speed);
+                Thread.sleep((1000 * speed)/SPEED_MULT);
                 if (current > 0) {
                     if (connectedBelt.consume(gifts[1])) {
                         gifts[1] = null;

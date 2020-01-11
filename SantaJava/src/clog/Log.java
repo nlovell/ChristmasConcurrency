@@ -1,8 +1,8 @@
 package clog;
 
-import static clog.constants.*;
+import static clog.Constants.*;
 
-public class log {
+public class Log {
 
     /*--------------------------------------------------------
        CLOG - the simple [C]onstant [LOG]ger, with log levels.
@@ -20,7 +20,7 @@ public class log {
     public static void clogger(final String clog_level, final String input) {
         boolean output = false;
         switch (clog_level) {
-            case constants.CLOG_OUTPUT:
+            case Constants.CLOG_OUTPUT:
                 if (TOGGLE_CLOG_OUTPUT)
                     output = true;
                 break;

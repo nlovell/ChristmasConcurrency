@@ -6,8 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static clog.constants.*;
-import static clog.log.clogger;
+import static clog.Constants.*;
+import static clog.Log.clogger;
 import static parser.Regexp.filePathValidator;
 
 /**
