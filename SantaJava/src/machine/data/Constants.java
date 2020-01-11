@@ -44,7 +44,7 @@ public class Constants {
     final static private boolean CLOG_OBJECT_TOGGLE = true;
 
     /** The constant to enable CLOG logging for PARSE lines. */
-    final static private boolean CLOG_PARSE_TOGGLE  = false;
+    final static private boolean CLOG_PARSE_TOGGLE  = true;
 
       /*--------------------------------------------------------
        The values to preface each string with:

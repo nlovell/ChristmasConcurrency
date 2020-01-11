@@ -19,8 +19,6 @@ import static machine.data.Constants.clog;
  */
 public class FileParser {
 
-    private boolean printEnabled;
-
     private ArrayList<String[]> conveyors = new ArrayList<>();
     private ArrayList<String[]> hoppers = new ArrayList<>();
     private ArrayList<String[]> presents = new ArrayList<>();
@@ -33,13 +31,10 @@ public class FileParser {
      *
      * @param file           the file
      * @param outputSource   boolean to enable output of the source file line-for-line to the console
-     * @param enablePrinting boolean to enable log-style printing
      * @return an ArrayList of ArrayLists containing an Array of Strings defining the entire machine.
      */
     public ArrayList<ArrayList<String[]>> parseFile(String file,
-                                                    final boolean outputSource,
-                                                    final boolean enablePrinting) {
-        this.printEnabled = enablePrinting;
+                                                    final boolean outputSource) {
 
         outputTitle();
         clog(CLOG_PARSE, "Attempting to parse file: " + file);
