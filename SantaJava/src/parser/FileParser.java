@@ -26,7 +26,7 @@ public class FileParser {
     private ArrayList<String[]> presents = new ArrayList<>();
     private ArrayList<String[]> sacks = new ArrayList<>();
     private ArrayList<String[]> turntables = new ArrayList<>();
-
+    private ArrayList<String[]> timer = new ArrayList<>();
 
     /**
      * Instantiates a new File parser.
@@ -70,9 +70,8 @@ public class FileParser {
         machine.add(hoppers);
         machine.add(sacks);
         machine.add(turntables);
-
-
         machine.add(presents);
+        machine.add(timer);
 
         for (ArrayList<String[]> elem : machine) {
             for (String[] part : elem) {
@@ -142,11 +141,25 @@ public class FileParser {
             hoppers.add(hopper);
         } else if (Regexp.present.matcher(theData).matches()) {
             parsePresent(theData);
+        } else if (Regexp.timer.matcher(theData).matches()){
+            String[] timr = parseTimer(theData);
+            timer.add(timr);
         } else {
             if (!Regexp.otherReg.matcher(theData).matches())
             clog(CLOG_PARSE, "This data format is unrecognised.");
         }
     }
+
+    private String[] parseTimer(final String timer){
+
+        Matcher idMat = Regexp.timer.matcher(timer);
+        idMat.find();
+        String timr = idMat.group(1);
+
+        clog(CLOG_PARSE, "Timer value found: " + timr);
+        return new String[]{timr};
+    }
+
 
     /**
      * Parse conveyor string into it's composite attributes using regular expressions.

@@ -126,7 +126,6 @@ public class ChristmasMachine {
             clog(CLOG_OBJECT, arr[i].toString() + '\n');
 
             i++;
-
         }
 
         return arr;
@@ -219,7 +218,8 @@ public class ChristmasMachine {
     public void runMachine() {
         startMachine();
 
-        clog(CLOG_OUTPUT, " Session begins at " + timestamp());
+        clog(CLOG_OUTPUT, " Session begins at " + timestamp() +
+                ", and will last for " + sessionLength + " seconds.");
         long startTime = System.currentTimeMillis();
 
         int timer = 0;

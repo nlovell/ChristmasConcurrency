@@ -39,6 +39,8 @@ public class Regexp {
     public static final Pattern turntableProp =
             compile("([NEWS]) (ib|ob|os|null)(?: )([0-9])?");
 
+    public static final Pattern timer = compile("^TIMER ([0-9]+$)");
+
     /**
      * Regex for finding Other strings in the input file
      */

@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import static machine.data.Constants.*;
 import static parser.Regexp.filePathValidator;
@@ -35,7 +36,7 @@ public class runner {
 
         //Comment these lines out to override the default example.
         final String testfiledir =  "D:/repositories/Concurrency1/SantaJava/src/test_files/";
-        fileToParse = testfiledir + "example_3.txt";
+        fileToParse = testfiledir + "example_1.txt";
         // Or fill in your own value(s) here to automatically skip manual filename entry at runtime
 
 
@@ -49,12 +50,12 @@ public class runner {
         FileParser fp = new FileParser();
         ArrayList<ArrayList<String[]>> output = fp.parseFile(fileToParse, true, false);
 
-        String[][] presents = new String[1][1];
         String[][] conveyors = parseArrayList(output.get(0), 3);
         String[][] hoppers = parseArrayList(output.get(1), 4);
         String[][] sacks = parseArrayList(output.get(2), 3);
         String[][] turntables = parseArrayList(output.get(3), 5);
-        int timer = 30;
+        String[][] presents = new String[1][1]; //4
+        int timer = Integer.parseInt((parseArrayList(output.get(5), 1)[0])[0]); //5
 
         ChristmasMachine machine = new ChristmasMachine(timer, conveyors, hoppers, presents, sacks, turntables);
         machine.runMachine();
