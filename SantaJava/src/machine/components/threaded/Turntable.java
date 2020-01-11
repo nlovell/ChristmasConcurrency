@@ -66,11 +66,12 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
                     && !connection.isInput()) {
                 //Interrogate the gift for potential destinations
                 Sack[] suitableSacks = current.getSuitableSacks();
+                if(suitableSacks == null) return;
                 for (Sack sack : suitableSacks) {
-                    for (Sack dest : connection.getConsumer().getDestinations()) {
-                        if (dest == sack && dest.isSpace()) {
-                            supply(connection.getConsumer(), connection.getDir());
-                            return;
+                        for (Sack dest : connection.getConsumer().getDestinations()) {
+                            if (dest == sack && dest.isSpace()) {
+                                supply(connection.getConsumer(), connection.getDir());
+                                return;
                         }
                     }
                 }

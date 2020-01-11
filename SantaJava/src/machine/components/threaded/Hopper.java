@@ -15,7 +15,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
     private final Conveyor connectedBelt;
     private final int capacity;
-    private int current;
+    private int current = 0;
     private final int speed;
     private volatile boolean running = true;
     private Present[] gifts;
@@ -32,9 +32,14 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
         super(hopperID);
         this.connectedBelt = connectedBelt;
         this.capacity = capacity;
-        this.current = gifts.length;
         this.speed = speed;
         this.gifts = gifts;
+
+        for(Present gift : gifts){
+            if(gift != null){
+                current++;
+            }
+        }
         //TODO: gift hopper bullshit
     }
 

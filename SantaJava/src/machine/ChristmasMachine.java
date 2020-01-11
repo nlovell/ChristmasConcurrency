@@ -82,7 +82,7 @@ public class ChristmasMachine {
             int ageMax = Integer.parseInt(sack[2].split("-")[1]);
 
             arr[i] = new Sack(Integer.parseInt(sack[0]), Integer.parseInt(sack[1]), ageMin, ageMax);
-            clogger(CLOG_DEBUG, arr[i].toString());
+            clogger(CLOG_OBJECT, arr[i].toString());
 
             i++;
         }
@@ -122,6 +122,8 @@ public class ChristmasMachine {
             i++;
         }
         return arr;
+
+        //TODO: make the gifts actually get their suitable sacks
     }
 
     /**
@@ -140,7 +142,6 @@ public class ChristmasMachine {
             Sack[] convSacks = getParts(conv[2].split(" "), mySacks, Sack.class);
             arr[i] = new Conveyor(conv[0], Integer.parseInt(conv[1]), convSacks);
             clogger(CLOG_OBJECT, arr[i].toString());
-
             i++;
         }
 
@@ -157,9 +158,7 @@ public class ChristmasMachine {
      * @return the hopper [ ]
      */
     private Hopper[] makeHoppers(String[][] hoppers, Conveyor[] conveyors, Present[] presents) {
-        //TODO: make hoppers use actual gifts
         Hopper[] arr = new Hopper[hoppers.length];
-
 
         int i = 0;
 
@@ -318,6 +317,7 @@ public class ChristmasMachine {
         }
 
         int remaining = giftsInSystem();
+        clogger(CLOG_OUTPUT, remaining + " unsorted gifts are present in the system.");
         while (remaining > 0) {
 
             try {
