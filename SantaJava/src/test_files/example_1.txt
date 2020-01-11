@@ -27,7 +27,6 @@ D N ib 6 E os 5 S null W os 4
 
 PRESENTS 1
 4
-0-2
 0-3
 4-6
 0-3
@@ -39,14 +38,5 @@ PRESENTS 2
 4-6
 0-3
 4-6
-4-6
 
-PRESENTS 3
-4
-0-3
-4-6
-0-3
-4-6
-
-
-TIMER 300
+TIMER 100

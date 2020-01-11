@@ -56,7 +56,6 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
                     if (print) clogger(CLOG_DEBUG,
                             "Turntable " + this.getId() + " is attempting to receive a present.");
                     print = false;
-
                     if (!consumePresent()) {
                         Thread.sleep(50);
                     }

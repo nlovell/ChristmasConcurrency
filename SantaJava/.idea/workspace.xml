@@ -3,13 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Conveyor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Present.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Present.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/components/threaded/Hopper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/threaded/Hopper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/data/AgeRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/data/AgeRange.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/components/threaded/Turntable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/threaded/Turntable.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test_files/example_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_files/example_1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_files/example_4.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_files/example_4.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +39,7 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/SantaJava" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
@@ -175,29 +170,29 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="479" height="466" key="DebuggerActiveHint/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578747995766" />
-    <state x="1226" y="420" key="FileChooserDialogImpl" timestamp="1578763249250">
+    <state x="1226" y="420" key="FileChooserDialogImpl" timestamp="1578785687984">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1226" y="420" key="FileChooserDialogImpl/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578763249250" />
-    <state width="1257" height="634" key="GridCell.Tab.0.bottom" timestamp="1578785590107">
+    <state x="1226" y="420" key="FileChooserDialogImpl/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578785687984" />
+    <state width="1257" height="283" key="GridCell.Tab.0.bottom" timestamp="1578785874361">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1257" height="634" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578785590107" />
+    <state width="1257" height="283" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578785874361" />
     <state width="938" height="283" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
-    <state width="1257" height="634" key="GridCell.Tab.0.center" timestamp="1578785590107">
+    <state width="1257" height="283" key="GridCell.Tab.0.center" timestamp="1578785874360">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1257" height="634" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578785590107" />
+    <state width="1257" height="283" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578785874360" />
     <state width="938" height="283" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
-    <state width="1257" height="634" key="GridCell.Tab.0.left" timestamp="1578785590107">
+    <state width="1257" height="283" key="GridCell.Tab.0.left" timestamp="1578785874360">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1257" height="634" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578785590107" />
+    <state width="1257" height="283" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578785874360" />
     <state width="938" height="283" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
-    <state width="1257" height="634" key="GridCell.Tab.0.right" timestamp="1578785590107">
+    <state width="1257" height="283" key="GridCell.Tab.0.right" timestamp="1578785874360">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1257" height="634" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578785590107" />
+    <state width="1257" height="283" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578785874360" />
     <state width="938" height="283" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
     <state width="1257" height="634" key="GridCell.Tab.1.bottom" timestamp="1578785590107">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -291,7 +286,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/net/nlovell/machine/components/threaded/Turntable.java</url>
-          <line>115</line>
+          <line>114</line>
           <option name="timeStamp" value="48" />
         </line-breakpoint>
       </breakpoints>
