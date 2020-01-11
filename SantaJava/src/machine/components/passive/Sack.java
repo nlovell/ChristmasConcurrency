@@ -59,6 +59,10 @@ public class Sack extends MachinePart implements PassiveConsumer {
      */
     public void replaceSack() {
         synchronized (presents) {
+            for(Present present : presents){
+                present.deliver();
+                present = null;
+            }
             Arrays.fill(presents, null);
             fullness = 0;
         }

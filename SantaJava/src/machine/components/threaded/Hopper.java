@@ -15,9 +15,10 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
     private final Conveyor connectedBelt;
     private final int capacity;
+    private int current;
     private final int speed;
     private volatile boolean running = true;
-    private Sack[] sacks;
+    private Present[] gifts;
 
     /**
      * Instantiates a new Hopper.
@@ -27,11 +28,14 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
      * @param capacity      the capacity of the hopper
      * @param speed         the output speed of the hopper
      */
-    public Hopper(int hopperID, Conveyor connectedBelt, int capacity, int speed) {
+    public Hopper(int hopperID, Conveyor connectedBelt, int capacity, int speed, ){//Present[] gifts) {
         super(hopperID);
         this.connectedBelt = connectedBelt;
         this.capacity = capacity;
+        this.current = capacity;
         this.speed = speed;
+        //this.gifts = gifts;
+        //TODO: gift hopper bullshit
     }
 
     @Override
@@ -39,8 +43,11 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
         try {
             do {
                 Thread.sleep(1000 * speed);
-                Present gift = new Present(sacks, 1, 99);
-                connectedBelt.consume(gift);
+
+                if(connectedBelt.consume(gifts[1])){
+                    gifts[1] = null;
+                    current--;
+                }
 
             } while (running);
         } catch (InterruptedException e) {
@@ -91,14 +98,6 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
         this.running = false;
     }
 
-    /**
-     * Sets sacks.
-     *
-     * @param sacks the sacks
-     */
-    public void setSacks(Sack[] sacks) {
-        this.sacks = sacks;
-    }
     //</editor-fold>
 
     @Override
