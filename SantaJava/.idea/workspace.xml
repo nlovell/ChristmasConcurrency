@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/nlovell/clog/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/clog/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Sack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Sack.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -170,25 +170,25 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1226" y="420" key="FileChooserDialogImpl/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578763249250" />
-    <state width="1257" height="283" key="GridCell.Tab.0.bottom" timestamp="1578781912934">
+    <state width="1257" height="283" key="GridCell.Tab.0.bottom" timestamp="1578782015845">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1257" height="283" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781912934" />
+    <state width="1257" height="283" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578782015845" />
     <state width="938" height="283" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
-    <state width="1257" height="283" key="GridCell.Tab.0.center" timestamp="1578781912934">
+    <state width="1257" height="283" key="GridCell.Tab.0.center" timestamp="1578782015845">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1257" height="283" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781912934" />
+    <state width="1257" height="283" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578782015845" />
     <state width="938" height="283" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
-    <state width="1257" height="283" key="GridCell.Tab.0.left" timestamp="1578781912934">
+    <state width="1257" height="283" key="GridCell.Tab.0.left" timestamp="1578782015845">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1257" height="283" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781912934" />
+    <state width="1257" height="283" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578782015845" />
     <state width="938" height="283" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
-    <state width="1257" height="283" key="GridCell.Tab.0.right" timestamp="1578781912934">
+    <state width="1257" height="283" key="GridCell.Tab.0.right" timestamp="1578782015845">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1257" height="283" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781912934" />
+    <state width="1257" height="283" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578782015845" />
     <state width="938" height="283" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
     <state width="1257" height="634" key="GridCell.Tab.1.bottom" timestamp="1578781624376">
       <screen x="0" y="0" width="2560" height="1400" />
@@ -230,10 +230,10 @@
       <screen x="2560" y="173" width="1920" height="1040" />
     </state>
     <state x="2560" y="173" width="1936" height="974" key="dock-window-1/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578750143679" />
-    <state x="1637" y="413" width="737" height="804" key="find.popup" timestamp="1578777090048">
+    <state x="1637" y="413" width="737" height="804" key="find.popup" timestamp="1578782009510">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1637" y="413" width="737" height="804" key="find.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578777090048" />
+    <state x="1637" y="413" width="737" height="804" key="find.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578782009510" />
     <state x="1022" y="320" key="refactoring.ChangeSignatureDialog" timestamp="1578749908177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -242,10 +242,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="936" y="330" width="672" height="677" key="run.anything.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578750025198" />
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1578781856568">
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1578781989564">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781856568" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781989564" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -135,6 +135,6 @@ public class Sack extends MachinePart implements PassiveConsumer {
                 ", capacity=" + capacity +
                 ", fullness=" + fullness +
                 ", ages=" + ages +
-                "}\n";
+                "}";
     }
 }
