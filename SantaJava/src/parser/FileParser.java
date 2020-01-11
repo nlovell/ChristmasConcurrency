@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static clog.Constants.CLOG_PARSE;
+import static clog.LogConstants.CLOG_PARSE;
 import static clog.Log.clogger;
 
 /**

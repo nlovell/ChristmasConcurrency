@@ -7,7 +7,7 @@ import machine.data.Direction;
 import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
 
-import static clog.Constants.CLOG_DEBUG;
+import static clog.LogConstants.CLOG_DEBUG;
 import static clog.Log.clogger;
 import static machine.data.Constants.SPEED_MULT;
 
@@ -38,7 +38,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
         this.speed = speed;
         this.gifts = gifts;
 
-        for(Present gift : gifts){
+        for(Present gift : gifts){ //todo
             if(gift != null){
                 current++;
             }
@@ -64,7 +64,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
                 e.printStackTrace();
             }
 
-        } while (running);
+        } while (running); //TODO syncronise or Thread.interupted()
     }
 
     //<editor-fold desc="Getter methods">

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static clog.Constants.*;
+import static clog.LogConstants.*;
 import static clog.Log.clogger;
 import static parser.Regexp.filePathValidator;
 
@@ -31,11 +31,11 @@ public class runner {
      */
     public static void main(String[] args) {
 
-        String fileToParse = "";
+        String fileToParse = args.length > 0 ? args[0] : "";
 
         //Comment these lines out to override the default example.
-        final String testfiledir =  "D:/repositories/Concurrency1/SantaJava/src/test_files/";
-        fileToParse = testfiledir + "example_2.txt";
+        //final String testfiledir =  "D:/repositories/Concurrency1/SantaJava/src/test_files/";
+        //fileToParse = testfiledir + "example_1.txt";
         // Or fill in your own value(s) here to automatically skip manual filename entry at runtime
 
 

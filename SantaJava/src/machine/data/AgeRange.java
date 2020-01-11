@@ -21,7 +21,7 @@ public class AgeRange {
      * @param age_min the age min
      * @param age_max the age max
      */
-    public AgeRange(int age_min, int age_max) {
+    public AgeRange(int age_min, int age_max) {//todo final
         this.age_min = age_min;
         this.age_max = age_max;
     }
@@ -35,7 +35,7 @@ public class AgeRange {
     public boolean contains(int age) {
         return age >= age_min && age <= age_max;
     }
-
+//todo !(this.max < other.min || this.min > other.max)
     public boolean contains(AgeRange ageRange){
         return (ageRange.age_min >= this.age_min && ageRange.age_max <= this.age_max)
                 || (ageRange.age_max >= this.age_min && ageRange.age_max <= this.age_max);

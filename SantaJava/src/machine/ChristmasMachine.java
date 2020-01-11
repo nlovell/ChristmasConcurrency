@@ -11,10 +11,10 @@ import machine.data.Direction;
 import machine.data.TurntableConnection;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
-import static clog.Constants.*;
+import static clog.LogConstants.*;
 import static clog.Log.clogger;
-import static java.util.Arrays.copyOf;
 import static machine.data.Constants.OUTPUT_TIME;
 import static machine.data.Constants.SPEED_MULT;
 
@@ -127,7 +127,7 @@ public class ChristmasMachine {
                 clogger(CLOG_FINE_DEBUG,   "Sack " + sack.getId() + " has sack age: " + sackAge );
 
                 if(sackAge.contains(age)){
-                    mySacks = copyOf(mySacks, j+1);
+                    mySacks = Arrays.copyOf(mySacks, j+1);
                     mySacks[j] = sack;
                     j++;
                 }
@@ -289,7 +289,7 @@ public class ChristmasMachine {
         long endTime = System.currentTimeMillis();
 
         clogger(CLOG_OUTPUT, " System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
-        clogger(CLOG_OUTPUT, " " + (String.format("Total time: %ds", (0L + (endTime - startTime) / 1000))));
+        clogger(CLOG_OUTPUT, " " + (String.format("Total time: %ds", ((endTime - startTime) / 1000L))));
 
         timedLogger(endTime);
     }
@@ -440,7 +440,7 @@ public class ChristmasMachine {
     }
 
     /**
-     * Get the number of remaining gifts in the Christmas Machine.
+     * Get the number of remaining gifts in transit within the Christmas Machine.
      *
      * @return the number of gifts in the Christmas Machine
      */

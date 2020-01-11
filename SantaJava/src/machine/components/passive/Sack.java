@@ -6,7 +6,7 @@ import machine.interfaces.PassiveConsumer;
 
 import java.util.Arrays;
 
-import static clog.Constants.CLOG_DEBUG;
+import static clog.LogConstants.CLOG_DEBUG;
 import static clog.Log.clogger;
 
 /**
@@ -46,7 +46,7 @@ public class Sack extends MachinePart implements PassiveConsumer {
      * @param ageMin   the age min;
      * @param ageMax   the age max
      */
-    public Sack(int sack_id, int capacity, int ageMin, int ageMax) {
+    public Sack(int sack_id, int capacity, int ageMin, int ageMax) { //todo final?
         super(sack_id);
         this.presents = new Present[capacity];
         this.capacity = capacity;
@@ -62,7 +62,6 @@ public class Sack extends MachinePart implements PassiveConsumer {
         synchronized (presents) {
             for(Present present : presents){
                 present.deliver();
-                present = null;
             }
             Arrays.fill(presents, null);
             fullness = 0;
@@ -104,7 +103,7 @@ public class Sack extends MachinePart implements PassiveConsumer {
 
     @Override
     public int search(final AgeRange age) {
-        if (age == this.ages) {
+        if (age == this.ages) { //todo equals
             return 0;
         } else {
             return Integer.MAX_VALUE;

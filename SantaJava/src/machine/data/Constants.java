@@ -11,7 +11,7 @@ public class Constants {
      * Increase this number to make the machine run faster.
      * Any value other than 1 may cause timing issues.
      * */
-    final static public int SPEED_MULT = 50;
+    final static public int SPEED_MULT = 1;
 
     /** The time taken to  move a present to or from a turntable, in milliseconds. */
     final static public int MOVE_TIME = 500;

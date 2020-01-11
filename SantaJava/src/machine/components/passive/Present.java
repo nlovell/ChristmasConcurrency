@@ -72,7 +72,7 @@ public class Present {
         return hopperID;
     }
 
-    public void deliver(){
+    public void deliver(){ //todo remove
         try {
             this.finalize();
         } catch (Throwable throwable) {

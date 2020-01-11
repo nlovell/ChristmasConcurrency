@@ -4,7 +4,7 @@ import machine.components.passive.Sack;
 
 import java.util.Random;
 
-import static clog.Constants.CLOG_DEBUG;
+import static clog.LogConstants.CLOG_DEBUG;
 import static clog.Log.clogger;
 import static machine.data.Constants.SPEED_MULT;
 

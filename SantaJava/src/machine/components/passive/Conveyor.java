@@ -8,10 +8,10 @@ import machine.interfaces.PassiveSupplier;
 
 import java.util.Arrays;
 
-import static clog.Constants.CLOG_DEBUG;
+import static clog.LogConstants.CLOG_DEBUG;
 
 /**
- * The type Conveyor.
+ * The type Conveyor. //TODO
  */
 public class Conveyor extends MachinePart implements PassiveSupplier, PassiveConsumer {
 
@@ -65,7 +65,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     /**
      * Gifts in conveyor int.
      *
-     * @return the int
+     * @return the int //todo what?
      */
     public int giftsInConveyor() {
         // head and tail can be the same value when both full or empty.
@@ -89,7 +89,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         // using these values in the function, it will return int 4 as expected
     }
 
-    @Override
+    @Override //todo remove
     public int search(final AgeRange age) {
         for (Sack sack : destinations) {
             if (sack.search(age) == 0) {
@@ -136,8 +136,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
 
         synchronized (presents) {
             if (!isEmpty()) {
-                Present gift;
-                gift = presents[head];
+                final Present gift = presents[head];
                 presents[head] = null;
                 Log.clogger(CLOG_DEBUG, "Conveyor " + super.getId() + " supplied a gift!");
 

@@ -1,6 +1,6 @@
 package clog;
 
-public class Constants {
+public class LogConstants {
 
         /*--------------------------------------------------------
        CLOG - the simple [C]onstant [LOG]ger, with log levels.

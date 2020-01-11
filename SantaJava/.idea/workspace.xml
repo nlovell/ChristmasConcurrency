@@ -3,14 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clog/constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clog/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/clog/log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clog/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clog/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clog/LogConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clog/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/clog/Log.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/Elf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/Elf.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Present.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Present.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Sack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Sack.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Hopper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/threaded/Hopper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Turntable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/threaded/Turntable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/data/AgeRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/data/AgeRange.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/machine/data/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/data/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/parser/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parser/FileParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/runner.java" afterDir="false" />
@@ -55,7 +57,7 @@
       <recent name="machine" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.runner">
+  <component name="RunManager" selected="Application.default">
     <configuration name="FileParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="parser.FileParser" />
       <module name="SantaJava" />
@@ -63,7 +65,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+    <configuration name="default" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="runner" />
       <module name="SantaJava" />
       <extension name="coverage">
@@ -76,9 +78,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="runner" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="runner" />
+      <module name="SantaJava" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/test_files/example_1.txt" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.runner" />
+      <item itemvalue="Application.default" />
+      <item itemvalue="Application.FileParser" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.runner" />
         <item itemvalue="Application.FileParser" />
       </list>
     </recent_temporary>
@@ -117,6 +137,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="860" y="556" key="#com.intellij.debugger.ui.breakpoints.EditClassFiltersDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578599363056" />
+    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578762466240">
+      <screen x="0" y="0" width="2560" height="1400" />
+    </state>
+    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762466240" />
     <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser" timestamp="1578754194218">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -153,38 +177,38 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state width="479" height="466" key="DebuggerActiveHint/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578747995766" />
-    <state width="2517" height="320" key="GridCell.Tab.0.bottom" timestamp="1578757035396">
+    <state width="2517" height="285" key="GridCell.Tab.0.bottom" timestamp="1578762486528">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="320" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578757035396" />
-    <state width="2517" height="320" key="GridCell.Tab.0.center" timestamp="1578757035396">
+    <state width="2517" height="285" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762486528" />
+    <state width="2517" height="285" key="GridCell.Tab.0.center" timestamp="1578762486528">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="320" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578757035396" />
-    <state width="2517" height="320" key="GridCell.Tab.0.left" timestamp="1578757035395">
+    <state width="2517" height="285" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762486528" />
+    <state width="2517" height="285" key="GridCell.Tab.0.left" timestamp="1578762486528">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="320" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578757035395" />
-    <state width="2517" height="320" key="GridCell.Tab.0.right" timestamp="1578757035396">
+    <state width="2517" height="285" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762486528" />
+    <state width="2517" height="285" key="GridCell.Tab.0.right" timestamp="1578762486528">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="320" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578757035396" />
-    <state width="2517" height="383" key="GridCell.Tab.1.bottom" timestamp="1578754826229">
+    <state width="2517" height="285" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762486528" />
+    <state width="2517" height="383" key="GridCell.Tab.1.bottom" timestamp="1578762449644">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="383" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578754826229" />
-    <state width="2517" height="383" key="GridCell.Tab.1.center" timestamp="1578754826229">
+    <state width="2517" height="383" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762449644" />
+    <state width="2517" height="383" key="GridCell.Tab.1.center" timestamp="1578762449644">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="383" key="GridCell.Tab.1.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578754826229" />
-    <state width="2517" height="383" key="GridCell.Tab.1.left" timestamp="1578754826229">
+    <state width="2517" height="383" key="GridCell.Tab.1.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762449644" />
+    <state width="2517" height="383" key="GridCell.Tab.1.left" timestamp="1578762449643">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="383" key="GridCell.Tab.1.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578754826229" />
-    <state width="2517" height="383" key="GridCell.Tab.1.right" timestamp="1578754826229">
+    <state width="2517" height="383" key="GridCell.Tab.1.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762449643" />
+    <state width="2517" height="383" key="GridCell.Tab.1.right" timestamp="1578762449644">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="383" key="GridCell.Tab.1.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578754826229" />
+    <state width="2517" height="383" key="GridCell.Tab.1.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762449644" />
     <state x="781" y="343" key="SettingsEditor" timestamp="1578751793894">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -205,10 +229,10 @@
       <screen x="2560" y="173" width="1920" height="1040" />
     </state>
     <state x="2560" y="173" width="1936" height="974" key="dock-window-1/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578750143679" />
-    <state x="2685" y="262" width="737" height="804" key="find.popup" timestamp="1578756830734">
-      <screen x="2560" y="173" width="1920" height="1040" />
+    <state x="1637" y="413" width="737" height="804" key="find.popup" timestamp="1578759511856">
+      <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="2685" y="262" width="737" height="804" key="find.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578756830734" />
+    <state x="1637" y="413" width="737" height="804" key="find.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578759511856" />
     <state x="1022" y="320" key="refactoring.ChangeSignatureDialog" timestamp="1578749908177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -217,17 +241,17 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="936" y="330" width="672" height="677" key="run.anything.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578750025198" />
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1578701145729">
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup" timestamp="1578757858478">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578701145729" />
+    <state x="943" y="315" width="672" height="678" key="search.everywhere.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578757858478" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/machine/data/AgeRange.java</url>
-          <line>40</line>
+          <line>39</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

@@ -10,7 +10,7 @@ import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
-import static clog.Constants.*;
+import static clog.LogConstants.*;
 import static clog.Log.clogger;
 import static machine.data.Constants.*;
 import static machine.data.Direction.*;
@@ -43,16 +43,16 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     public void run() {
         boolean print = true;
         do {
-            if (current != null) {
-                if (!print) clogger(CLOG_DEBUG,
-                        "Turntable " + this.getId() + " is attempting to move a present.\n" + this.toString());
-                print = true;
-                supplyPresent();
-            } else {
+            if (current == null) {
                 if (print) clogger(CLOG_DEBUG,
                         "Turntable " + this.getId() + " is attempting to receive a present.");
                 print = false;
                 consumePresent();
+            } else {
+                if (!print) clogger(CLOG_DEBUG,
+                        "Turntable " + this.getId() + " is attempting to move a present.\n" + this.toString());
+                print = true;
+                supplyPresent();
             }
         } while (running);
     }
@@ -87,10 +87,12 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
             if (connection != null && connection.getConsumer() == null) {
                 PassiveSupplier supp = connection.getSupplier();
                 if (supp != null) {
+                    //todo poll supplier beofre tunring
+                    rotate(connection.getDir());
                     this.current = supp.supply();
                     if (this.current != null) {
                         clogger(CLOG_DEBUG, "Turntable " + this.getId() + " has successfully received a present!");
-                        break;
+                        break; //todo return bool
                     }
                 }
             }
@@ -98,7 +100,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     }
 
 
-    @Override
+    @Override //todo this is never used
     public void consume(final PassiveSupplier supplier, final Direction inputDir) {
         rotate(inputDir);
         moveGiftDelay();
@@ -119,17 +121,16 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
             //and ISN'T going North or South
             if (lastDirectionMoved != N && lastDirectionMoved != S) {
                 //Rotate the turntable
-                rotateDelay();
-                lastDirectionMoved = E;
+                rotateDelay(); //todo isNorthSouth method to Enum
             }
         }  //Otherwise the gift is coming from East or West
         else {
             //And needs to be rotated
             if (lastDirectionMoved != E && lastDirectionMoved != W) {
                 rotateDelay();
-                lastDirectionMoved = N;
             }
         }
+        lastDirectionMoved = direction;
     }
 
     /**
@@ -140,7 +141,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
             clogger(CLOG_DEBUG, "Turntable " + this.getId() + " is rotating.");
             Thread.sleep(ROTATE_TIME/SPEED_MULT);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            clogger(CLOG_ERROR, e.getMessage());
         }
     }
 
@@ -151,7 +152,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         try {
             Thread.sleep(MOVE_TIME/SPEED_MULT);
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            clogger(CLOG_ERROR, e.getMessage());
         }
     }
 
@@ -169,11 +170,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
      * @return the boolean
      */
     public boolean hasPresent() {
-        if (current != null) {
-            return true;
-        }
-
-        return false;
+        return current != null;
     }
 
     @Override
