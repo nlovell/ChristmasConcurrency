@@ -58,20 +58,16 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     private void supplyPresent() {
         for (TurntableConnection connection : connections) {
             //If the current Connection direction is the same place the gift came from
-            if (connection.getDir() != lastDirectionMoved) {
-
-                //If the connection is NOT an input
-                if (!connection.isInput()) {
-
-                    //Interrogate the gift for potential destinations
-                    Sack[] suitableSacks = current.getSuitableSacks();
-                    for (Sack sack : suitableSacks) {
-
-                        for (Sack dest : connection.getConsumer().getDestinations()) {
-                            if (dest == sack && dest.isSpace()) {
-                                supply(connection.getConsumer(), connection.getDir());
-                                return;
-                            }
+            // and the connection is NOT an input and is NOT null...
+            if (connection != null && connection.getDir() != lastDirectionMoved
+                    && !connection.isInput()) {
+                //Interrogate the gift for potential destinations
+                Sack[] suitableSacks = current.getSuitableSacks();
+                for (Sack sack : suitableSacks) {
+                    for (Sack dest : connection.getConsumer().getDestinations()) {
+                        if (dest == sack && dest.isSpace()) {
+                            supply(connection.getConsumer(), connection.getDir());
+                            return;
                         }
                     }
                 }
@@ -138,6 +134,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
      */
     public void rotateDelay() {
         try {
+            clog(CLOG_DEBUG, "Turntable " + this.getId() + " is rotating.");
             Thread.sleep(ROTATE_TIME);
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -187,7 +184,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
             else
                 conns.append("{connection  null}, ");
         }
-        conns.delete(conns.length()-2, conns.length());
+        conns.delete(conns.length() - 2, conns.length());
         conns.append("]");
 
         return "Turntable{" +
