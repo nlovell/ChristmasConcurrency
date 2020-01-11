@@ -8,10 +8,10 @@ public interface ActiveSupplier {
 
     /**
      * Supply.
-     *
-     * @param consumer  the consumer
+     *  @param consumer  the consumer
      * @param outputDir the output dir
+     * @return
      */
-    void supply(PassiveConsumer consumer, Direction outputDir);
+    boolean supply(PassiveConsumer consumer, Direction outputDir);
 
 }

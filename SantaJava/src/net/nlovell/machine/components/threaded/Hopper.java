@@ -18,7 +18,6 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
     private final Conveyor connectedBelt;
     private final int capacity;
-    private int current = 0;
     private final int speed;
     private volatile boolean running = true;
     private Present[] gifts;
@@ -37,12 +36,6 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
         this.capacity = capacity;
         this.speed = speed;
         this.gifts = gifts;
-
-        for(Present gift : gifts){ //todo
-            if(gift != null){
-                current++;
-            }
-        }
     }
 
     @Override
@@ -50,10 +43,10 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
         do {
             try {
                 Thread.sleep((1000 * speed)/ Constants.SPEED_MULT);
+                int current = getCurrent();
                 if (current > 0) {
-                    if (connectedBelt.consume(gifts[1])) {
-                        gifts[1] = null;
-                        current--;
+                    if (connectedBelt.consume(gifts[current -1])) {
+                        gifts[current - 1] = null;
                     }
                 } else {
                     //Stops hoppers running after they're empty.
@@ -66,6 +59,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
         } while (running); //TODO syncronise or Thread.interupted()
     }
+
 
     //<editor-fold desc="Getter methods">
 
@@ -84,7 +78,13 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
      * @return gift count
      */
     public int getCurrent() {
-        return current;
+        int cur = 0;
+        for(Present gift : gifts){
+            if(gift != null){
+                cur++;
+            }
+        }
+        return cur;
     }
 
     /**
@@ -107,8 +107,8 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
 
     @Override
-    public void supply(PassiveConsumer consumer, Direction outputDir) {
-
+    public boolean supply(PassiveConsumer consumer, Direction outputDir) {
+        return false;
     }
 
     /**

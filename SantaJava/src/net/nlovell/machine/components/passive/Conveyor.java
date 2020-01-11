@@ -121,12 +121,6 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         return false;
     }
 
-    @Override
-    public Sack[] getDestinations() {
-        return destinations;
-    }
-
-
     /**
      * When the belt supplies a present
      *
@@ -137,17 +131,25 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         Present result = null;
 
         synchronized (presents) {
-            if (!isEmpty()) {
+            if (isEmpty()) {
+                return null;
+            } else {
                 final Present gift = presents[head];
                 presents[head] = null;
                 Log.clogger(CLOG_DEBUG, "Conveyor " + super.getId() + " supplied a gift!");
-
                 incrementHead();
                 result = gift;
             }
-            return result;
         }
+
+        return result;
     }
+
+    @Override
+    public Sack[] getDestinations() {
+        return destinations;
+    }
+
 
     @Override
     public String toString() {

@@ -7,15 +7,15 @@ import net.nlovell.machine.components.passive.Sack;
 import net.nlovell.machine.components.threaded.Hopper;
 import net.nlovell.machine.components.threaded.Turntable;
 import net.nlovell.machine.data.AgeRange;
+import net.nlovell.machine.data.Constants;
 import net.nlovell.machine.data.Direction;
 import net.nlovell.machine.data.TurntableConnection;
-import net.nlovell.machine.data.Constants;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-import static net.nlovell.clog.LogConstants.*;
 import static net.nlovell.clog.Log.clogger;
+import static net.nlovell.clog.LogConstants.*;
 
 /**
  * The type Christmas machine.
@@ -257,13 +257,14 @@ public class ChristmasMachine {
      * Kicks off the operation of the machine.
      */
     public void runMachine() {
-        startMachine();
-
         clogger(CLOG_OUTPUT, " Session begins at " + timestamp() +
                 ", and will last for " + sessionLength + " seconds.");
+
+        startMachine();
+
         long startTime = System.currentTimeMillis();
 
-        int timer = 0;
+        int timerIterations = 0;
         final int target = 1000;
         //A simple timer loop of variable length
         do {
@@ -272,11 +273,11 @@ public class ChristmasMachine {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            timer++;
-            if (timer % Constants.OUTPUT_TIME == 0) {
+            timerIterations++;
+            if (timerIterations % Constants.OUTPUT_TIME == 0) {
                 timedLogger(startTime);
             }
-        } while (timer < sessionLength);
+        } while (timerIterations < sessionLength && (giftsInSystem() != 0 || giftsInHoppers() != 0));
 
         clogger(CLOG_OUTPUT, " Session over at " + timestamp() + '\n');
         long hopperStopTime = System.currentTimeMillis();
@@ -362,20 +363,43 @@ public class ChristmasMachine {
      * @param startTime the time the machine started
      */
     private void timedLogger(Long startTime) {
-        clogger(CLOG_OUTPUT, " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
+        clogger(CLOG_OUTPUT, "Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
+        clogger(CLOG_OUTPUT, "Total gifts in system: " + giftsInSystem());
+
+        int giftCount = 0;
+
+        for (Sack sack : sacks) {
+            giftCount = giftCount + sack.getLifetimeTotal();
+        }
+        clogger(CLOG_OUTPUT, "               " + giftCount + " presents have been deposited into sacks.");
+
+        giftCount = 0;
+
+        for (Conveyor conveyor : conveyors) {
+            giftCount = giftCount + conveyor.giftsInConveyor();
+        }
+        clogger(CLOG_OUTPUT, "               " + giftCount + " presents are stored on conveyors.");
+
+        giftCount = 0;
+        for (Turntable turntable : turntables) {
+            if(turntable.hasPresent())
+                giftCount++;
+        }
+        clogger(CLOG_OUTPUT, "               " + giftCount + " presents are stored on turntables." +
+                "");
+
+        clogger(CLOG_OUTPUT, "               " + giftsInHoppers() + " presents are stored in hoppers.\n");
+    }
+
+    int giftsInHoppers(){
         int giftCount = 0;
         for (Hopper hopper : hoppers) {
             giftCount = giftCount + hopper.getCurrent();
         }
 
-        clogger(CLOG_OUTPUT, "               Hoppers cumulatively contain " + giftCount + " gifts.");
-        giftCount = 0;
-
-        for (Sack sack : sacks) {
-            giftCount = giftCount + sack.getLifetimeTotal();
-        }
-        clogger(CLOG_OUTPUT, "               " + giftCount + " presents have been deposited into sacks.\n");
+        return giftCount;
     }
+
 
     /**
      * Time since string.
