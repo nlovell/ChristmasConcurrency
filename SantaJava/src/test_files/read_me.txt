@@ -18,7 +18,7 @@ Note: In case the ASCII isn't enough, graphical versions of these machine config
 
         Example 1: The example text provided on page 6 of the assignment brief
         Example 2: A textual representation of the visual example provided on page 3 of the assignment brief
-        Example 3:  A circle of turntables with a one-way offshoot leading to a sack
+        Example 3: A circle of turntables with a one-way offshoot leading to a sack
 
                                 H      H
                             T ----> T -> T
@@ -26,3 +26,14 @@ Note: In case the ASCII isn't enough, graphical versions of these machine config
                           S T <---- T -> S
                                     S
 
+        Example 4: A hopper feeding a belt with one turntable, with every output populated
+
+                                    S
+                               H -> T S
+                                    S
+
+        Example 5: A hopper feeding a single belt, but with 3 turntables and 3 sacks connected at the end of the belt
+
+                               H ------>
+                                 T  T  T
+                                 S  S  S

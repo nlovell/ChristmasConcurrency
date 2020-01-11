@@ -1,0 +1,31 @@
+BELTS
+1
+1 length 2 destinations 1
+HOPPERS
+1
+1 belt 1 capacity 20 speed 2
+SACKS
+1
+1 capacity 20 age 0-3
+2 capacity 20 age 4-6
+3 capacity 20 age 6-10
+
+
+
+TURNTABLES
+1
+A N os 1 E os 2 S os 3 W ib 1
+
+PRESENTS 1
+6
+0-3
+4-6
+0-3
+0-3
+4-6
+6-10
+6-10
+4-6
+6-10
+
+TIMER 120
