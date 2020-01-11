@@ -29,6 +29,27 @@ E N ib 5 E null S os 1 W null
 PRESENTS 1
 2
 0-3
-4-6
+4-10
+
+PRESENTS 2
+2
+0-3
+4-10
+4-10
+0-3
+0-3
+4-10
+4-10
+
+PRESENTS 3
+2
+0-3
+4-10
+4-10
+0-3
+0-3
+4-10
+
+
 
 TIMER 300

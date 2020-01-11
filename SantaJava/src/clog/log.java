@@ -28,6 +28,10 @@ public class log {
                 if (TOGGLE_CLOG_DEBUG)
                     output = true;
                 break;
+            case CLOG_FINE_DEBUG:
+                if (TOGGLE_CLOG_FINE_DEBUG)
+                    output = true;
+                break;
             case CLOG_ERROR:
                 if (TOGGLE_CLOG_ERROR)
                     output = true;

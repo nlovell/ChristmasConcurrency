@@ -15,6 +15,9 @@ public class constants {
     /** The constant to enable CLOG logging for DEBUG lines. */
     final static boolean TOGGLE_CLOG_DEBUG = true;
 
+    /** The constant to enable CLOG logging for finer DEBUG lines. */
+    final static boolean TOGGLE_CLOG_FINE_DEBUG = false;
+
     /** The constant to enable CLOG logging for ERROR lines. */
     final static boolean TOGGLE_CLOG_ERROR = false;
 
@@ -33,6 +36,9 @@ public class constants {
 
     /** The constant value to preface a DEBUG line with the CLOG clog.logger. */
     final static public String CLOG_DEBUG   = " DEBUG: ";
+
+    /** The constant value to preface a DEBUG line with the CLOG clog.logger. */
+    final static public String CLOG_FINE_DEBUG   = "FDEBUG: ";
 
     /** The constant value to preface an ERRORR line with the CLOG clog.logger. */
     final static public String CLOG_ERROR   = " ERROR: ";

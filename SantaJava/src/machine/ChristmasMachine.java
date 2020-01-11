@@ -117,13 +117,13 @@ public class ChristmasMachine {
         //id min max
         for (String[] gift : presents) {
             AgeRange age = new AgeRange(Integer.parseInt(gift[1]), Integer.parseInt(gift[2]));
-            clogger(CLOG_DEBUG, "Target age: " + age);
+            clogger(CLOG_FINE_DEBUG, "Target age: " + age);
 
             Sack[] mySacks = new Sack[0];
             int j = 0;
             for(Sack sack : sacks){
                 AgeRange sackAge = sack.getAges();
-                clogger(CLOG_DEBUG,   "Sack " + sack.getId() + " has sack age: " + sackAge );
+                clogger(CLOG_FINE_DEBUG,   "Sack " + sack.getId() + " has sack age: " + sackAge );
 
                 if(sackAge.contains(age)){
                     mySacks = copyOf(mySacks, j+1);

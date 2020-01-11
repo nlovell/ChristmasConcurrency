@@ -58,8 +58,13 @@ public class Present {
 
     @Override
     public String toString() {
+        StringBuilder sb = new StringBuilder("|");
+        for(Sack sack : suitableSacks){
+            sb.append(sack.getId()).append("|");
+        }
         return "Present{" +
                 "ageRange=" + ageRange +
+                "suitable sacks=" + sb +
                 '}';
     }
 

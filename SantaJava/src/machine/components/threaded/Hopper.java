@@ -8,6 +8,9 @@ import machine.data.Direction;
 import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
 
+import static clog.constants.CLOG_DEBUG;
+import static clog.log.clogger;
+
 /**
  * The type Hopper.
  */
@@ -52,6 +55,10 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
                         gifts[1] = null;
                         current--;
                     }
+                } else {
+                    //Stops hoppers running after they're empty.
+                    clogger(CLOG_DEBUG, "Hopper " + getId() + " has ran out of gifts, and has stopped running.");
+                    setStop();
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();

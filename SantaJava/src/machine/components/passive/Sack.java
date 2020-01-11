@@ -7,6 +7,7 @@ import machine.interfaces.PassiveConsumer;
 import java.util.Arrays;
 
 import static clog.constants.CLOG_DEBUG;
+import static clog.log.clogger;
 
 /**
  * The passive consumer Sack.
@@ -81,11 +82,12 @@ public class Sack extends MachinePart implements PassiveConsumer {
     @Override
     public boolean consume(final Present gift) {
         synchronized (presents) {
+            clogger(CLOG_DEBUG, "Sack " + this.getId() + "is attempting to receive a present.");
             if (isSpace()) {
                 presents[fullness] = gift;
                 fullness++;
                 lifetimeTotal++;
-                clog.log.clogger(CLOG_DEBUG, "Sack " + this.getId() + " has " + (capacity-fullness) + " slots spare.");
+                clogger(CLOG_DEBUG, "Sack " + this.getId() + " has " + (capacity-fullness) + " slots spare.");
                 return true;
             }
         }

@@ -13,8 +13,9 @@ TURNTABLES
 A N null E os 1 S null W ib 1
 
 PRESENTS 1
-2
+3
 0-3
-4-6
+0-3
+0-3
 
-TIMER 300
+TIMER 15
