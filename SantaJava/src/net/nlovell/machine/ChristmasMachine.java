@@ -124,21 +124,23 @@ public class ChristmasMachine {
             for(Sack sack : sacks){
                 AgeRange sackAge = sack.getAges();
                 clogger(CLOG_FINE_DEBUG,   "Sack " + sack.getId() + " has sack age: " + sackAge );
-
-                if(sackAge.contains(age)){
+                boolean test = sackAge.contains(age);
+                if(test){
                     mySacks = Arrays.copyOf(mySacks, j+1);
                     mySacks[j] = sack;
                     j++;
                 }
             }
-
-            arr[i] = new Present(mySacks, age, Integer.parseInt(gift[0]));
-            clogger(CLOG_OBJECT, arr[i].toString());
-            i++;
+            int obs = mySacks.length;
+            if(mySacks.length > 0) {
+                arr[i] = new Present(mySacks, age, Integer.parseInt(gift[0]));
+                clogger(CLOG_OBJECT, arr[i].toString());
+                i++;
+            } else {
+                clogger(CLOG_ERROR, "Invalid data provided. Present was not made with this data: " + gift.toString());
+            }
         }
         return arr;
-
-        //TODO: make the gifts actually get their suitable sacks
     }
 
     /**
@@ -182,7 +184,9 @@ public class ChristmasMachine {
             Present[] gifts = new Present[Integer.parseInt(hopper[2])];
             int j = 0;
             for (Present gift : presents) {
-                if (gift.getHopperID() == hopperID) {
+                if(gift == null){
+                    clogger(CLOG_ERROR, "Null gift tried to be added to new hoppper. Skipping.");
+                } else if (gift.getHopperID() == hopperID) {
                     gifts[j] = gift;
                     j++;
                 }
