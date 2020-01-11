@@ -41,7 +41,7 @@ public class Constants {
     final static private boolean CLOG_ERROR_TOGGLE  = false;
 
     /** The constant to enable CLOG logging for OBJECT lines. */
-    final static private boolean CLOG_OBJECT_TOGGLE = false;
+    final static private boolean CLOG_OBJECT_TOGGLE = true;
 
     /** The constant to enable CLOG logging for PARSE lines. */
     final static private boolean CLOG_PARSE_TOGGLE  = false;

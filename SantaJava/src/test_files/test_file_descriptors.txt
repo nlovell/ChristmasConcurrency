@@ -1,3 +1,13 @@
 Example 1: The example text provided on page 6 of the assignment brief
 Example 2: A textual represenation of the visual example provided on page 3 of the assignment brief
-Example 3: unused
+
+Example 3:  A circle of turntables with a one-way offshoot leading to a sack.
+
+                                H      H
+                            T ----> T -> T
+                            ↑       ↓    ↓
+                          S T <---- T -> S
+                                    S
+
+Graphical versions of these files can be found at https://nlovell.net/uclan/santajava/example_files
+

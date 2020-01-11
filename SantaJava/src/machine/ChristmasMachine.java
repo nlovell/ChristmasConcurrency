@@ -45,7 +45,7 @@ public class ChristmasMachine {
                             final String[][] sackData,
                             final String[][] turntableData) {
 
-        System.out.println("-----------New Christmas Machine established with the following elements-----------\n");
+        clog(CLOG_OBJECT, "-----------New Christmas Machine established with the following elements-----------\n");
 
         this.sessionLength = sessionLength;
 
@@ -58,7 +58,7 @@ public class ChristmasMachine {
 
         turntables = makeTurntables(turntableData, conveyors, sacks);
 
-        System.out.println("-----------------------------------------------------------------------------------\n");
+        clog(CLOG_OBJECT, "-----------------------------------------------------------------------------------\n");
 
     }
     //<editor-fold desc="Maker functions">
@@ -123,7 +123,7 @@ public class ChristmasMachine {
         for (String[] conv : conveyors) {
             Sack[] convSacks = getParts(conv[2].split(" "), mySacks, Sack.class);
             arr[i] = new Conveyor(conv[0], Integer.parseInt(conv[1]), convSacks);
-            System.out.println(arr[i].toString() + '\n');
+            clog(CLOG_OBJECT, arr[i].toString() + '\n');
 
             i++;
 
@@ -152,7 +152,7 @@ public class ChristmasMachine {
             arr[i] = new Hopper(Integer.parseInt(hopper[0]), getPart(hopper[1], conveyors),
                     Integer.parseInt(hopper[2]), Integer.parseInt(hopper[3]));
 
-            System.out.println(arr[i].toString() + '\n');
+            clog(CLOG_OBJECT, arr[i].toString() + '\n');
             i++;
         }
 
@@ -191,7 +191,7 @@ public class ChristmasMachine {
 
             arr[i] = new Turntable(turntable[0], conns);
 
-            System.out.println(arr[i].toString() + '\n');
+            clog(CLOG_OBJECT, arr[i].toString() + '\n');
             i++;
         }
 
@@ -202,7 +202,8 @@ public class ChristmasMachine {
 
 
     /**
-     * @return
+     * Converts current unix time in ms, to a timestamp as a string
+     * @return a HH:MM:SS timestamp
      */
     private static String timestamp() {
         long seconds = System.currentTimeMillis() / 1000;
@@ -213,7 +214,7 @@ public class ChristmasMachine {
     }
 
     /**
-     * Start stuff.
+     * Kicks off the operation of the machine.
      */
     public void runMachine() {
         startMachine();
@@ -258,14 +259,13 @@ public class ChristmasMachine {
     private void startMachine() {
 
         for (Hopper hopper : hoppers) {
-            hopper.setSacks(sacks);
             new Thread(hopper).start();
         }
         for (Turntable turntable : turntables) {
             new Thread(turntable).start();
         }
 
-        StringBuilder elfString = new StringBuilder("");
+        StringBuilder elfString = new StringBuilder();
         if(elves.length == 1){
             elfString.append("Meet the Elf running this machine - it's ").append(elves[0].getElfID());
         } else {
@@ -281,8 +281,7 @@ public class ChristmasMachine {
             }
         }
 
-
-        clog(CLOG_OUTPUT, " " + String.valueOf(elfString));
+        clog(CLOG_OUTPUT, " " + elfString);
     }
 
     /**
@@ -326,7 +325,7 @@ public class ChristmasMachine {
         clog(CLOG_OUTPUT, " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
         int giftCount = 0;
         for (Hopper hopper : hoppers) {
-            giftCount = giftCount + hopper.getCapacity();
+            giftCount = giftCount + hopper.getCurrent();
         }
 
         clog(CLOG_OUTPUT, "               Hoppers cumulatively contain " + giftCount + " gifts.");

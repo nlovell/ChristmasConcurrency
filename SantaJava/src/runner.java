@@ -35,7 +35,7 @@ public class runner {
 
         //Comment these lines out to override the default example.
         final String testfiledir =  "D:/repositories/Concurrency1/SantaJava/src/test_files/";
-        fileToParse = testfiledir + "example_2.txt";
+        fileToParse = testfiledir + "example_3.txt";
         // Or fill in your own value(s) here to automatically skip manual filename entry at runtime
 
 
