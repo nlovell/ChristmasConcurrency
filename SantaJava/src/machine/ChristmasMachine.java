@@ -223,8 +223,6 @@ public class ChristmasMachine {
 
         int timer = 0;
         final int target = 1000;
-        int variance = 0;
-        int time = 0;
         //A simple timer loop of variable length
         do {
             try {
@@ -267,34 +265,24 @@ public class ChristmasMachine {
             new Thread(turntable).start();
         }
 
-        StringBuilder elfString = new StringBuilder("Meet the Elves running this machine - there's ");
+        StringBuilder elfString = new StringBuilder("");
+        if(elves.length == 1){
+            elfString.append("Meet the Elf running this machine - it's ").append(elves[0].getElfID());
+        } else {
+            elfString.append("Meet the Elves running this machine - there's ");
 
-        for (Elf elf : elves) {
-            if (elf != elves[elves.length - 1])
-                elfString.append(elf.getElfID()).append(", ");
-            else
-                elfString.append("and ").append(elf.getElfID()).append("!");
+            for (Elf elf : elves) {
+                if (elf != elves[elves.length - 1])
+                    elfString.append(elf.getElfID()).append(", ");
+                else
+                    elfString.append("and ").append(elf.getElfID()).append("!");
 
-            new Thread(elf).start();
+                new Thread(elf).start();
+            }
         }
+
+
         clog(CLOG_OUTPUT, " " + String.valueOf(elfString));
-    }
-
-    /**
-     *
-     */
-    private void startMachine2() {
-        Thread[] firstThreads = new Thread[hoppers.length];
-        Thread[] secondThreads = new Thread[turntables.length + elves.length];
-
-        for (MachinePart part : hoppers) {
-
-        }
-
-        for (Runnable secondary : turntables) {
-
-        }
-
     }
 
     /**
@@ -331,7 +319,8 @@ public class ChristmasMachine {
     }
 
     /**
-     * @param startTime
+     *
+     * @param startTime the time the machine started
      */
     private void timedLogger(Long startTime) {
         clog(CLOG_OUTPUT, " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
@@ -352,7 +341,8 @@ public class ChristmasMachine {
     /**
      * Time since string.
      *
-     * @return the string
+     * @param time the original time to reference
+     * @return the time in milliseconds since param time
      */
     private long timeSince(long time) {
         return System.currentTimeMillis() - time;
@@ -362,11 +352,11 @@ public class ChristmasMachine {
     //<editor-fold desc="Part getters">
 
     /**
-     * Gets part.
+     * Gets a part.
      *
      * @param <P>   the type parameter
-     * @param id    the id
-     * @param parts the parts
+     * @param id    the id of the part
+     * @param parts the array of parts to search in
      * @return the part
      */
     private static <P extends MachinePart> P getPart(final String id, final P[] parts) {
@@ -381,11 +371,13 @@ public class ChristmasMachine {
     }
 
     /**
-     * @param ids
-     * @param parts
-     * @param clazz
-     * @param <P>
-     * @return
+     * Get an array that references specific parts of the machine based on ID and class-type.
+     *
+     * @param ids the array of IDs of the elements
+     * @param parts the array of parts to search in
+     * @param clazz the class type of the parts
+     * @param <P> the type parameter
+     * @return an array of MachineParts
      */
     private <P extends MachinePart> P[] getParts(final String[] ids, final P[] parts, Class<P> clazz) {
 
@@ -408,7 +400,8 @@ public class ChristmasMachine {
     }
 
     /**
-     * @return
+     * Get the number of remaining gifts in the Christmas Machine.
+     * @return the number of gifts in the Christmas Machine
      */
     private int giftsInSystem() {
         int remaining = 0;

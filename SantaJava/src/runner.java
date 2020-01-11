@@ -33,11 +33,11 @@ public class runner {
 
         String fileToParse = "";
 
-        //Comment this line out to override the default example.
-        // Or fill in your own value here to automatically skip manual filename entry at runtime
-
+        //Comment these lines out to override the default example.
         final String testfiledir =  "D:/repositories/Concurrency1/SantaJava/src/test_files/";
         fileToParse = testfiledir + "example_2.txt";
+        // Or fill in your own value(s) here to automatically skip manual filename entry at runtime
+
 
         while (!filePathValidator.matcher(fileToParse).find()) {
             fileToParse = consoleReader();
