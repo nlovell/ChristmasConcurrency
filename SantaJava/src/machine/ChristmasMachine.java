@@ -61,25 +61,146 @@ public class ChristmasMachine {
         System.out.println("-----------------------------------------------------------------------------------\n");
 
     }
+    //<editor-fold desc="Maker functions">
 
     /**
-     * Gets part.
+     * Make an array of sacks.
      *
-     * @param <P>   the type parameter
-     * @param id    the id
-     * @param parts the parts
-     * @return the part
+     * @param sacks the String[][] defining a collection of sacks
+     * @return the sack array[] to return
      */
-    private static <P extends MachinePart> P getPart(final String id, final P[] parts) {
+    private Sack[] makeSacks(final String[][] sacks) {
+        Sack[] arr = new Sack[sacks.length];
+        int i = 0;
 
-        for (P part : parts) {
-            if (part.getId().equals(id)) {
-                return part;
-            }
+        for (String[] sack : sacks) {
+            //cap id minmax
+            int ageMin = Integer.parseInt(sack[2].split("-")[0]);
+            int ageMax = Integer.parseInt(sack[2].split("-")[1]);
+
+            arr[i] = new Sack(Integer.parseInt(sack[0]), Integer.parseInt(sack[1]), ageMin, ageMax);
+            i++;
         }
+        return arr;
+    }
 
+    private Elf[] makeElves(final Sack[] sacks) {
+        Elf[] elves = new Elf[sacks.length];
+        int i = 0;
+
+        for (Sack sack : sacks) {
+            elves[i] = new Elf(sack, 10);
+            i++;
+        }
+        return elves;
+    }
+
+
+    /**
+     * Make presents present [].
+     *
+     * @param presents the presents
+     * @param sacks    the sacks
+     * @return the present []
+     */
+    private Present[] makePresents(String[][] presents, Sack[] sacks) {
+        //TODO make gifts
         return null;
     }
+
+    /**
+     * Make conveyors conveyor [ ].
+     *
+     * @param conveyors the conveyors
+     * @param mySacks   the my sacks
+     * @return the conveyor [ ]
+     */
+    private Conveyor[] makeConveyors(final String[][] conveyors, final Sack[] mySacks) {
+        Conveyor[] arr = new Conveyor[conveyors.length];
+
+        int i = 0;
+
+        for (String[] conv : conveyors) {
+            Sack[] convSacks = getParts(conv[2].split(" "), mySacks, Sack.class);
+            arr[i] = new Conveyor(conv[0], Integer.parseInt(conv[1]), convSacks);
+            System.out.println(arr[i].toString() + '\n');
+
+            i++;
+
+        }
+
+        return arr;
+    }
+
+
+    /**
+     * Make hoppers hopper [ ].
+     *
+     * @param hoppers   the hoppers
+     * @param conveyors the conveyors
+     * @param presents  the presents
+     * @return the hopper [ ]
+     */
+    private Hopper[] makeHoppers(String[][] hoppers, Conveyor[] conveyors, Present[] presents) {
+        //TODO: make hoppers use actual gifts
+        Hopper[] arr = new Hopper[hoppers.length];
+
+        int i = 0;
+
+        for (String[] hopper : hoppers) {
+
+            arr[i] = new Hopper(Integer.parseInt(hopper[0]), getPart(hopper[1], conveyors),
+                    Integer.parseInt(hopper[2]), Integer.parseInt(hopper[3]));
+
+            System.out.println(arr[i].toString() + '\n');
+            i++;
+        }
+
+        return arr;
+    }
+
+    /**
+     * Make turntables turntable [ ].
+     *
+     * @param turntables the turntables
+     * @param belts      the conveyors
+     * @param sacks      the sacks
+     * @return the turntable [ ]
+     */
+    private Turntable[] makeTurntables(String[][] turntables, Conveyor[] belts, Sack[] sacks) {
+        Turntable[] arr = new Turntable[turntables.length];
+
+        int i = 0;
+
+        for (String[] turntable : turntables) {
+            TurntableConnection[] conns = new TurntableConnection[4];
+            //NESW
+            for (int j = 1; j <= 4; j++) {
+                if (turntable[j] != null) {
+                    Direction dir = Direction.values()[j - 1];
+                    String getVal = turntable[j].split(" ")[1];
+
+                    if (turntable[j].split(" ")[0].equals("os")) {
+                        conns[j - 1] = new TurntableConnection(dir, getPart(getVal, sacks));
+                    } else {
+                        boolean input = !turntable[j].split("b")[0].equals("o");
+                        conns[j - 1] = new TurntableConnection(dir, input, getPart(getVal, belts));
+                    }
+                }
+            }
+
+            arr[i] = new Turntable(turntable[0], conns);
+
+            System.out.println(arr[i].toString() + '\n');
+            i++;
+        }
+
+        return arr;
+    }
+
+    //</editor-fold>
+
+
 
     private static String timestamp() {
         long seconds = System.currentTimeMillis() / 1000;
@@ -131,22 +252,6 @@ public class ChristmasMachine {
         timedLogger(endTime);
     }
 
-    private void timedLogger(Long startTime) {
-        clog(CLOG_OUTPUT,  " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
-        int giftCount = 0;
-        for(Hopper hopper : hoppers){
-            giftCount = giftCount + hopper.getCapacity();
-        }
-
-        clog(CLOG_OUTPUT,  "               Hoppers cumulatively contain " + giftCount + " gifts.");
-        giftCount = 0;
-
-        for(Sack sack : sacks){
-            giftCount = giftCount + sack.getLifetimeTotal();
-        }
-        clog(CLOG_OUTPUT,  "               " + giftCount + " presents have been deposited into sacks.");
-    }
-
     private void startMachine() {
 
         for (Hopper hopper : hoppers) {
@@ -161,9 +266,9 @@ public class ChristmasMachine {
 
         for (Elf elf : elves) {
             if(elf != elves[elves.length-1])
-                elfString.append(elf.getElfID() + ", ");
+                elfString.append(elf.getElfID()).append(", ");
             else
-                elfString.append("and " + elf.getElfID() + "!");
+                elfString.append("and ").append(elf.getElfID()).append("!");
 
             new Thread(elf).start();
         }
@@ -215,6 +320,22 @@ public class ChristmasMachine {
         }
     }
 
+    private void timedLogger(Long startTime) {
+        clog(CLOG_OUTPUT,  " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
+        int giftCount = 0;
+        for(Hopper hopper : hoppers){
+            giftCount = giftCount + hopper.getCapacity();
+        }
+
+        clog(CLOG_OUTPUT,  "               Hoppers cumulatively contain " + giftCount + " gifts.");
+        giftCount = 0;
+
+        for(Sack sack : sacks){
+            giftCount = giftCount + sack.getLifetimeTotal();
+        }
+        clog(CLOG_OUTPUT,  "               " + giftCount + " presents have been deposited into sacks.\n");
+    }
+
     /**
      * Time since string.
      *
@@ -224,20 +345,26 @@ public class ChristmasMachine {
         return System.currentTimeMillis() - time;
     }
 
-    private int giftsInSystem() {
-        int remaining = 0;
 
-        for (Conveyor conveyor : conveyors) {
-            remaining = remaining + conveyor.giftsInConveyor();
-        }
 
-        for (Turntable turntable : turntables) {
-            if (turntable.hasPresent()) {
-                remaining++;
+    //<editor-fold desc="Part getters">
+    /**
+     * Gets part.
+     *
+     * @param <P>   the type parameter
+     * @param id    the id
+     * @param parts the parts
+     * @return the part
+     */
+    private static <P extends MachinePart> P getPart(final String id, final P[] parts) {
+
+        for (P part : parts) {
+            if (part.getId().equals(id)) {
+                return part;
             }
         }
 
-        return remaining;
+        return null;
     }
 
 
@@ -261,136 +388,20 @@ public class ChristmasMachine {
         return output;
     }
 
-    /**
-     * Make an array of sacks.
-     *
-     * @param sacks the String[][] defining a collection of sacks
-     * @return the sack array[] to return
-     */
-    private Sack[] makeSacks(final String[][] sacks) {
-        Sack[] arr = new Sack[sacks.length];
-        int i = 0;
+    private int giftsInSystem() {
+        int remaining = 0;
 
-        for (String[] sack : sacks) {
-            //cap id minmax
-            int ageMin = Integer.parseInt(sack[2].split("-")[0]);
-            int ageMax = Integer.parseInt(sack[2].split("-")[1]);
-
-            arr[i] = new Sack(Integer.parseInt(sack[0]), Integer.parseInt(sack[1]), ageMin, ageMax);
-            i++;
-        }
-        return arr;
-    }
-
-    private Elf[] makeElves(final Sack[] sacks) {
-        Elf[] elves = new Elf[sacks.length];
-        int i = 0;
-
-        for (Sack sack : sacks) {
-            elves[i] = new Elf(sack, 10);
-            i++;
-        }
-        return elves;
-    }
-
-    /**
-     * Make conveyors conveyor [ ].
-     *
-     * @param conveyors the conveyors
-     * @param mySacks   the my sacks
-     * @return the conveyor [ ]
-     */
-    private Conveyor[] makeConveyors(final String[][] conveyors, final Sack[] mySacks) {
-        Conveyor[] arr = new Conveyor[conveyors.length];
-
-        int i = 0;
-
-        for (String[] conv : conveyors) {
-            Sack[] convSacks = getParts(conv[2].split(" "), mySacks, Sack.class);
-            arr[i] = new Conveyor(conv[0], Integer.parseInt(conv[1]), convSacks);
-            System.out.println(arr[i].toString() + '\n');
-
-            i++;
-
+        for (Conveyor conveyor : conveyors) {
+            remaining = remaining + conveyor.giftsInConveyor();
         }
 
-        return arr;
-    }
-
-    /**
-     * Make hoppers hopper [ ].
-     *
-     * @param hoppers   the hoppers
-     * @param conveyors the conveyors
-     * @param presents  the presents
-     * @return the hopper [ ]
-     */
-    private Hopper[] makeHoppers(String[][] hoppers, Conveyor[] conveyors, Present[] presents) {
-        //TODO: make hoppers use actual gifts
-        Hopper[] arr = new Hopper[hoppers.length];
-
-        int i = 0;
-
-        for (String[] hopper : hoppers) {
-
-            arr[i] = new Hopper(Integer.parseInt(hopper[0]), getPart(hopper[1], conveyors),
-                    Integer.parseInt(hopper[2]), Integer.parseInt(hopper[3]));
-
-            System.out.println(arr[i].toString() + '\n');
-            i++;
-        }
-
-        return arr;
-    }
-
-    /**
-     * Make presents present [].
-     *
-     * @param presents the presents
-     * @param sacks    the sacks
-     * @return the present []
-     */
-    private Present[] makePresents(String[][] presents, Sack[] sacks) {
-        //TODO make gifts
-        return null;
-    }
-
-    /**
-     * Make turntables turntable [ ].
-     *
-     * @param turntables the turntables
-     * @param belts      the conveyors
-     * @param sacks      the sacks
-     * @return the turntable [ ]
-     */
-    private Turntable[] makeTurntables(String[][] turntables, Conveyor[] belts, Sack[] sacks) {
-        Turntable[] arr = new Turntable[turntables.length];
-
-        int i = 0;
-
-        for (String[] turntable : turntables) {
-            TurntableConnection[] conns = new TurntableConnection[4];
-            //NESW
-            for (int j = 1; j <= 4; j++) {
-                if (turntable[j] != null) {
-                    Direction dir = Direction.values()[j - 1];
-                    String getVal = turntable[j].split(" ")[1];
-
-                    if (turntable[j].split(" ")[0].equals("os")) {
-                        conns[j - 1] = new TurntableConnection(dir, getPart(getVal, sacks));
-                    } else {
-                        boolean input = !turntable[j].split("b")[0].equals("o");
-                        conns[j - 1] = new TurntableConnection(dir, input, getPart(getVal, belts));
-                    }
-                }
+        for (Turntable turntable : turntables) {
+            if (turntable.hasPresent()) {
+                remaining++;
             }
-
-            arr[i] = new Turntable(turntable[0], conns);
-
-            System.out.println(arr[i].toString() + '\n');
-            i++;
         }
 
-        return arr;
+        return remaining;
     }
+    //</editor-fold>
 }
