@@ -202,7 +202,7 @@ public class ChristmasMachine {
             int temp = giftsInSystem();
             if (remaining > temp) {
                 remaining = temp;
-                System.out.print("\r              " + remaining + " unsorted gifts are present in the system.");
+                clog(CLOG_OUTPUT,  remaining + " unsorted gifts are present in the system.");
             }
         }
 
