@@ -24,10 +24,31 @@ public class Constants {
      */
     final static public int MIN_TIME = Math.min(ROTATE_TIME, MOVE_TIME);
 
+    /*--------------------------------------------------------
+       CLOG - the simple [C]onstant [LOG]ger, with log levels.
+     --------------------------------------------------------*/
+
+    /** The constant to enable CLOG logging for DEBUG lines. */
+    final static private boolean CLOG_DEBUG_TOGGLE = true;
+
+    /** The constant to enable CLOG logging for OUTPUT lines. */
+    final static private boolean CLOG_OUTPUT_TOGGLE = true;
+
+    /** The constant to enable CLOG logging for ERROR lines. */
+    final static private boolean CLOG_ERROR_TOGGLE = false;
+
+    /** The constant to enable CLOG logging for OBJECT lines. */
+    final static private boolean CLOG_OBJECT_TOGGLE = false;
+
+    /** The constant to enable CLOG logging for PARSE lines. */
+    final static private boolean CLOG_PARSE_TOGGLE = false;
+
+
     /**
-     * Console Logging with basic levels
+     * Console Logging with basic levels.
      *
-     * @param input
+     * @param clog_level the clog level
+     * @param input      the input
      */
     public static void clog(final String clog_level, final String input) {
         boolean output = false;
@@ -54,16 +75,25 @@ public class Constants {
         }
     }
 
+    /**
+     * The constant value to preface a DEBUG line with the CLOG logger.
+     */
     final static public String CLOG_DEBUG   = " DEBUG: ";
+    /**
+     * The constant value to preface an OUTPUT line with the CLOG logger.
+     */
     final static public String CLOG_OUTPUT  = "OUTPUT: ";
+    /**
+     * The constant value to preface an ERRORR line with the CLOG logger.
+     */
     final static public String CLOG_ERROR   = " ERROR: ";
+    /**
+     * The constant value to preface an OBJECT line with the CLOG logger.
+     */
     final static public String CLOG_OBJECT  = "OBJECT: ";
+    /**
+     * The constant value to preface a PARSE line with the CLOG logger.
+     */
     final static public String CLOG_PARSE   = " PARSE: ";
-
-    final static private boolean CLOG_DEBUG_TOGGLE = true;
-    final static private boolean CLOG_OUTPUT_TOGGLE = true;
-    final static private boolean CLOG_ERROR_TOGGLE = false;
-    final static private boolean CLOG_OBJECT_TOGGLE = false;
-    final static private boolean CLOG_PARSE_TOGGLE = false;
 
 }
