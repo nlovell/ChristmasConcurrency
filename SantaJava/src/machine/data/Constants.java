@@ -26,6 +26,9 @@ public class Constants {
 
     /*--------------------------------------------------------
        CLOG - the simple [C]onstant [LOG]ger, with log levels.
+         Toggle these values between true/false to enable
+         and disable different levels of detail in the
+         console output of the program.
      --------------------------------------------------------*/
 
     /** The constant to enable CLOG logging for DEBUG lines. */
@@ -42,6 +45,26 @@ public class Constants {
 
     /** The constant to enable CLOG logging for PARSE lines. */
     final static private boolean CLOG_PARSE_TOGGLE = false;
+
+      /*--------------------------------------------------------
+       The values to preface each string with:
+     --------------------------------------------------------*/
+
+    /** The constant value to preface a DEBUG line with the CLOG logger. */
+    final static public String CLOG_DEBUG   = " DEBUG: ";
+
+    /** The constant value to preface an OUTPUT line with the CLOG logger. */
+    final static public String CLOG_OUTPUT  = "OUTPUT: ";
+
+    /** The constant value to preface an ERRORR line with the CLOG logger. */
+    final static public String CLOG_ERROR   = " ERROR: ";
+
+    /** The constant value to preface an OBJECT line with the CLOG logger. */
+    final static public String CLOG_OBJECT  = "OBJECT: ";
+
+    /** The constant value to preface a PARSE line with the CLOG logger. */
+    final static public String CLOG_PARSE   = " PARSE: ";
+
 
 
     /**
@@ -74,26 +97,4 @@ public class Constants {
             System.out.println(clog_level + input);
         }
     }
-
-    /**
-     * The constant value to preface a DEBUG line with the CLOG logger.
-     */
-    final static public String CLOG_DEBUG   = " DEBUG: ";
-    /**
-     * The constant value to preface an OUTPUT line with the CLOG logger.
-     */
-    final static public String CLOG_OUTPUT  = "OUTPUT: ";
-    /**
-     * The constant value to preface an ERRORR line with the CLOG logger.
-     */
-    final static public String CLOG_ERROR   = " ERROR: ";
-    /**
-     * The constant value to preface an OBJECT line with the CLOG logger.
-     */
-    final static public String CLOG_OBJECT  = "OBJECT: ";
-    /**
-     * The constant value to preface a PARSE line with the CLOG logger.
-     */
-    final static public String CLOG_PARSE   = " PARSE: ";
-
 }
