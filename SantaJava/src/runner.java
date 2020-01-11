@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import static clog.constants.*;
+import static clog.log.clogger;
 import static parser.Regexp.filePathValidator;
 
 /**
@@ -40,9 +41,9 @@ public class runner {
 
         while (!filePathValidator.matcher(fileToParse).find()) {
             fileToParse = consoleReader();
-            clog.log.clogger(CLOG_PARSE, fileToParse);
+            clogger(CLOG_PARSE, fileToParse);
             assert fileToParse != null;
-            clog.log.clogger(CLOG_PARSE, "Is input valid?: " + filePathValidator.matcher(fileToParse).find());
+            clogger(CLOG_PARSE, "Is input valid?: " + filePathValidator.matcher(fileToParse).find());
         }
 
         FileParser fp = new FileParser();

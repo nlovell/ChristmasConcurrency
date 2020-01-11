@@ -28,13 +28,13 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
      * @param capacity      the capacity of the hopper
      * @param speed         the output speed of the hopper
      */
-    public Hopper(int hopperID, Conveyor connectedBelt, int capacity, int speed) {//, Present[] gifts) {
+    public Hopper(int hopperID, Conveyor connectedBelt, int capacity, int speed, Present[] gifts) {
         super(hopperID);
         this.connectedBelt = connectedBelt;
         this.capacity = capacity;
-        this.current = 0; //capacity
+        this.current = gifts.length;
         this.speed = speed;
-        //this.gifts = gifts;
+        this.gifts = gifts;
         //TODO: gift hopper bullshit
     }
 

@@ -10,19 +10,19 @@ public class constants {
      --------------------------------------------------------*/
 
     /** The constant to enable CLOG logging for OUTPUT lines. */
-    final static boolean CLOG_OUTPUT_TOGGLE = true;
+    final static boolean TOGGLE_CLOG_OUTPUT = true;
 
     /** The constant to enable CLOG logging for DEBUG lines. */
-    final static boolean CLOG_DEBUG_TOGGLE  = false;
+    final static boolean TOGGLE_CLOG_DEBUG = true;
 
     /** The constant to enable CLOG logging for ERROR lines. */
-    final static boolean CLOG_ERROR_TOGGLE  = false;
+    final static boolean TOGGLE_CLOG_ERROR = false;
 
     /** The constant to enable CLOG logging for OBJECT lines. */
-    final static boolean CLOG_OBJECT_TOGGLE = true;
+    final static boolean TOGGLE_CLOG_OBJECT = true;
 
     /** The constant to enable CLOG logging for PARSE lines. */
-    final static boolean CLOG_PARSE_TOGGLE  = true;
+    final static boolean TOGGLE_CLOG_PARSE = true;
 
       /*--------------------------------------------------------
        The values to preface each string with:

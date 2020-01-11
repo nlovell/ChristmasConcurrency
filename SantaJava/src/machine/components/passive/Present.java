@@ -9,16 +9,18 @@ public class Present {
 
     final private Sack[] suitableSacks;
     final private AgeRange ageRange;
+    final int hopperID;
 
     /**
      * Instantiates a new Present.
-     *
-     * @param suitableSacks the type of toy
+     *  @param suitableSacks the type of toy
      * @param ageMin        the age min
      * @param ageMax        the age max
+     * @param hopperID
      */
-    public Present(Sack[] suitableSacks, int ageMin, int ageMax) {
+    public Present(Sack[] suitableSacks, int ageMin, int ageMax, final int hopperID) {
         this.suitableSacks = suitableSacks;
+        this.hopperID = hopperID;
         this.ageRange = new AgeRange(ageMin, ageMax);
     }
 
@@ -60,6 +62,10 @@ public class Present {
         return "Present{" +
                 "ageRange=" + ageRange +
                 '}';
+    }
+
+    public int getHopperID(){
+        return hopperID;
     }
 
     public void deliver(){

@@ -21,23 +21,23 @@ public class log {
         boolean output = false;
         switch (clog_level) {
             case constants.CLOG_OUTPUT:
-                if (CLOG_OUTPUT_TOGGLE)
+                if (TOGGLE_CLOG_OUTPUT)
                     output = true;
                 break;
             case CLOG_DEBUG:
-                if (CLOG_DEBUG_TOGGLE)
+                if (TOGGLE_CLOG_DEBUG)
                     output = true;
                 break;
             case CLOG_ERROR:
-                if (CLOG_ERROR_TOGGLE)
+                if (TOGGLE_CLOG_ERROR)
                     output = true;
                 break;
             case CLOG_OBJECT:
-                if (CLOG_OBJECT_TOGGLE)
+                if (TOGGLE_CLOG_OBJECT)
                     output = true;
                 break;
             case CLOG_PARSE:
-                if (CLOG_PARSE_TOGGLE)
+                if (TOGGLE_CLOG_PARSE)
                     output = true;
                 break;
         }

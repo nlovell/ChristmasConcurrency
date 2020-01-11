@@ -11,6 +11,7 @@ import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
 import static clog.constants.*;
+import static clog.log.clogger;
 import static machine.data.Constants.MOVE_TIME;
 import static machine.data.Constants.ROTATE_TIME;
 import static machine.data.Direction.*;
@@ -44,12 +45,12 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         boolean print = true;
         do {
             if (current != null) {
-                if (!print) clog.log.clogger(CLOG_DEBUG,
+                if (!print) clogger(CLOG_DEBUG,
                         "Turntable " + this.getId() + " is attempting to move a present.\n" + this.toString());
                 print = true;
                 supplyPresent();
             } else {
-                if (print) clog.log.clogger(CLOG_DEBUG,
+                if (print) clogger(CLOG_DEBUG,
                         "Turntable " + this.getId() + " is attempting to receive a present.");
                 print = false;
                 consumePresent();
@@ -88,7 +89,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
                 if (supp != null) {
                     this.current = supp.supply();
                     if (this.current != null) {
-                        clog.log.clogger(CLOG_DEBUG, "Turntable " + this.getId() + " has successfully received a present!");
+                        clogger(CLOG_DEBUG, "Turntable " + this.getId() + " has successfully received a present!");
                         break;
                     }
                 }
@@ -136,7 +137,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
      */
     public void rotateDelay() {
         try {
-            clog.log.clogger(CLOG_DEBUG, "Turntable " + this.getId() + " is rotating.");
+            clogger(CLOG_DEBUG, "Turntable " + this.getId() + " is rotating.");
             Thread.sleep(ROTATE_TIME);
         } catch (InterruptedException e) {
             e.printStackTrace();
