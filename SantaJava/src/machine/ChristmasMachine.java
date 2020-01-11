@@ -132,7 +132,7 @@ public class ChristmasMachine {
                 }
             }
 
-            arr[i] = new Present(null, age, Integer.parseInt(gift[0]));
+            arr[i] = new Present(mySacks, age, Integer.parseInt(gift[0]));
             clogger(CLOG_OBJECT, arr[i].toString());
             i++;
         }
