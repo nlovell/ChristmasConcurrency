@@ -187,7 +187,9 @@ public class ChristmasMachine {
             for (Present gift : presents) {
                 if (gift.getHopperID() == hopperID) {
                     gifts[j] = gift;
-                    j++;
+                }
+                if(j++ == gifts.length-1){
+                    break;
                 }
             }
 
