@@ -34,7 +34,7 @@ public class Log {
                 break;
             case CLOG_ERROR:
                 if (TOGGLE_CLOG_ERROR)
-                    output = true;
+                    System.err.println(clog_level + input);
                 break;
             case CLOG_OBJECT:
                 if (TOGGLE_CLOG_OBJECT)
@@ -46,7 +46,7 @@ public class Log {
                 break;
         }
 
-        if(output){
+        if (output) {
             System.out.println(clog_level + input);
         }
     }
