@@ -45,7 +45,7 @@ public class runner {
         }
 
         FileParser fp = new FileParser();
-        ArrayList<ArrayList<String[]>> output = fp.parseFile(fileToParse, false, true);
+        ArrayList<ArrayList<String[]>> output = fp.parseFile(fileToParse, true, false);
 
         String[][] presents = new String[1][1];
         String[][] conveyors = parseArrayList(output.get(0), 3);
