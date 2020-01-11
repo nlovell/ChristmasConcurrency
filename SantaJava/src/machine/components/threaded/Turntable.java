@@ -44,12 +44,12 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         boolean print = true;
         do {
             if (current != null) {
-                if (!print) clog.log.logger(CLOG_DEBUG,
+                if (!print) clog.log.clogger(CLOG_DEBUG,
                         "Turntable " + this.getId() + " is attempting to move a present.\n" + this.toString());
                 print = true;
                 supplyPresent();
             } else {
-                if (print) clog.log.logger(CLOG_DEBUG,
+                if (print) clog.log.clogger(CLOG_DEBUG,
                         "Turntable " + this.getId() + " is attempting to receive a present.");
                 print = false;
                 consumePresent();
@@ -88,7 +88,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
                 if (supp != null) {
                     this.current = supp.supply();
                     if (this.current != null) {
-                        clog.log.logger(CLOG_DEBUG, "Turntable " + this.getId() + " has successfully received a present!");
+                        clog.log.clogger(CLOG_DEBUG, "Turntable " + this.getId() + " has successfully received a present!");
                         break;
                     }
                 }
@@ -136,7 +136,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
      */
     public void rotateDelay() {
         try {
-            clog.log.logger(CLOG_DEBUG, "Turntable " + this.getId() + " is rotating.");
+            clog.log.clogger(CLOG_DEBUG, "Turntable " + this.getId() + " is rotating.");
             Thread.sleep(ROTATE_TIME);
         } catch (InterruptedException e) {
             e.printStackTrace();

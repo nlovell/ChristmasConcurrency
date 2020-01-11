@@ -47,7 +47,7 @@ public class ChristmasMachine {
                             final String[][] sackData,
                             final String[][] turntableData) {
 
-        clog.log.logger(CLOG_OBJECT, "-----------New Christmas Machine established with the following elements-----------\n");
+        clog.log.clogger(CLOG_OBJECT, "-----------New Christmas Machine established with the following elements-----------\n");
 
         this.sessionLength = sessionLength;
 
@@ -60,7 +60,7 @@ public class ChristmasMachine {
 
         turntables = makeTurntables(turntableData, conveyors, sacks);
 
-        clog.log.logger(CLOG_OBJECT, "-----------------------------------------------------------------------------------\n");
+        clog.log.clogger(CLOG_OBJECT, "-----------------------------------------------------------------------------------\n");
 
     }
     //<editor-fold desc="Maker functions">
@@ -107,7 +107,7 @@ public class ChristmasMachine {
      */
     private Present[] makePresents(String[][] presents, Sack[] sacks) {
         for(String[] present : presents) {
-            clog.log.logger(CLOG_DEBUG, present.toString());
+            clog.log.clogger(CLOG_DEBUG, present.toString());
         }
         return null;
     }
@@ -127,7 +127,7 @@ public class ChristmasMachine {
         for (String[] conv : conveyors) {
             Sack[] convSacks = getParts(conv[2].split(" "), mySacks, Sack.class);
             arr[i] = new Conveyor(conv[0], Integer.parseInt(conv[1]), convSacks);
-            clog.log.logger(CLOG_OBJECT, arr[i].toString() + '\n');
+            clog.log.clogger(CLOG_OBJECT, arr[i].toString() + '\n');
 
             i++;
         }
@@ -155,7 +155,7 @@ public class ChristmasMachine {
             arr[i] = new Hopper(Integer.parseInt(hopper[0]), getPart(hopper[1], conveyors),
                     Integer.parseInt(hopper[2]), Integer.parseInt(hopper[3]));
 
-            clog.log.logger(CLOG_OBJECT, arr[i].toString() + '\n');
+            clog.log.clogger(CLOG_OBJECT, arr[i].toString() + '\n');
             i++;
         }
 
@@ -194,7 +194,7 @@ public class ChristmasMachine {
 
             arr[i] = new Turntable(turntable[0], conns);
 
-            clog.log.logger(CLOG_OBJECT, arr[i].toString() + '\n');
+            clog.log.clogger(CLOG_OBJECT, arr[i].toString() + '\n');
             i++;
         }
 
@@ -222,7 +222,7 @@ public class ChristmasMachine {
     public void runMachine() {
         startMachine();
 
-        clog.log.logger(CLOG_OUTPUT, " Session begins at " + timestamp() +
+        clog.log.clogger(CLOG_OUTPUT, " Session begins at " + timestamp() +
                 ", and will last for " + sessionLength + " seconds.");
         long startTime = System.currentTimeMillis();
 
@@ -241,17 +241,17 @@ public class ChristmasMachine {
             }
         } while (timer < sessionLength);
 
-        clog.log.logger(CLOG_OUTPUT, " Session over at " + timestamp() + '\n');
+        clog.log.clogger(CLOG_OUTPUT, " Session over at " + timestamp() + '\n');
         long hopperStopTime = System.currentTimeMillis();
-        clog.log.logger(CLOG_OUTPUT, " Halting hopper outputs, and waiting for system to tidy up. \n");
+        clog.log.clogger(CLOG_OUTPUT, " Halting hopper outputs, and waiting for system to tidy up. \n");
 
         endMachine();
 
-        clog.log.logger(CLOG_OUTPUT, " Session over!");
+        clog.log.clogger(CLOG_OUTPUT, " Session over!");
         long endTime = System.currentTimeMillis();
 
-        clog.log.logger(CLOG_OUTPUT, " System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
-        clog.log.logger(CLOG_OUTPUT, " " + (String.format("Total time: %ds", (0L + (endTime - startTime) / 1000))));
+        clog.log.clogger(CLOG_OUTPUT, " System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
+        clog.log.clogger(CLOG_OUTPUT, " " + (String.format("Total time: %ds", (0L + (endTime - startTime) / 1000))));
 
         timedLogger(endTime);
     }
@@ -284,7 +284,7 @@ public class ChristmasMachine {
             }
         }
 
-        clog.log.logger(CLOG_OUTPUT, " " + elfString);
+        clog.log.clogger(CLOG_OUTPUT, " " + elfString);
     }
 
     /**
@@ -307,7 +307,7 @@ public class ChristmasMachine {
             int temp = giftsInSystem();
             if (remaining > temp) {
                 remaining = temp;
-                clog.log.logger(CLOG_OUTPUT, remaining + " unsorted gifts are present in the system.");
+                clog.log.clogger(CLOG_OUTPUT, remaining + " unsorted gifts are present in the system.");
             }
         }
 
@@ -325,19 +325,19 @@ public class ChristmasMachine {
      * @param startTime the time the machine started
      */
     private void timedLogger(Long startTime) {
-        clog.log.logger(CLOG_OUTPUT, " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
+        clog.log.clogger(CLOG_OUTPUT, " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
         int giftCount = 0;
         for (Hopper hopper : hoppers) {
             giftCount = giftCount + hopper.getCurrent();
         }
 
-        clog.log.logger(CLOG_OUTPUT, "               Hoppers cumulatively contain " + giftCount + " gifts.");
+        clog.log.clogger(CLOG_OUTPUT, "               Hoppers cumulatively contain " + giftCount + " gifts.");
         giftCount = 0;
 
         for (Sack sack : sacks) {
             giftCount = giftCount + sack.getLifetimeTotal();
         }
-        clog.log.logger(CLOG_OUTPUT, "               " + giftCount + " presents have been deposited into sacks.\n");
+        clog.log.clogger(CLOG_OUTPUT, "               " + giftCount + " presents have been deposited into sacks.\n");
     }
 
     /**

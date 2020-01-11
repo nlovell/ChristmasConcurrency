@@ -17,7 +17,7 @@ public class log {
      * @param clog_level the clog level
      * @param input      the string to print
      */
-    public static void logger(final String clog_level, final String input) {
+    public static void clogger(final String clog_level, final String input) {
         boolean output = false;
         switch (clog_level) {
             case constants.CLOG_OUTPUT:

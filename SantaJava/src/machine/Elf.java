@@ -40,7 +40,7 @@ public class Elf implements Runnable{
                     e.printStackTrace();
                 }
                 elfSack.replaceSack();
-                clog.log.logger(CLOG_DEBUG, "Sack " + elfSack.getId() + " was full, and has been replaced by an elf.");
+                clog.log.clogger(CLOG_DEBUG, "Sack " + elfSack.getId() + " was full, and has been replaced by an elf.");
             }
         } while(running);
     }

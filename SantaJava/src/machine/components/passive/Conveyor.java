@@ -107,8 +107,8 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     public boolean consume(final Present gift) {
         synchronized (presents) {
             if (isSpace()) {
-                clog.log.logger(CLOG_DEBUG, this.toString());
-                clog.log.logger(CLOG_DEBUG, "Conveyor " + super.getId() + " received a gift!");
+                clog.log.clogger(CLOG_DEBUG, this.toString());
+                clog.log.clogger(CLOG_DEBUG, "Conveyor " + super.getId() + " received a gift!");
                 presents[tail] = gift;
                 incrementTail();
                 return true;
@@ -138,7 +138,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
                 Present gift;
                 gift = presents[head];
                 presents[head] = null;
-                clog.log.logger(CLOG_DEBUG, "Conveyor " + super.getId() + " supplied a gift!");
+                clog.log.clogger(CLOG_DEBUG, "Conveyor " + super.getId() + " supplied a gift!");
 
                 incrementHead();
                 result = gift;

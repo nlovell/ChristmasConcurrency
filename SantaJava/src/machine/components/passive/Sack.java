@@ -84,7 +84,7 @@ public class Sack extends MachinePart implements PassiveConsumer {
                 presents[fullness] = gift;
                 fullness++;
                 lifetimeTotal++;
-                clog.log.logger(CLOG_DEBUG, "Sack " + this.getId() + " has " + (capacity-fullness) + " slots spare.");
+                clog.log.clogger(CLOG_DEBUG, "Sack " + this.getId() + " has " + (capacity-fullness) + " slots spare.");
                 return true;
             }
         }

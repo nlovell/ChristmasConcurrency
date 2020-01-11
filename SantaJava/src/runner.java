@@ -2,7 +2,6 @@ import machine.ChristmasMachine;
 import parser.FileParser;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -41,9 +40,9 @@ public class runner {
 
         while (!filePathValidator.matcher(fileToParse).find()) {
             fileToParse = consoleReader();
-            clog.log.logger(CLOG_PARSE, fileToParse);
+            clog.log.clogger(CLOG_PARSE, fileToParse);
             assert fileToParse != null;
-            clog.log.logger(CLOG_PARSE, "Is input valid?: " + filePathValidator.matcher(fileToParse).find());
+            clog.log.clogger(CLOG_PARSE, "Is input valid?: " + filePathValidator.matcher(fileToParse).find());
         }
 
         FileParser fp = new FileParser();
