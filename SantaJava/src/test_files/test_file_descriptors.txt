@@ -1,0 +1,3 @@
+Example 1: The example text provided on page 6 of the assignment brief
+Example 2: A textual represenation of the visual example provided on page 3 of the assignment brief
+Example 3: unused

@@ -33,6 +33,8 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     public Turntable(final String id, final TurntableConnection[] connections) {
         super(id);
         this.connections = connections;
+        //All turntables are initialised to face North/South
+        lastDirectionMoved = N;
     }
 
     @Override
@@ -99,6 +101,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
 
     @Override
     public void consume(final PassiveSupplier supplier, final Direction inputDir) {
+        rotate(inputDir);
         moveGiftDelay();
         current = supplier.supply();
         lastDirectionMoved = inputDir;
@@ -106,9 +109,14 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
 
     @Override
     public void supply(final PassiveConsumer consumer, final Direction outputDir) {
-        //TODO must be atomic!
+        rotate(outputDir);
+        if (consumer.consume(current))
+            current = null;
+    }
+
+    public void rotate(final Direction direction) {
         //if the gift is coming from North or South
-        if (outputDir == N || outputDir == S) {
+        if (direction == N || direction == S) {
             //and ISN'T going North or South
             if (lastDirectionMoved != N && lastDirectionMoved != S) {
                 //Rotate the turntable
@@ -123,9 +131,6 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
                 lastDirectionMoved = N;
             }
         }
-
-        if (consumer.consume(current))
-            current = null;
     }
 
     /**

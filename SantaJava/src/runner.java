@@ -2,12 +2,12 @@ import machine.ChristmasMachine;
 import parser.FileParser;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static machine.data.Constants.CLOG_PARSE;
-import static machine.data.Constants.clog;
+import static machine.data.Constants.*;
 import static parser.Regexp.filePathValidator;
 
 /**
@@ -35,8 +35,9 @@ public class runner {
 
         //Comment this line out to override the default example.
         // Or fill in your own value here to automatically skip manual filename entry at runtime
-
-        fileToParse = "C:/test/example.txt";
+        
+        final String testfiledir =  "D:/repositories/Concurrency1/SantaJava/src/test_files/";
+        fileToParse = testfiledir + "example_2.txt";
 
         while (!filePathValidator.matcher(fileToParse).find()) {
             fileToParse = consoleReader();
@@ -57,6 +58,19 @@ public class runner {
 
         ChristmasMachine machine = new ChristmasMachine(timer, conveyors, hoppers, presents, sacks, turntables);
         machine.runMachine();
+    }
+
+    private static void getAllFiles(File curDir) {
+
+        File[] filesList = curDir.listFiles();
+        for(File f : filesList){
+            if(f.isDirectory())
+                System.out.println(f.getName());
+            if(f.isFile()){
+                System.out.println(f.getName());
+            }
+        }
+
     }
 
     /**
