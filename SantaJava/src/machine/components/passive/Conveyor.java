@@ -40,24 +40,24 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         return giftsInConveyor() != length;
     }
 
-    private boolean isEmpty(){
+    private boolean isEmpty() {
         return head == tail && presents[head] == null;
     }
 
-    private boolean isFull(){
+    private boolean isFull() {
         return head == tail && !isEmpty();
     }
 
-    private void incrementTail(){
+    private void incrementTail() {
         tail++;
-        if(tail >= length){
+        if (tail >= length) {
             tail = 0;
         }
     }
 
-    private void incrementHead(){
+    private void incrementHead() {
         head++;
-        if(head >= length){
+        if (head >= length) {
             head = 0;
         }
     }
@@ -67,15 +67,15 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
      *
      * @return the int
      */
-    public int giftsInConveyor(){
+    public int giftsInConveyor() {
         // head and tail can be the same value when both full or empty.
         // this if deals with it.
-        if(isFull())
+        if (isFull())
             return length;
 
         return (tail + (length - head)) % length;
 
-        // fancy maths handles tail-before-head positions in the queue, eg:
+        // modulus maths handles tail-before-head positions in the queue, eg:
         //
         // head H = 3;
         // tail T = 1;
@@ -91,21 +91,17 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
 
     @Override
     public int search(final AgeRange age) {
-        for(Sack sack : destinations){
-            if(sack.search(age) == 0){
+        for (Sack sack : destinations) {
+            if (sack.search(age) == 0) {
                 return destinations.length;
             }
         }
         return Integer.MAX_VALUE;
     }
 
-    // T
-    // H
-    //[o|o|o]
-
-
     /**
      * When the belt receives a present
+     *
      * @return boolean
      */
     @Override
@@ -131,6 +127,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
 
     /**
      * When the belt supplies a present
+     *
      * @return the present
      */
     @Override
@@ -155,7 +152,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     public String toString() {
         String[] sacks = new String[destinations.length];
         int i = 0;
-        for(Sack destination : destinations) {
+        for (Sack destination : destinations) {
             sacks[i++] = destination.getId();
         }
         return "Conveyor{" + super.toString() +
