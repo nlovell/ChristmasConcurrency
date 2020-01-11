@@ -14,4 +14,6 @@ public interface PassiveSupplier {
      */
     Present supply();
 
+    Present peak();
+
 }

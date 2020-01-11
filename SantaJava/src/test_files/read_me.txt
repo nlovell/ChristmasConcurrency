@@ -34,6 +34,8 @@ Note: In case the ASCII isn't enough, graphical versions of these machine config
 
         Example 5: A hopper feeding a single belt, but with 3 turntables and 3 sacks connected at the end of the belt
 
-                               H ------>
-                                 T  T  T
-                                 S  S  S
+                                      S
+                                      T
+                             H ------> T S
+                                      T
+                                      S

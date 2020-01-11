@@ -41,7 +41,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     }
 
     private boolean isEmpty() {
-        synchronized (presents) {
+        synchronized (this) {
             return head == tail && presents[head] == null;
         }
     }
@@ -108,7 +108,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
      */
     @Override
     public boolean consume(final Present gift) {
-        synchronized (presents) {
+        synchronized (this) {
             if (isSpace()) {
                 Log.clogger(CLOG_DEBUG, this.toString());
                 Log.clogger(CLOG_DEBUG, "Conveyor " + super.getId() + " received a gift!");
@@ -130,7 +130,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     public Present supply() {
         Present result = null;
 
-        synchronized (presents) {
+        synchronized (this) {
             if (isEmpty()) {
                 return null;
             } else {
@@ -150,6 +150,12 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         return destinations;
     }
 
+    @Override
+    public Present peak(){
+        synchronized (this) {
+            return presents[head];
+        }
+    }
 
     @Override
     public String toString() {

@@ -71,28 +71,32 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         if (this.getId().equals("B")) {
             int i = 0;
         }
-        for (TurntableConnection connection : connections) {
+        TurntableConnection conn = giftRouter(current);
+        return supply(conn.getConsumer(), conn.getDir());
+    }
+
+    TurntableConnection giftRouter(Present gift) {
+        TurntableConnection conn;
+        for (TurntableConnection connection : this.connections) {
             //If the current Connection direction is the same place the gift came from
             // and the connection is NOT an input and is NOT null...
             if (connection != null && connection.getDir() != lastDirectionMoved
                     && !connection.isInput()) {
                 //Interrogate the gift for potential destinations
-                Sack[] suitableSacks = current.getSuitableSacks();
-                if (suitableSacks == null) break;
+                Sack[] suitableSacks = gift.getSuitableSacks();
+                if (suitableSacks == null) return null;
+
                 for (Sack sack : suitableSacks) {
                     for (Sack dest : connection.getConsumer().getDestinations()) {
                         if (dest == sack && dest.isSpace()) {
-                            if(supply(connection.getConsumer(), connection.getDir())){
-                                return true;
-                            }
+                            return connection;
                         }
                     }
                 }
             }
         }
-        return false;
+        return null;
     }
-
 
 
     /**
@@ -103,10 +107,19 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
             if (connection != null && connection.getConsumer() == null) {
                 PassiveSupplier supp = connection.getSupplier();
                 if (supp != null) {
-                    this.current = supp.supply();
-                    if (this.current != null) {
-                        clogger(CLOG_DEBUG, "Turntable " + this.getId() + " has successfully received a present!");
-                        return true;
+
+                    synchronized (supp) {
+                        //peak at the present
+                        Present peaked = supp.peak();
+                        if (peaked != null && giftRouter(peaked) != null) {
+                            //yoink
+                            this.current = supp.supply();
+                            if (this.current != null) {
+                                //if i can, it's mine now
+                                clogger(CLOG_DEBUG, "Turntable " + this.getId() + " has successfully received a present!");
+                                return true;
+                            }
+                        }
                     }
                 }
             }
@@ -158,7 +171,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
     public void rotateDelay() {
         try {
             clogger(CLOG_DEBUG, "Turntable " + this.getId() + " is rotating.");
-            Thread.sleep(ROTATE_TIME/SPEED_MULT);
+            Thread.sleep(ROTATE_TIME / SPEED_MULT);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -169,7 +182,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
      */
     public void moveGiftDelay() {
         try {
-            Thread.sleep(MOVE_TIME/SPEED_MULT);
+            Thread.sleep(MOVE_TIME / SPEED_MULT);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

@@ -6,9 +6,7 @@ import net.nlovell.machine.data.AgeRange;
  * The type Present.
  */
 public class Present {
-    /**
-     *
-     */
+
     final private Sack[] suitableSacks;
     final private AgeRange ageRange;
     /**
