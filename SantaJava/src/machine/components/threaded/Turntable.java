@@ -10,8 +10,6 @@ import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
-import java.util.Arrays;
-
 import static machine.data.Constants.*;
 import static machine.data.Direction.*;
 
@@ -42,11 +40,13 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         boolean print = true;
         do {
             if (current != null) {
-                // if (!print) cout("Turntable " + this.getId() + " is attempting to move a present.\n" + this.toString());
+                if (!print) clog(CLOG_DEBUG,
+                        "Turntable " + this.getId() + " is attempting to move a present.\n" + this.toString());
                 print = true;
                 supplyPresent();
             } else {
-                //if (print) cout("Turntable " + this.getId() + " is attempting to receive a present.");
+                if (print) clog(CLOG_DEBUG,
+                        "Turntable " + this.getId() + " is attempting to receive a present.");
                 print = false;
                 consumePresent();
             }
@@ -88,7 +88,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
                 if (supp != null) {
                     this.current = supp.supply();
                     if (this.current != null) {
-                        //cout("Turntable " + this.getId() + " has successfully received a present!");
+                        clog(CLOG_DEBUG, "Turntable " + this.getId() + " has successfully received a present!");
                         break;
                     }
                 }

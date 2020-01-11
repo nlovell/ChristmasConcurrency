@@ -7,6 +7,9 @@ import machine.interfaces.PassiveSupplier;
 
 import java.util.Arrays;
 
+import static machine.data.Constants.CLOG_DEBUG;
+import static machine.data.Constants.clog;
+
 /**
  * The type Conveyor.
  */
@@ -31,12 +34,10 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
         this.length = length;
         this.destinations = destinations;
         this.presents = new Present[this.length];
-        //this.machine = ChristmasMachine.getInstance();
     }
 
     private boolean isSpace() {
         return giftsInConveyor() != length;
-        //return tail != head - 1 && (tail != 0 || head != length);
     }
 
     private boolean isEmpty(){
@@ -111,8 +112,8 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
     public boolean consume(final Present gift) {
         synchronized (presents) {
             if (isSpace()) {
-                //cout(this.toString());
-                //cout("Conveyor " + super.getId() + " received a gift!");
+                clog(CLOG_DEBUG, this.toString());
+                clog(CLOG_DEBUG, "Conveyor " + super.getId() + " received a gift!");
                 presents[tail] = gift;
                 incrementTail();
                 return true;
@@ -141,7 +142,7 @@ public class Conveyor extends MachinePart implements PassiveSupplier, PassiveCon
                 Present gift;
                 gift = presents[head];
                 presents[head] = null;
-                //cout("Conveyor " + super.getId() + " supplied a gift!");
+                clog(CLOG_DEBUG, "Conveyor " + super.getId() + " supplied a gift!");
 
                 incrementHead();
                 result = gift;

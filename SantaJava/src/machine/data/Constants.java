@@ -25,32 +25,13 @@ public class Constants {
     final static public int MIN_TIME = Math.min(ROTATE_TIME, MOVE_TIME);
 
     /**
-     * Shortcut for System.out.println.
-     *
-     * @param input the input
-     */
-    public static void cout(String input) {
-        System.out.println(input);
-    }
-
-    /**
-     * Shortcut for System.out.println.
-     *
-     * @param input the input
-     */
-    public static void cout(int input) {
-        cout(String.valueOf(input));
-    }
-
-    /**
      * Console Logging with basic levels
      *
      * @param input
      */
-    public static void clog(final String input) {
-        final String type = input.substring(0, CLOG_DEBUG.length());
+    public static void clog(final String clog_level, final String input) {
         boolean output = false;
-        switch (type) {
+        switch (clog_level) {
             case CLOG_DEBUG:
                 if (CLOG_DEBUG_TOGGLE) output = true;
                 break;
@@ -69,7 +50,7 @@ public class Constants {
         }
 
         if(output){
-            System.out.println(input);
+            System.out.println(clog_level + input);
         }
     }
 
@@ -79,7 +60,7 @@ public class Constants {
     final static public String CLOG_OBJECT  = "OBJECT: ";
     final static public String CLOG_PARSE   = " PARSE: ";
 
-    final static private boolean CLOG_DEBUG_TOGGLE = false;
+    final static private boolean CLOG_DEBUG_TOGGLE = true;
     final static private boolean CLOG_OUTPUT_TOGGLE = true;
     final static private boolean CLOG_ERROR_TOGGLE = false;
     final static private boolean CLOG_OBJECT_TOGGLE = false;

@@ -6,6 +6,9 @@ import machine.interfaces.PassiveConsumer;
 
 import java.util.Arrays;
 
+import static machine.data.Constants.CLOG_DEBUG;
+import static machine.data.Constants.clog;
+
 /**
  * The passive consumer Sack.
  * This is the final destination/consumer for all gifts.
@@ -78,7 +81,7 @@ public class Sack extends MachinePart implements PassiveConsumer {
                 presents[fullness] = gift;
                 fullness++;
                 lifetimeTotal++;
-                //cout("Sack " + this.getId() + " has " + (capacity-fullness) + " slots spare.");
+                clog(CLOG_DEBUG, "Sack " + this.getId() + " has " + (capacity-fullness) + " slots spare.");
                 return true;
             }
         }

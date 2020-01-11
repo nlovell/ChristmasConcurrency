@@ -6,7 +6,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static machine.data.Constants.cout;
+import static machine.data.Constants.CLOG_PARSE;
+import static machine.data.Constants.clog;
 import static parser.Regexp.filePathValidator;
 
 /**
@@ -39,9 +40,9 @@ public class runner {
 
         while (!filePathValidator.matcher(fileToParse).find()) {
             fileToParse = consoleReader();
-            cout(fileToParse);
+            clog(CLOG_PARSE, fileToParse);
             assert fileToParse != null;
-            cout("Is input valid?: " + filePathValidator.matcher(fileToParse).find());
+            clog(CLOG_PARSE, "Is input valid?: " + filePathValidator.matcher(fileToParse).find());
         }
 
         FileParser fp = new FileParser();

@@ -95,7 +95,7 @@ public class ChristmasMachine {
     public void runMachine() {
         startMachine();
 
-        clog(CLOG_OUTPUT + " Session begins at " + timestamp());
+        clog(CLOG_OUTPUT, " Session begins at " + timestamp());
         long startTime = System.currentTimeMillis();
 
         int timer = 0;
@@ -115,36 +115,36 @@ public class ChristmasMachine {
             }
         } while (timer < sessionLength);
 
-        clog(CLOG_OUTPUT + " Session over at " + timestamp() + '\n');
+        clog(CLOG_OUTPUT,  " Session over at " + timestamp() + '\n');
         long hopperStopTime = System.currentTimeMillis();
-        clog(CLOG_OUTPUT + " Halting hopper outputs, and waiting for system to tidy up. \n");
+        clog(CLOG_OUTPUT,  " Halting hopper outputs, and waiting for system to tidy up. \n");
 
 
         endMachine();
 
-        clog(CLOG_OUTPUT + " Session over!");
+        clog(CLOG_OUTPUT,  " Session over!");
         long endTime = System.currentTimeMillis();
 
-        clog(CLOG_OUTPUT + " System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
-        clog(CLOG_OUTPUT + " " + (String.format("Total time: %dms", endTime - startTime)));
+        clog(CLOG_OUTPUT,  " System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
+        clog(CLOG_OUTPUT,  " " + (String.format("Total time: %dms", endTime - startTime)));
 
         timedLogger(endTime);
     }
 
     private void timedLogger(Long startTime) {
-        clog(CLOG_OUTPUT + " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
+        clog(CLOG_OUTPUT,  " Output time - " + timestamp() + " (" + timeSince(startTime) + "ms since start)");
         int giftCount = 0;
         for(Hopper hopper : hoppers){
             giftCount = giftCount + hopper.getCapacity();
         }
 
-        clog(CLOG_OUTPUT + "               Hoppers cumulatively contain " + giftCount + " gifts.");
+        clog(CLOG_OUTPUT,  "               Hoppers cumulatively contain " + giftCount + " gifts.");
         giftCount = 0;
 
         for(Sack sack : sacks){
             giftCount = giftCount + sack.getLifetimeTotal();
         }
-        clog(CLOG_OUTPUT + "               " + giftCount + " presents have been deposited into sacks.");
+        clog(CLOG_OUTPUT,  "               " + giftCount + " presents have been deposited into sacks.");
     }
 
     private void startMachine() {
@@ -167,7 +167,7 @@ public class ChristmasMachine {
 
             new Thread(elf).start();
         }
-        clog(CLOG_OUTPUT + " "+ String.valueOf(elfString));
+        clog(CLOG_OUTPUT,  " "+ String.valueOf(elfString));
     }
 
     private void startMachine2(){
