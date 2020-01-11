@@ -14,14 +14,13 @@ public class Present {
     /**
      * Instantiates a new Present.
      *  @param suitableSacks the type of toy
-     * @param ageMin        the age min
-     * @param ageMax        the age max
+     * @param ageRange the agerange
      * @param hopperID
      */
-    public Present(Sack[] suitableSacks, int ageMin, int ageMax, final int hopperID) {
+    public Present(Sack[] suitableSacks, AgeRange ageRange, final int hopperID) {
         this.suitableSacks = suitableSacks;
         this.hopperID = hopperID;
-        this.ageRange = new AgeRange(ageMin, ageMax);
+        this.ageRange = ageRange;
     }
 
     /**

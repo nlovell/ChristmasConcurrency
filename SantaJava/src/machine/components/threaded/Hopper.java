@@ -40,7 +40,6 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
                 current++;
             }
         }
-        //TODO: gift hopper bullshit
     }
 
     @Override

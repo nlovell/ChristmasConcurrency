@@ -6,6 +6,7 @@ import machine.components.passive.Present;
 import machine.components.passive.Sack;
 import machine.components.threaded.Hopper;
 import machine.components.threaded.Turntable;
+import machine.data.AgeRange;
 import machine.data.Direction;
 import machine.data.TurntableConnection;
 
@@ -13,6 +14,7 @@ import java.lang.reflect.Array;
 
 import static clog.constants.*;
 import static clog.log.clogger;
+import static java.util.Arrays.copyOf;
 import static machine.data.Constants.OUTPUT_TIME;
 
 /**
@@ -112,12 +114,25 @@ public class ChristmasMachine {
     private Present[] makePresents(String[][] presents, Sack[] sacks) {
         Present[] arr = new Present[presents.length];
         int i = 0;
-    //id min max
-        for(String[] gift : presents) {
+        //id min max
+        for (String[] gift : presents) {
+            AgeRange age = new AgeRange(Integer.parseInt(gift[1]), Integer.parseInt(gift[2]));
+            clogger(CLOG_DEBUG, "Target age: " + age);
 
-            arr[i] = new Present(null, Integer.parseInt(gift[1]),
-                    Integer.parseInt(gift[2]),
-                    Integer.parseInt(gift[0]));
+            Sack[] mySacks = new Sack[0];
+            int j = 0;
+            for(Sack sack : sacks){
+                AgeRange sackAge = sack.getAges();
+                clogger(CLOG_DEBUG,   "Sack " + sack.getId() + " has sack age: " + sackAge );
+
+                if(sackAge.contains(age)){
+                    mySacks = copyOf(mySacks, j+1);
+                    mySacks[j] = sack;
+                    j++;
+                }
+            }
+
+            arr[i] = new Present(null, age, Integer.parseInt(gift[0]));
             clogger(CLOG_OBJECT, arr[i].toString());
             i++;
         }
@@ -166,15 +181,15 @@ public class ChristmasMachine {
             int hopperID = Integer.parseInt(hopper[0]);
             Present[] gifts = new Present[Integer.parseInt(hopper[2])];
             int j = 0;
-            for(Present gift : presents){
-                if(gift.getHopperID() == hopperID) {
+            for (Present gift : presents) {
+                if (gift.getHopperID() == hopperID) {
                     gifts[j] = gift;
                     j++;
                 }
             }
 
             arr[i] = new Hopper(hopperID, getPart(hopper[1], conveyors),
-                  gifts.length, Integer.parseInt(hopper[3]), gifts);
+                    gifts.length, Integer.parseInt(hopper[3]), gifts);
 
             clogger(CLOG_OBJECT, arr[i].toString());
             i++;
@@ -227,6 +242,7 @@ public class ChristmasMachine {
 
     /**
      * Converts current unix time in ms, to a timestamp as a string
+     *
      * @return a HH:MM:SS timestamp
      */
     private static String timestamp() {
@@ -290,7 +306,7 @@ public class ChristmasMachine {
         }
 
         StringBuilder elfString = new StringBuilder();
-        if(elves.length == 1){
+        if (elves.length == 1) {
             elfString.append("Meet the Elf running this machine - it's ").append(elves[0].getElfID());
         } else {
             elfString.append("Meet the Elves running this machine - there's ");
@@ -343,7 +359,6 @@ public class ChristmasMachine {
     }
 
     /**
-     *
      * @param startTime the time the machine started
      */
     private void timedLogger(Long startTime) {
@@ -397,10 +412,10 @@ public class ChristmasMachine {
     /**
      * Get an array that references specific parts of the machine based on ID and class-type.
      *
-     * @param ids the array of IDs of the elements
+     * @param ids   the array of IDs of the elements
      * @param parts the array of parts to search in
      * @param clazz the class type of the parts
-     * @param <P> the type parameter
+     * @param <P>   the type parameter
      * @return an array of MachineParts
      */
     private <P extends MachinePart> P[] getParts(final String[] ids, final P[] parts, Class<P> clazz) {
@@ -425,6 +440,7 @@ public class ChristmasMachine {
 
     /**
      * Get the number of remaining gifts in the Christmas Machine.
+     *
      * @return the number of gifts in the Christmas Machine
      */
     private int giftsInSystem() {

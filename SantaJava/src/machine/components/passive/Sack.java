@@ -53,6 +53,7 @@ public class Sack extends MachinePart implements PassiveConsumer {
         this.ages = new AgeRange(ageMin, ageMax);
     }
 
+
     /**
      * Replace the sack and updatge the lifetimetotal.
      */
@@ -112,6 +113,10 @@ public class Sack extends MachinePart implements PassiveConsumer {
      */
     public int getCapacity() {
         return capacity;
+    }
+
+    public AgeRange getAges() {
+        return ages;
     }
 
     /**

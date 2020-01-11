@@ -13,7 +13,7 @@ public class constants {
     final static boolean TOGGLE_CLOG_OUTPUT = true;
 
     /** The constant to enable CLOG logging for DEBUG lines. */
-    final static boolean TOGGLE_CLOG_DEBUG = false;
+    final static boolean TOGGLE_CLOG_DEBUG = true;
 
     /** The constant to enable CLOG logging for ERROR lines. */
     final static boolean TOGGLE_CLOG_ERROR = false;

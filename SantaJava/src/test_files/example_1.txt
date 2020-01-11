@@ -15,7 +15,7 @@ HOPPERS
 SACKS
 5
 1 capacity 20 age 0-3
-2 capacity 20 age 4-6
+2 capacity 20 age 2-6
 3 capacity 30 age 7-10
 4 capacity 15 age 4-6
 5 capacity 20 age 11-16

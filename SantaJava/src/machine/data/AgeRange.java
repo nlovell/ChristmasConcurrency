@@ -36,6 +36,11 @@ public class AgeRange {
         return age >= age_min && age <= age_max;
     }
 
+    public boolean contains(AgeRange ageRange){
+        return (ageRange.age_min >= this.age_min && ageRange.age_max <= this.age_max)
+                || (ageRange.age_max >= this.age_min && ageRange.age_max <= this.age_max);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
