@@ -4,8 +4,7 @@ import machine.components.passive.Sack;
 
 import java.util.Random;
 
-import static machine.data.Constants.CLOG_DEBUG;
-import static machine.data.Constants.clog;
+import static clog.constants.CLOG_DEBUG;
 
 /**
  * Elves run as threads, and are assigned to empty the sacks when they're full.
@@ -41,7 +40,7 @@ public class Elf implements Runnable{
                     e.printStackTrace();
                 }
                 elfSack.replaceSack();
-                clog(CLOG_DEBUG, "Sack " + elfSack.getId() + " was full, and has been replaced by an elf.");
+                clog.log.logger(CLOG_DEBUG, "Sack " + elfSack.getId() + " was full, and has been replaced by an elf.");
             }
         } while(running);
     }

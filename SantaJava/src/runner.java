@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static machine.data.Constants.*;
+import static clog.constants.*;
 import static parser.Regexp.filePathValidator;
 
 /**
@@ -41,9 +41,9 @@ public class runner {
 
         while (!filePathValidator.matcher(fileToParse).find()) {
             fileToParse = consoleReader();
-            clog(CLOG_PARSE, fileToParse);
+            clog.log.logger(CLOG_PARSE, fileToParse);
             assert fileToParse != null;
-            clog(CLOG_PARSE, "Is input valid?: " + filePathValidator.matcher(fileToParse).find());
+            clog.log.logger(CLOG_PARSE, "Is input valid?: " + filePathValidator.matcher(fileToParse).find());
         }
 
         FileParser fp = new FileParser();
@@ -53,7 +53,7 @@ public class runner {
         String[][] hoppers = parseArrayList(output.get(1), 4);
         String[][] sacks = parseArrayList(output.get(2), 3);
         String[][] turntables = parseArrayList(output.get(3), 5);
-        String[][] presents = new String[1][1]; //4
+        String[][] presents = parseArrayList(output.get(4), 3); //4
         int timer = Integer.parseInt((parseArrayList(output.get(5), 1)[0])[0]); //5
 
         ChristmasMachine machine = new ChristmasMachine(timer, conveyors, hoppers, presents, sacks, turntables);

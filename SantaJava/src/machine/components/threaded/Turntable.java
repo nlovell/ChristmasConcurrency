@@ -10,7 +10,9 @@ import machine.interfaces.ActiveSupplier;
 import machine.interfaces.PassiveConsumer;
 import machine.interfaces.PassiveSupplier;
 
-import static machine.data.Constants.*;
+import static clog.constants.*;
+import static machine.data.Constants.MOVE_TIME;
+import static machine.data.Constants.ROTATE_TIME;
 import static machine.data.Direction.*;
 
 /**
@@ -42,12 +44,12 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
         boolean print = true;
         do {
             if (current != null) {
-                if (!print) clog(CLOG_DEBUG,
+                if (!print) clog.log.logger(CLOG_DEBUG,
                         "Turntable " + this.getId() + " is attempting to move a present.\n" + this.toString());
                 print = true;
                 supplyPresent();
             } else {
-                if (print) clog(CLOG_DEBUG,
+                if (print) clog.log.logger(CLOG_DEBUG,
                         "Turntable " + this.getId() + " is attempting to receive a present.");
                 print = false;
                 consumePresent();
@@ -86,7 +88,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
                 if (supp != null) {
                     this.current = supp.supply();
                     if (this.current != null) {
-                        clog(CLOG_DEBUG, "Turntable " + this.getId() + " has successfully received a present!");
+                        clog.log.logger(CLOG_DEBUG, "Turntable " + this.getId() + " has successfully received a present!");
                         break;
                     }
                 }
@@ -134,7 +136,7 @@ public class Turntable extends MachinePart implements ActiveSupplier, ActiveCons
      */
     public void rotateDelay() {
         try {
-            clog(CLOG_DEBUG, "Turntable " + this.getId() + " is rotating.");
+            clog.log.logger(CLOG_DEBUG, "Turntable " + this.getId() + " is rotating.");
             Thread.sleep(ROTATE_TIME);
         } catch (InterruptedException e) {
             e.printStackTrace();

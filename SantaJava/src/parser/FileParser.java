@@ -8,8 +8,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static machine.data.Constants.CLOG_PARSE;
-import static machine.data.Constants.clog;
+import static clog.constants.CLOG_PARSE;
 
 /**
  * A way to parse standard UCan't
@@ -38,7 +37,7 @@ public class FileParser {
                                                     final boolean outputSource) {
 
         outputTitle();
-        clog(CLOG_PARSE, "Attempting to parse file: " + file);
+        clog.log.logger(CLOG_PARSE, "Attempting to parse file: " + file);
 
         String[] fileToParse = new String[0];
         try {
@@ -48,12 +47,12 @@ public class FileParser {
         }
 
         if (outputSource) {
-            clog(CLOG_PARSE, "----------------------------");
-            clog(CLOG_PARSE, "Source file:\r\n");
+            clog.log.logger(CLOG_PARSE, "----------------------------");
+            clog.log.logger(CLOG_PARSE, "Source file:\r\n");
             for (String lineToParse : fileToParse) {
-                clog(CLOG_PARSE, "    " + lineToParse);
+                clog.log.logger(CLOG_PARSE, "    " + lineToParse);
             }
-            clog(CLOG_PARSE, "\r\nEnd of source.");
+            clog.log.logger(CLOG_PARSE, "\r\nEnd of source.");
         }
 
         for (String lineToParse : fileToParse) {
@@ -71,7 +70,7 @@ public class FileParser {
 
         for (ArrayList<String[]> elem : machine) {
             for (String[] part : elem) {
-                clog(CLOG_PARSE, Arrays.toString(part));
+                clog.log.logger(CLOG_PARSE, Arrays.toString(part));
             }
         }
 
@@ -95,7 +94,7 @@ public class FileParser {
             for (int i = 0; i < numberOfLines; i++) {
                 textData[i] = textReader.readLine();
             }
-            clog(CLOG_PARSE, "File length: " + numberOfLines);
+            clog.log.logger(CLOG_PARSE, "File length: " + numberOfLines);
         }
         return textData;
 
@@ -122,7 +121,7 @@ public class FileParser {
      */
     private void regexFilter(String theData) {
         if (!Regexp.otherReg.matcher(theData).matches())
-            clog(CLOG_PARSE, "----------------------------");
+            clog.log.logger(CLOG_PARSE, "----------------------------");
         if (Regexp.turntable.matcher(theData).matches()) {
             String[] turntable = parseTurntable(theData);
             turntables.add(turntable);
@@ -145,7 +144,7 @@ public class FileParser {
             timer.add(timr);
         } else {
             if (!Regexp.otherReg.matcher(theData).matches())
-            clog(CLOG_PARSE, "This data format is unrecognised.");
+            clog.log.logger(CLOG_PARSE, "This data format is unrecognised.");
         }
     }
 
@@ -155,7 +154,7 @@ public class FileParser {
         idMat.find();
         String timr = idMat.group(1);
 
-        clog(CLOG_PARSE, "Timer value found: " + timr);
+        clog.log.logger(CLOG_PARSE, "Timer value found: " + timr);
         return new String[]{timr};
     }
 
@@ -170,19 +169,19 @@ public class FileParser {
 
         Matcher idMat = Regexp.conveyor.matcher(conveyor);
         idMat.find();
-        clog(CLOG_PARSE, "Conveyor " + idMat.group(1) + " found in parsed machine.data.");
+        clog.log.logger(CLOG_PARSE, "Conveyor " + idMat.group(1) + " found in parsed machine.data.");
         conveyorDetails[0] = idMat.group(1);
 
         Pattern pattern = Regexp.conveyor;
         Matcher matcher = pattern.matcher(conveyor);
 
         while (matcher.find()) {
-            clog(CLOG_PARSE, "      length: " + matcher.group(2));
+            clog.log.logger(CLOG_PARSE, "      length: " + matcher.group(2));
             conveyorDetails[1] = matcher.group(2);
-            clog(CLOG_PARSE, "destinations: " + Arrays.toString(stringArrayGenerator(matcher.group(3), " ")));
+            clog.log.logger(CLOG_PARSE, "destinations: " + Arrays.toString(stringArrayGenerator(matcher.group(3), " ")));
             conveyorDetails[2] = matcher.group(3);
         }
-        clog(CLOG_PARSE, Arrays.toString(conveyorDetails));
+        clog.log.logger(CLOG_PARSE, Arrays.toString(conveyorDetails));
         return conveyorDetails;
     }
 
@@ -195,16 +194,16 @@ public class FileParser {
         String[] hopperDetails = new String[4];
         Matcher matcher = Regexp.hopper.matcher(hopper);
         while (matcher.find()) {
-            clog(CLOG_PARSE, "Hopper " + matcher.group(1) + " found in parsed machine.data.");
+            clog.log.logger(CLOG_PARSE, "Hopper " + matcher.group(1) + " found in parsed machine.data.");
             hopperDetails[0] = matcher.group(1);
-            clog(CLOG_PARSE, "connected to: " + matcher.group(2));
+            clog.log.logger(CLOG_PARSE, "connected to: " + matcher.group(2));
             hopperDetails[1] = matcher.group(2);
-            clog(CLOG_PARSE, "    capacity: " + matcher.group(3));
+            clog.log.logger(CLOG_PARSE, "    capacity: " + matcher.group(3));
             hopperDetails[2] = matcher.group(3);
-            clog(CLOG_PARSE, "       speed: " + matcher.group(4));
+            clog.log.logger(CLOG_PARSE, "       speed: " + matcher.group(4));
             hopperDetails[3] = matcher.group(4);
         }
-        clog(CLOG_PARSE, Arrays.toString(hopperDetails));
+        clog.log.logger(CLOG_PARSE, Arrays.toString(hopperDetails));
         return hopperDetails;
     }
 
@@ -222,11 +221,11 @@ public class FileParser {
             outputFound("Sack", matcher.group(1));
             sackDetails[0] = matcher.group(1);
 
-            clog(CLOG_PARSE, "    capacity: " + matcher.group(2));
+            clog.log.logger(CLOG_PARSE, "    capacity: " + matcher.group(2));
             sackDetails[1] = matcher.group(2);
 
             String[] ages = stringArrayGenerator(matcher.group(3), "-");
-            clog(CLOG_PARSE, "        ages: " + Arrays.toString(ages));
+            clog.log.logger(CLOG_PARSE, "        ages: " + Arrays.toString(ages));
             sackDetails[2] = matcher.group(3);
         }
         return sackDetails;
@@ -249,13 +248,13 @@ public class FileParser {
         Matcher matcher = Regexp.turntableProp.matcher(turntable);
 
         while (matcher.find()) {
-            clog(CLOG_PARSE, "-------------------");
-            clog(CLOG_PARSE, matcher.group());
-            clog(CLOG_PARSE, " orientation: " + matcher.group(1));
-            clog(CLOG_PARSE, "        type: " + matcher.group(2));
+            clog.log.logger(CLOG_PARSE, "-------------------");
+            clog.log.logger(CLOG_PARSE, matcher.group());
+            clog.log.logger(CLOG_PARSE, " orientation: " + matcher.group(1));
+            clog.log.logger(CLOG_PARSE, "        type: " + matcher.group(2));
 
             if (!matcher.group(2).equals("null")) {
-                clog(CLOG_PARSE, "   output id: " + matcher.group(3));
+                clog.log.logger(CLOG_PARSE, "   output id: " + matcher.group(3));
                 int out;
                 switch(matcher.group(1)){
                     case "N":
@@ -303,13 +302,13 @@ public class FileParser {
      * Outputs the title to the console. Totally unnecessary. But it looks pretty.
      */
     private void outputTitle() {
-        clog(CLOG_PARSE, "\n\u001B[31m  _____ _ _        ___                            _   \r\n |  ___(_) | ___  "
+        clog.log.logger(CLOG_PARSE, "\n\u001B[31m  _____ _ _        ___                            _   \r\n |  ___(_) | ___  "
                 + "|_ _|_ __ ___  _ __   ___  _ __| |_ \n | |_  | | |/ _ \\  | || '_ ` _ \\| '_ \\ / _ \\| '__| __|\r\n"
                 + " |  _| | | |  __/  | || | | | | | |_) | (_) | |  | |_ \n |_|   |_|_|\\___| |___|_| |_| |_| .__/ \\__"
                 + "_/|_|   \\__|\n                                |_| \u001B[0m");
     }
 
     private void outputFound(String type, String id) {
-        clog(CLOG_PARSE, type + " " + id + " found in parsed data.");
+        clog.log.logger(CLOG_PARSE, type + " " + id + " found in parsed data.");
     }
 }
