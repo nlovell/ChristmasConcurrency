@@ -241,7 +241,6 @@ public class ChristmasMachine {
         long hopperStopTime = System.currentTimeMillis();
         clog(CLOG_OUTPUT, " Halting hopper outputs, and waiting for system to tidy up. \n");
 
-
         endMachine();
 
         clog(CLOG_OUTPUT, " Session over!");
