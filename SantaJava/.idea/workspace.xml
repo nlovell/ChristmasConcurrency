@@ -3,11 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Conveyor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Present.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Present.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/components/threaded/Turntable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/threaded/Turntable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/interfaces/PassiveSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/interfaces/PassiveSupplier.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test_files/read_me.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_files/read_me.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/nlovell/clog/LogConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/clog/LogConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/net/nlovell/machine/ChristmasMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/ChristmasMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_files/example_1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_files/example_1.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +50,7 @@
     <configuration name="Example 1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="SantaJava" />
-      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/test_files/example_5.txt" />
+      <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/test_files/example_1.txt" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value=".*" />
@@ -126,10 +124,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="860" y="556" key="#com.intellij.debugger.ui.breakpoints.EditClassFiltersDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578599363056" />
-    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578779863891">
+    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578781316185">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578779863891" />
+    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781316185" />
     <state x="1226" y="384" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1578776665410">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -174,38 +172,46 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1226" y="420" key="FileChooserDialogImpl/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578763249250" />
-    <state width="1258" height="451" key="GridCell.Tab.0.bottom" timestamp="1578779865164">
+    <state width="1257" height="634" key="GridCell.Tab.0.bottom" timestamp="1578781624375">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1258" height="451" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578779865164" />
-    <state width="1258" height="451" key="GridCell.Tab.0.center" timestamp="1578779865164">
+    <state width="1257" height="634" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781624375" />
+    <state width="938" height="283" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
+    <state width="1257" height="634" key="GridCell.Tab.0.center" timestamp="1578781624375">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1258" height="451" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578779865164" />
-    <state width="1258" height="451" key="GridCell.Tab.0.left" timestamp="1578779865164">
+    <state width="1257" height="634" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781624375" />
+    <state width="938" height="283" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
+    <state width="1257" height="634" key="GridCell.Tab.0.left" timestamp="1578781624375">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1258" height="451" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578779865164" />
-    <state width="1258" height="451" key="GridCell.Tab.0.right" timestamp="1578779865164">
+    <state width="1257" height="634" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781624375" />
+    <state width="938" height="283" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
+    <state width="1257" height="634" key="GridCell.Tab.0.right" timestamp="1578781624375">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1258" height="451" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578779865164" />
-    <state width="1258" height="451" key="GridCell.Tab.1.bottom" timestamp="1578779865028">
+    <state width="1257" height="634" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781624375" />
+    <state width="938" height="283" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781201632" />
+    <state width="1257" height="634" key="GridCell.Tab.1.bottom" timestamp="1578781624376">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1258" height="451" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578779865028" />
-    <state width="1258" height="451" key="GridCell.Tab.1.center" timestamp="1578779865028">
+    <state width="1257" height="634" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781624376" />
+    <state width="938" height="451" key="GridCell.Tab.1.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781087587" />
+    <state width="1257" height="634" key="GridCell.Tab.1.center" timestamp="1578781624376">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1258" height="451" key="GridCell.Tab.1.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578779865028" />
-    <state width="1258" height="451" key="GridCell.Tab.1.left" timestamp="1578779865028">
+    <state width="1257" height="634" key="GridCell.Tab.1.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781624376" />
+    <state width="938" height="451" key="GridCell.Tab.1.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781087587" />
+    <state width="1257" height="634" key="GridCell.Tab.1.left" timestamp="1578781624376">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1258" height="451" key="GridCell.Tab.1.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578779865028" />
-    <state width="1258" height="451" key="GridCell.Tab.1.right" timestamp="1578779865028">
+    <state width="1257" height="634" key="GridCell.Tab.1.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781624376" />
+    <state width="938" height="451" key="GridCell.Tab.1.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781087587" />
+    <state width="1257" height="634" key="GridCell.Tab.1.right" timestamp="1578781624376">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="1258" height="451" key="GridCell.Tab.1.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578779865028" />
+    <state width="1257" height="634" key="GridCell.Tab.1.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578781624376" />
+    <state width="938" height="451" key="GridCell.Tab.1.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@2560.173.1920.1040" timestamp="1578781087587" />
     <state x="781" y="343" key="SettingsEditor" timestamp="1578751793894">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -258,13 +264,18 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/net/nlovell/machine/ChristmasMachine.java</url>
-          <line>190</line>
+          <line>193</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/net/nlovell/machine/components/threaded/Hopper.java</url>
           <line>48</line>
           <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint type="java-line">
+          <url>file://$PROJECT_DIR$/src/net/nlovell/machine/ChristmasMachine.java</url>
+          <line>133</line>
+          <option name="timeStamp" value="39" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>

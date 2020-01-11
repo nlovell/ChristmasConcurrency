@@ -112,7 +112,7 @@ public class ChristmasMachine {
      * @return the present []
      */
     private Present[] makePresents(String[][] presents, Sack[] sacks) {
-        Present[] arr = new Present[presents.length];
+        Present[] arr = new Present[0];
         int i = 0;
         //id min max
         for (String[] gift : presents) {
@@ -121,24 +121,27 @@ public class ChristmasMachine {
 
             Sack[] mySacks = new Sack[0];
             int j = 0;
-            for(Sack sack : sacks){
+            for (Sack sack : sacks) {
                 AgeRange sackAge = sack.getAges();
-                clogger(CLOG_FINE_DEBUG,   "Sack " + sack.getId() + " has sack age: " + sackAge );
+                clogger(CLOG_FINE_DEBUG, "Sack " + sack.getId() + " has sack age: " + sackAge);
 
-                if(sackAge.contains(age)){
-                    mySacks = Arrays.copyOf(mySacks, j+1);
+                if (sackAge.contains(age)) {
+                    mySacks = Arrays.copyOf(mySacks, j + 1);
                     mySacks[j] = sack;
                     j++;
                 }
             }
-
-            arr[i] = new Present(mySacks, age, Integer.parseInt(gift[0]));
-            clogger(CLOG_OBJECT, arr[i].toString());
-            i++;
+            if (mySacks.length > 0) {
+                arr = Arrays.copyOf(arr, arr.length +1);
+                arr[i] = new Present(mySacks, age, Integer.parseInt(gift[0]));
+                clogger(CLOG_OBJECT, arr[i].toString());
+                i++;
+            } else {
+                clogger(CLOG_ERROR,
+                        "Present " + age.toString() + " was not made, as it has invalid destinations for the machine.");
+            }
         }
         return arr;
-
-        //TODO: make the gifts actually get their suitable sacks
     }
 
     /**
@@ -269,7 +272,7 @@ public class ChristmasMachine {
         //A simple timer loop of variable length
         do {
             try {
-                Thread.sleep(target/ Constants.SPEED_MULT);
+                Thread.sleep(target / Constants.SPEED_MULT);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -338,7 +341,7 @@ public class ChristmasMachine {
         while (remaining > 0) {
 
             try {
-                Thread.sleep(100/ Constants.SPEED_MULT);
+                Thread.sleep(100 / Constants.SPEED_MULT);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -382,7 +385,7 @@ public class ChristmasMachine {
 
         giftCount = 0;
         for (Turntable turntable : turntables) {
-            if(turntable.hasPresent())
+            if (turntable.hasPresent())
                 giftCount++;
         }
         clogger(CLOG_OUTPUT, "               " + giftCount + " presents are stored on turntables." +
@@ -391,7 +394,7 @@ public class ChristmasMachine {
         clogger(CLOG_OUTPUT, "               " + giftsInHoppers() + " presents are stored in hoppers.\n");
     }
 
-    int giftsInHoppers(){
+    int giftsInHoppers() {
         int giftCount = 0;
         for (Hopper hopper : hoppers) {
             giftCount = giftCount + hopper.getCurrent();

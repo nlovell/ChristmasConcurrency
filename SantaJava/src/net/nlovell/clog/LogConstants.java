@@ -19,7 +19,7 @@ public class LogConstants {
     final static boolean TOGGLE_CLOG_FINE_DEBUG = false;
 
     /** The constant to enable CLOG logging for ERROR lines. */
-    final static boolean TOGGLE_CLOG_ERROR = false;
+    final static boolean TOGGLE_CLOG_ERROR = true;
 
     /** The constant to enable CLOG logging for OBJECT lines. */
     final static boolean TOGGLE_CLOG_OBJECT = true;
