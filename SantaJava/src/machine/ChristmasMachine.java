@@ -27,6 +27,7 @@ public class ChristmasMachine {
     private Conveyor[] conveyors;
     private Sack[] sacks;
     private Elf[] elves;
+    private Present[] presents;
 
     /**
      * Instantiates a new Christmas machine.
@@ -51,7 +52,7 @@ public class ChristmasMachine {
 
         sacks = makeSacks(sackData);
         elves = makeElves(sacks);
-        Present[] presents = makePresents(presentData, sacks);
+        presents = makePresents(presentData, sacks);
 
         conveyors = makeConveyors(conveyorData, sacks);
         hoppers = makeHoppers(hopperData, conveyors, presents);
@@ -247,7 +248,7 @@ public class ChristmasMachine {
         long endTime = System.currentTimeMillis();
 
         clog(CLOG_OUTPUT, " System totally halted at " + timestamp() + " (" + (endTime - hopperStopTime) + "ms after stop command)");
-        clog(CLOG_OUTPUT, " " + (String.format("Total time: %dms", endTime - startTime)));
+        clog(CLOG_OUTPUT, " " + (String.format("Total time: %ds", (0L + (endTime - startTime) / 1000))));
 
         timedLogger(endTime);
     }

@@ -40,10 +40,8 @@ public class Elf implements Runnable{
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
                 elfSack.replaceSack();
                 clog(CLOG_DEBUG, "Sack " + elfSack.getId() + " was full, and has been replaced by an elf.");
-
             }
         } while(running);
     }

@@ -26,6 +26,7 @@ public class FileParser {
     private ArrayList<String[]> turntables = new ArrayList<>();
     private ArrayList<String[]> timer = new ArrayList<>();
 
+    private String presentNum = new String();
     /**
      * Instantiates a new File parser.
      *
@@ -134,8 +135,11 @@ public class FileParser {
         } else if (Regexp.hopper.matcher(theData).matches()) {
             String[] hopper = parseHopper(theData);
             hoppers.add(hopper);
-        } else if (Regexp.present.matcher(theData).matches()) {
-            parsePresent(theData);
+        } else if (theData.split(" ")[0].equals("PRESENTS")) {
+            presentNum = theData.split(" ")[1];
+        } else if (Regexp.presentWA.matcher(theData).matches()){
+            String[] present = parsePresent(theData);
+            presents.add(present);
         } else if (Regexp.timer.matcher(theData).matches()){
             String[] timr = parseTimer(theData);
             timer.add(timr);
@@ -281,22 +285,7 @@ public class FileParser {
      * @param present the string defining a turntable
      */
     private String[] parsePresent(final String present) {
-        Matcher idMat = Regexp.present.matcher(present);
-        idMat.find();
-        outputFound("Present", idMat.group(1));
-
-        Matcher matcher = Regexp.presentProp.matcher(present);
-
-        while (matcher.find()) {
-            clog(CLOG_PARSE, "-------------------");
-            clog(CLOG_PARSE, matcher.group());
-            //clog(CLOG_PARSE, "   age range: " + matcher.group(1));
-            //clog(CLOG_PARSE, "        type: " + matcher.group(2));
-
-            //if (!matcher.group(2).equals("null"))
-            //clog(CLOG_PARSE, "   output id: " + matcher.group(3));
-        }
-        return new String[0];
+        return new String[]{presentNum, present.split("-")[0], present.split("-")[1]};
     }
 
     /**
@@ -314,7 +303,7 @@ public class FileParser {
      * Outputs the title to the console. Totally unnecessary. But it looks pretty.
      */
     private void outputTitle() {
-        clog(CLOG_PARSE, "\u001B[31m  _____ _ _        ___                            _   \r\n |  ___(_) | ___  "
+        clog(CLOG_PARSE, "\n\u001B[31m  _____ _ _        ___                            _   \r\n |  ___(_) | ___  "
                 + "|_ _|_ __ ___  _ __   ___  _ __| |_ \n | |_  | | |/ _ \\  | || '_ ` _ \\| '_ \\ / _ \\| '__| __|\r\n"
                 + " |  _| | | |  __/  | || | | | | | |_) | (_) | |  | |_ \n |_|   |_|_|\\___| |___|_| |_| |_| .__/ \\__"
                 + "_/|_|   \\__|\n                                |_| \u001B[0m");

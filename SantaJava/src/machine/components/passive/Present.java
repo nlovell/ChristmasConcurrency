@@ -69,7 +69,4 @@ public class Present {
             throwable.printStackTrace();
         }
     }
-
-    //TODO Present objects are created at the start of the simulation and
-    //  loaded into the hopper to simulate the toys to be distributed.
 }

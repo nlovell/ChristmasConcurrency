@@ -52,6 +52,9 @@ public class Regexp {
     public static final Pattern present =
             compile("^PRESENTS ([0-9])(?:\\n?\\r?)?([0-9])((?:\\n?\\r?[0-9]+-[0-9]+)+)$");
 
+    public static final Pattern presentWA =
+            compile("^([0-9]+-[0-9]+\\n?\\r?)+$");
+
     /**
      * The constant presentProp.
      */

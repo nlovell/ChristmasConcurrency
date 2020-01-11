@@ -28,7 +28,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
      * @param capacity      the capacity of the hopper
      * @param speed         the output speed of the hopper
      */
-    public Hopper(int hopperID, Conveyor connectedBelt, int capacity, int speed ){//, Present[] gifts) {
+    public Hopper(int hopperID, Conveyor connectedBelt, int capacity, int speed) {//, Present[] gifts) {
         super(hopperID);
         this.connectedBelt = connectedBelt;
         this.capacity = capacity;
@@ -40,20 +40,20 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
     @Override
     public void run() {
-        try {
-            do {
+        do {
+            try {
                 Thread.sleep(1000 * speed);
-                if(current>0) {
+                if (current > 0) {
                     if (connectedBelt.consume(gifts[1])) {
                         gifts[1] = null;
                         current--;
                     }
                 }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
 
-            } while (running);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        } while (running);
     }
 
     //<editor-fold desc="Getter methods">
@@ -69,9 +69,10 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
 
     /**
      * Gets the current number of gifts in the hopper
+     *
      * @return gift count
      */
-    public int getCurrent(){
+    public int getCurrent() {
         return current;
     }
 
@@ -83,7 +84,6 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
     public Conveyor getConnectedBelt() {
         return connectedBelt;
     }
-
 
     /**
      * Gets speed.
