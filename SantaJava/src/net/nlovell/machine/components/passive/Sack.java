@@ -1,13 +1,13 @@
-package machine.components.passive;
+package net.nlovell.machine.components.passive;
 
-import machine.data.AgeRange;
-import machine.components.MachinePart;
-import machine.interfaces.PassiveConsumer;
+import net.nlovell.machine.data.AgeRange;
+import net.nlovell.machine.components.MachinePart;
+import net.nlovell.machine.interfaces.PassiveConsumer;
 
 import java.util.Arrays;
 
-import static clog.LogConstants.CLOG_DEBUG;
-import static clog.Log.clogger;
+import static net.nlovell.clog.LogConstants.CLOG_DEBUG;
+import static net.nlovell.clog.Log.clogger;
 
 /**
  * The passive consumer Sack.
@@ -60,9 +60,6 @@ public class Sack extends MachinePart implements PassiveConsumer {
      */
     public void replaceSack() {
         synchronized (presents) {
-            for(Present present : presents){
-                present.deliver();
-            }
             Arrays.fill(presents, null);
             fullness = 0;
         }

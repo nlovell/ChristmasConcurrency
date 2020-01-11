@@ -1,6 +1,6 @@
-package clog;
+package net.nlovell.clog;
 
-import static clog.LogConstants.*;
+import static net.nlovell.clog.LogConstants.*;
 
 public class Log {
 

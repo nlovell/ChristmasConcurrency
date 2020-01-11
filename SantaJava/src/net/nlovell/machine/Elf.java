@@ -1,12 +1,12 @@
-package machine;
+package net.nlovell.machine;
 
-import machine.components.passive.Sack;
+import net.nlovell.machine.components.passive.Sack;
+import net.nlovell.machine.data.Constants;
 
 import java.util.Random;
 
-import static clog.LogConstants.CLOG_DEBUG;
-import static clog.Log.clogger;
-import static machine.data.Constants.SPEED_MULT;
+import static net.nlovell.clog.LogConstants.CLOG_DEBUG;
+import static net.nlovell.clog.Log.clogger;
 
 /**
  * Elves run as threads, and are assigned to empty the sacks when they're full.
@@ -37,7 +37,7 @@ public class Elf implements Runnable{
         do {
             if (!elfSack.isSpace()) {
                 try {
-                    Thread.sleep(replaceTime/SPEED_MULT);
+                    Thread.sleep(replaceTime/ Constants.SPEED_MULT);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

@@ -1,4 +1,4 @@
-package machine.data;
+package net.nlovell.machine.data;
 
 import java.util.Objects;
 

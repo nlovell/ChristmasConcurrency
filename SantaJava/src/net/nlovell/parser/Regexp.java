@@ -1,4 +1,4 @@
-package parser;
+package net.nlovell.parser;
 
 import java.util.regex.Pattern;
 

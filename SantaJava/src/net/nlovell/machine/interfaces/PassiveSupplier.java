@@ -1,6 +1,6 @@
-package machine.interfaces;
+package net.nlovell.machine.interfaces;
 
-import machine.components.passive.Present;
+import net.nlovell.machine.components.passive.Present;
 
 /**
  * The interface Passive supplier.

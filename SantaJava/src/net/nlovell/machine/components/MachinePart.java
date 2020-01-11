@@ -1,4 +1,4 @@
-package machine.components;
+package net.nlovell.machine.components;
 
 /**
  * The type Machine part.

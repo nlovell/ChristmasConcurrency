@@ -1,4 +1,4 @@
-package parser;
+package net.nlovell.parser;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static clog.LogConstants.CLOG_PARSE;
-import static clog.Log.clogger;
+import static net.nlovell.clog.LogConstants.CLOG_PARSE;
+import static net.nlovell.clog.Log.clogger;
 
 /**
  * A way to parse standard UCan't
@@ -28,7 +28,7 @@ public class FileParser {
 
     private String presentNum = new String();
     /**
-     * Instantiates a new File parser.
+     * Instantiates a new File net.nlovell.parser.
      *
      * @param file           the file
      * @param outputSource   boolean to enable output of the source file line-for-line to the console

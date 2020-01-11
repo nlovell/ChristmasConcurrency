@@ -1,9 +1,9 @@
-package machine.data;
+package net.nlovell.machine.data;
 
-import machine.components.passive.Conveyor;
-import machine.components.passive.Sack;
-import machine.interfaces.PassiveConsumer;
-import machine.interfaces.PassiveSupplier;
+import net.nlovell.machine.components.passive.Conveyor;
+import net.nlovell.machine.components.passive.Sack;
+import net.nlovell.machine.interfaces.PassiveConsumer;
+import net.nlovell.machine.interfaces.PassiveSupplier;
 
 
 /**

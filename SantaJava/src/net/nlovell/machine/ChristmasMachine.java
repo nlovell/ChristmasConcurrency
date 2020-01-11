@@ -1,22 +1,21 @@
-package machine;
+package net.nlovell.machine;
 
-import machine.components.MachinePart;
-import machine.components.passive.Conveyor;
-import machine.components.passive.Present;
-import machine.components.passive.Sack;
-import machine.components.threaded.Hopper;
-import machine.components.threaded.Turntable;
-import machine.data.AgeRange;
-import machine.data.Direction;
-import machine.data.TurntableConnection;
+import net.nlovell.machine.components.MachinePart;
+import net.nlovell.machine.components.passive.Conveyor;
+import net.nlovell.machine.components.passive.Present;
+import net.nlovell.machine.components.passive.Sack;
+import net.nlovell.machine.components.threaded.Hopper;
+import net.nlovell.machine.components.threaded.Turntable;
+import net.nlovell.machine.data.AgeRange;
+import net.nlovell.machine.data.Direction;
+import net.nlovell.machine.data.TurntableConnection;
+import net.nlovell.machine.data.Constants;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-import static clog.LogConstants.*;
-import static clog.Log.clogger;
-import static machine.data.Constants.OUTPUT_TIME;
-import static machine.data.Constants.SPEED_MULT;
+import static net.nlovell.clog.LogConstants.*;
+import static net.nlovell.clog.Log.clogger;
 
 /**
  * The type Christmas machine.
@@ -269,12 +268,12 @@ public class ChristmasMachine {
         //A simple timer loop of variable length
         do {
             try {
-                Thread.sleep(target/SPEED_MULT);
+                Thread.sleep(target/ Constants.SPEED_MULT);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             timer++;
-            if (timer % OUTPUT_TIME == 0) {
+            if (timer % Constants.OUTPUT_TIME == 0) {
                 timedLogger(startTime);
             }
         } while (timer < sessionLength);
@@ -338,7 +337,7 @@ public class ChristmasMachine {
         while (remaining > 0) {
 
             try {
-                Thread.sleep(100/SPEED_MULT);
+                Thread.sleep(100/ Constants.SPEED_MULT);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

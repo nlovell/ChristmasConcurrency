@@ -1,15 +1,15 @@
-package machine.components.threaded;
+package net.nlovell.machine.components.threaded;
 
-import machine.components.MachinePart;
-import machine.components.passive.Conveyor;
-import machine.components.passive.Present;
-import machine.data.Direction;
-import machine.interfaces.ActiveSupplier;
-import machine.interfaces.PassiveConsumer;
+import net.nlovell.machine.components.MachinePart;
+import net.nlovell.machine.components.passive.Conveyor;
+import net.nlovell.machine.components.passive.Present;
+import net.nlovell.machine.data.Direction;
+import net.nlovell.machine.interfaces.ActiveSupplier;
+import net.nlovell.machine.interfaces.PassiveConsumer;
+import net.nlovell.machine.data.Constants;
 
-import static clog.LogConstants.CLOG_DEBUG;
-import static clog.Log.clogger;
-import static machine.data.Constants.SPEED_MULT;
+import static net.nlovell.clog.LogConstants.CLOG_DEBUG;
+import static net.nlovell.clog.Log.clogger;
 
 /**
  * The type Hopper.
@@ -49,7 +49,7 @@ public class Hopper extends MachinePart implements ActiveSupplier, Runnable {
     public void run() {
         do {
             try {
-                Thread.sleep((1000 * speed)/SPEED_MULT);
+                Thread.sleep((1000 * speed)/ Constants.SPEED_MULT);
                 if (current > 0) {
                     if (connectedBelt.consume(gifts[1])) {
                         gifts[1] = null;

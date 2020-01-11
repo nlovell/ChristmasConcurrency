@@ -1,4 +1,4 @@
-package machine.data;
+package net.nlovell.machine.data;
 
 /**
  * The type Constants.

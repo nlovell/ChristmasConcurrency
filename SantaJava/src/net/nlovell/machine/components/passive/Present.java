@@ -1,21 +1,27 @@
-package machine.components.passive;
+package net.nlovell.machine.components.passive;
 
-import machine.data.AgeRange;
+import net.nlovell.machine.data.AgeRange;
 
 /**
  * The type Present.
  */
 public class Present {
-
+    /**
+     *
+     */
     final private Sack[] suitableSacks;
     final private AgeRange ageRange;
+    /**
+     * The Hopper id.
+     */
     final int hopperID;
 
     /**
      * Instantiates a new Present.
-     *  @param suitableSacks the type of toy
-     * @param ageRange the agerange
-     * @param hopperID
+     *
+     * @param suitableSacks the type of toy
+     * @param ageRange      the agerange
+     * @param hopperID      the hopper id
      */
     public Present(Sack[] suitableSacks, AgeRange ageRange, final int hopperID) {
         this.suitableSacks = suitableSacks;
@@ -56,6 +62,16 @@ public class Present {
         return sacks;
     }
 
+
+    /**
+     * Get hopper id int.
+     *
+     * @return the int
+     */
+    public int getHopperID(){
+        return hopperID;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("|");
@@ -66,17 +82,5 @@ public class Present {
                 "ageRange=" + ageRange +
                 "suitable sacks=" + sb +
                 '}';
-    }
-
-    public int getHopperID(){
-        return hopperID;
-    }
-
-    public void deliver(){ //todo remove
-        try {
-            this.finalize();
-        } catch (Throwable throwable) {
-            throwable.printStackTrace();
-        }
     }
 }

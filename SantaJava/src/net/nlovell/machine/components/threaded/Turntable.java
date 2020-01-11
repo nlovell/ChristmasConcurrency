@@ -1,19 +1,19 @@
-package machine.components.threaded;
+package net.nlovell.machine.components.threaded;
 
-import machine.components.MachinePart;
-import machine.components.passive.Present;
-import machine.components.passive.Sack;
-import machine.data.Direction;
-import machine.data.TurntableConnection;
-import machine.interfaces.ActiveConsumer;
-import machine.interfaces.ActiveSupplier;
-import machine.interfaces.PassiveConsumer;
-import machine.interfaces.PassiveSupplier;
+import net.nlovell.machine.components.MachinePart;
+import net.nlovell.machine.components.passive.Present;
+import net.nlovell.machine.components.passive.Sack;
+import net.nlovell.machine.data.Direction;
+import net.nlovell.machine.data.TurntableConnection;
+import net.nlovell.machine.interfaces.ActiveConsumer;
+import net.nlovell.machine.interfaces.ActiveSupplier;
+import net.nlovell.machine.interfaces.PassiveConsumer;
+import net.nlovell.machine.interfaces.PassiveSupplier;
 
-import static clog.LogConstants.*;
-import static clog.Log.clogger;
-import static machine.data.Constants.*;
-import static machine.data.Direction.*;
+import static net.nlovell.clog.LogConstants.*;
+import static net.nlovell.clog.Log.clogger;
+import static net.nlovell.machine.data.Constants.*;
+import static net.nlovell.machine.data.Direction.*;
 
 /**
  * The type Turntable.

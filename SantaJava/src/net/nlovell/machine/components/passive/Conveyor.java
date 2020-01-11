@@ -1,14 +1,14 @@
-package machine.components.passive;
+package net.nlovell.machine.components.passive;
 
-import clog.Log;
-import machine.data.AgeRange;
-import machine.components.MachinePart;
-import machine.interfaces.PassiveConsumer;
-import machine.interfaces.PassiveSupplier;
+import net.nlovell.clog.Log;
+import net.nlovell.machine.data.AgeRange;
+import net.nlovell.machine.components.MachinePart;
+import net.nlovell.machine.interfaces.PassiveConsumer;
+import net.nlovell.machine.interfaces.PassiveSupplier;
 
 import java.util.Arrays;
 
-import static clog.LogConstants.CLOG_DEBUG;
+import static net.nlovell.clog.LogConstants.CLOG_DEBUG;
 
 /**
  * The type Conveyor. //TODO

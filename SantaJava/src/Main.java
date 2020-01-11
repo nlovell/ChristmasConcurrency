@@ -1,14 +1,14 @@
-import machine.ChristmasMachine;
-import parser.FileParser;
+import net.nlovell.machine.ChristmasMachine;
+import net.nlovell.parser.FileParser;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import static clog.LogConstants.*;
-import static clog.Log.clogger;
-import static parser.Regexp.filePathValidator;
+import static net.nlovell.clog.LogConstants.*;
+import static net.nlovell.clog.Log.clogger;
+import static net.nlovell.parser.Regexp.filePathValidator;
 
 /**
  * The Runner class and the Parser classes aren't part of the actual "machine", so while they have access to
@@ -37,7 +37,6 @@ public class Main {
         //final String testfiledir =  "D:/repositories/Concurrency1/SantaJava/src/test_files/";
         //fileToParse = testfiledir + "example_1.txt";
         // Or fill in your own value(s) here to automatically skip manual filename entry at runtime
-
 
         while (!filePathValidator.matcher(fileToParse).find()) {
             fileToParse = consoleReader();

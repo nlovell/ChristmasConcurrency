@@ -1,8 +1,8 @@
-package machine.interfaces;
+package net.nlovell.machine.interfaces;
 
-import machine.components.passive.Sack;
-import machine.data.AgeRange;
-import machine.components.passive.Present;
+import net.nlovell.machine.components.passive.Sack;
+import net.nlovell.machine.data.AgeRange;
+import net.nlovell.machine.components.passive.Present;
 
 /**
  * The interface Passive consumer.

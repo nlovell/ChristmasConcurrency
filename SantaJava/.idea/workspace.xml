@@ -3,8 +3,28 @@
   <component name="ChangeListManager">
     <list default="true" id="cf4d0063-cd9b-4bf3-9b54-4ddd5e91c7d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clog/Log.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/clog/Log.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/clog/LogConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/clog/LogConstants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/ChristmasMachine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/ChristmasMachine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/Elf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/Elf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/components/MachinePart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/MachinePart.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Conveyor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Conveyor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Present.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Present.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/components/passive/Sack.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/passive/Sack.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Hopper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/threaded/Hopper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/components/threaded/Turntable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/components/threaded/Turntable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/data/AgeRange.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/data/AgeRange.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/data/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/data/Constants.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/data/Direction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/data/Direction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/data/TurntableConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/data/TurntableConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/interfaces/ActiveConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/interfaces/ActiveConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/interfaces/ActiveSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/interfaces/ActiveSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/interfaces/PassiveConsumer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/interfaces/PassiveConsumer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/machine/interfaces/PassiveSupplier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/machine/interfaces/PassiveSupplier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/FileParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/parser/FileParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parser/Regexp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/net/nlovell/parser/Regexp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test_files/test_file_descriptors.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/test_files/read_me.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,15 +65,8 @@
       <recent name="machine" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.default">
-    <configuration name="FileParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="parser.FileParser" />
-      <module name="SantaJava" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.Example 1">
+    <configuration name="Example 1" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="SantaJava" />
       <option name="PROGRAM_PARAMETERS" value="$PROJECT_DIR$/src/test_files/example_1.txt" />
@@ -81,15 +94,9 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.Example 1" />
       <item itemvalue="Application.default" />
-      <item itemvalue="Application.FileParser" />
-      <item itemvalue="Application.Main" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.FileParser" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -125,10 +132,10 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="860" y="556" key="#com.intellij.debugger.ui.breakpoints.EditClassFiltersDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578599363056" />
-    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578763252303">
+    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1578764681577">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578763252303" />
+    <state x="900" y="334" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578764681577" />
     <state x="1085" y="417" key="#com.intellij.ide.util.MemberChooser" timestamp="1578754194218">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -169,22 +176,22 @@
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
     <state x="1226" y="420" key="FileChooserDialogImpl/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578763249250" />
-    <state width="2517" height="285" key="GridCell.Tab.0.bottom" timestamp="1578762486528">
+    <state width="2517" height="285" key="GridCell.Tab.0.bottom" timestamp="1578764703580">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="285" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762486528" />
-    <state width="2517" height="285" key="GridCell.Tab.0.center" timestamp="1578762486528">
+    <state width="2517" height="285" key="GridCell.Tab.0.bottom/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578764703580" />
+    <state width="2517" height="285" key="GridCell.Tab.0.center" timestamp="1578764703580">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="285" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762486528" />
-    <state width="2517" height="285" key="GridCell.Tab.0.left" timestamp="1578762486528">
+    <state width="2517" height="285" key="GridCell.Tab.0.center/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578764703580" />
+    <state width="2517" height="285" key="GridCell.Tab.0.left" timestamp="1578764703580">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="285" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762486528" />
-    <state width="2517" height="285" key="GridCell.Tab.0.right" timestamp="1578762486528">
+    <state width="2517" height="285" key="GridCell.Tab.0.left/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578764703580" />
+    <state width="2517" height="285" key="GridCell.Tab.0.right" timestamp="1578764703580">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state width="2517" height="285" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578762486528" />
+    <state width="2517" height="285" key="GridCell.Tab.0.right/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578764703580" />
     <state width="2517" height="383" key="GridCell.Tab.1.bottom" timestamp="1578762449644">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -221,10 +228,10 @@
       <screen x="2560" y="173" width="1920" height="1040" />
     </state>
     <state x="2560" y="173" width="1936" height="974" key="dock-window-1/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578750143679" />
-    <state x="1637" y="413" width="737" height="804" key="find.popup" timestamp="1578759511856">
+    <state x="1637" y="413" width="737" height="804" key="find.popup" timestamp="1578763921789">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
-    <state x="1637" y="413" width="737" height="804" key="find.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578759511856" />
+    <state x="1637" y="413" width="737" height="804" key="find.popup/0.0.2560.1400/2560.173.1920.1040/-1080.0.1080.1880@0.0.2560.1400" timestamp="1578763921789" />
     <state x="1022" y="320" key="refactoring.ChangeSignatureDialog" timestamp="1578749908177">
       <screen x="0" y="0" width="2560" height="1400" />
     </state>
@@ -242,12 +249,12 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/machine/data/AgeRange.java</url>
+          <url>file://$PROJECT_DIR$/src/net/nlovell/machine/data/AgeRange.java</url>
           <line>39</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/machine/ChristmasMachine.java</url>
+          <url>file://$PROJECT_DIR$/src/net/nlovell/machine/ChristmasMachine.java</url>
           <line>129</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>

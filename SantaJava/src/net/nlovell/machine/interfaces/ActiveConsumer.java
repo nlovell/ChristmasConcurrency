@@ -1,6 +1,6 @@
-package machine.interfaces;
+package net.nlovell.machine.interfaces;
 
-import machine.data.Direction;
+import net.nlovell.machine.data.Direction;
 
 /**
  * The interface Active consumer.

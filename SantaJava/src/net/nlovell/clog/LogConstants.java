@@ -1,4 +1,4 @@
-package clog;
+package net.nlovell.clog;
 
 public class LogConstants {
 
