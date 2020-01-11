@@ -37,8 +37,15 @@ public class AgeRange {
     }
 //todo !(this.max < other.min || this.min > other.max)
     public boolean contains(AgeRange ageRange){
-        return (ageRange.age_min >= this.age_min && ageRange.age_max <= this.age_max)
-                || (ageRange.age_max >= this.age_min && ageRange.age_max <= this.age_max);
+       boolean a = ageRange.age_max <= this.age_max && ageRange.age_max <= this.age_min;
+       boolean b = ageRange.age_max <= this.age_max && ageRange.age_min >= this.age_min;
+       boolean c = ageRange.age_max >= this.age_max && ageRange.age_min <= this.age_min;
+
+       boolean out =  a || b || c;
+       return out;
+
+        //(ageRange.age_min >= this.age_min && ageRange.age_max <= this.age_max)
+        //        || (ageRange.age_max >= this.age_min && ageRange.age_max <= this.age_max)
     }
 
     @Override
